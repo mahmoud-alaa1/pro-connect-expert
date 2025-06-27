@@ -1,7 +1,7 @@
 import SignupForm from "@/components/forms/SignupForm";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 
 export default function page() {
   return (
@@ -19,16 +19,10 @@ export default function page() {
           <SignupForm />
           <div className="flex items-center gap-4 ">
             <div className="h-px bg-gray-300 flex-grow"></div>
-            <span className="text-gray-500 whitespace-nowrap">أو تابع مع</span>
+            <span className="text-gray-500 whitespace-nowrap">أو سجل مع</span>
             <div className="h-px bg-gray-300 flex-grow"></div>
           </div>
-          <Button
-            variant="outline"
-            className="flex w-full items-center gap-2 cursor-pointer"
-          >
-            <Image src="/google.svg" alt="Google" width={20} height={20} />
-            <span>تابع مع جوجل</span>
-          </Button>
+          <GoogleAuthButton />
           <div className=" flex gap-2 items-center justify-center">
             <span className="text-sm">لديك حساب بالفعل؟</span>
             <Link href="/login">

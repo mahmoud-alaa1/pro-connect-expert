@@ -1,6 +1,6 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
 
 export async function verifyOtpAction({
   email,
@@ -9,6 +9,7 @@ export async function verifyOtpAction({
   email: string;
   otp: string;
 }) {
+  const supabase = await createSupabaseServer();
   const { data: user } = await supabase
     .from("pending_users")
     .select("*")
@@ -27,33 +28,26 @@ export async function verifyOtpAction({
       email_confirm: true,
     });
 
-
   if (authError || !authData?.user) {
     throw new Error("فشل في إنشاء حساب المستخدم");
   }
 
-  const newUserId = authData.user.id; 
+  const newUserId = authData.user.id;
 
   // 2. Add to profiles
-  const { error: profileError, data } = await supabase.from("profiles").insert({
+  const { error: profileError } = await supabase.from("profiles").insert({
     id: newUserId,
     email: user.email,
     full_name: user.full_name,
     user_type: user.user_type,
   });
 
-  console.log("here ", profileError, data);
-
   if (profileError) throw new Error("فشل في إنشاء الملف الشخصي");
 
   // 3. Add to professionals if expert
   if (user.user_type === "expert") {
     const { error: expertError } = await supabase.from("professionals").insert({
-      user_id: user.id,
-      title: user.title,
-      speciality: user.speciality,
-      bio: user.bio,
-      hourly_rate: user.hourly_rate,
+      user_id: newUserId,
     });
 
     if (expertError) throw new Error("فشل في إضافة بيانات الخبير");

@@ -13,7 +13,6 @@ import FormRadioGroup from "../form-fields/FormRadioGroup";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { RadioRoles } from "@/lib/constants";
-import FormTextArea from "../form-fields/FormTextArea";
 import { useSignup } from "@/hooks/auth/useSignup";
 
 export default function SignupForm() {
@@ -26,11 +25,7 @@ export default function SignupForm() {
     defaultValues: {
       email: "",
       password: "",
-      title: "",
-      speciality: "",
       user_type: "client",
-      bio: "",
-      hourly_rate: 0,
       full_name: "",
     },
   });
@@ -44,13 +39,6 @@ export default function SignupForm() {
     const role = type === "expert" ? "expert" : "client";
 
     form.setValue("user_type", role);
-
-    if (role === "client") {
-      form.resetField("title");
-      form.resetField("speciality");
-      form.resetField("bio");
-      form.resetField("hourly_rate");
-    }
   }, [searchParams, form]);
 
   return (
@@ -69,15 +57,16 @@ export default function SignupForm() {
           placeholder={`example@example.com`}
           Icon={<Mail className="h-4 w-4" />}
           label={`البريد الإلكتروني`}
-          dir="ltr"
           autoComplete="email"
           type="email"
+          dir="ltr"
         />
         <FormPassword<signupSchema>
           control={form.control}
           name="password"
           placeholder={`ادخل كلمة المرور`}
           label="كلمة المرور"
+          dir="ltr"
         />
         <div className="w-fit mx-auto">
           <FormRadioGroup<signupSchema>
@@ -87,35 +76,6 @@ export default function SignupForm() {
             direction="horizontal"
           />
         </div>
-        {form.watch("user_type") === "expert" && (
-          <>
-            <FormInput<signupSchema>
-              control={form.control}
-              name="title"
-              placeholder="مثال: مطور ويب"
-              label="المسمى الوظيفي"
-            />
-            <FormInput<signupSchema>
-              control={form.control}
-              name="speciality"
-              placeholder="مثال: مطور برمجيات, مصمم جرافيك ..."
-              label="التخصص"
-            />
-            <FormTextArea<signupSchema>
-              control={form.control}
-              name="bio"
-              placeholder="اكتب نبذة قصيرة عنك"
-              label="نبذة شخصية"
-            />
-            <FormInput<signupSchema>
-              control={form.control}
-              name="hourly_rate"
-              placeholder="ريال سعودي"
-              label="السعر بالساعة"
-            />
-          </>
-        )}
-
         <Button
           disabled={isPending}
           type="submit"

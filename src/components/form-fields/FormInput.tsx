@@ -24,6 +24,7 @@ interface FormInputProps<TFormValues extends FieldValues>
   Icon?: React.ReactNode;
   labelClassName?: string;
   defaultValue?: string;
+  dir?: "ltr" | "rtl";
 }
 
 export default function FormInput<TFormValues extends FieldValues>({
@@ -34,10 +35,17 @@ export default function FormInput<TFormValues extends FieldValues>({
   description,
   className,
   labelClassName,
+  dir,
   ...inputProps
 }: FormInputProps<TFormValues>) {
   const locale = useLocale();
-  const isRtl = ["ar", "he", "fa", "ur"].includes(locale);
+  console.log(locale);
+  let isRtl = ["ar", "he", "fa", "ur"].includes(locale);
+  if (dir) {
+    isRtl = dir === "rtl";
+  }
+
+  console.log(isRtl);
 
   return (
     <FormField
@@ -54,19 +62,21 @@ export default function FormInput<TFormValues extends FieldValues>({
             <div className="relative h-fit">
               {Icon && (
                 <div
+                  dir={dir ?? "ltr"}
                   className={cn(
                     "absolute inset-y-0 flex items-center justify-center text-gray-400",
-                    isRtl ? "start-2.5" : "end-2.5"
+                    isRtl ? "start-2.5 " : "end-2.5 "
                   )}
                 >
                   {Icon}
                 </div>
               )}
               <Input
+                dir={isRtl ? "rtl" : "ltr"}
                 id={name}
                 {...field}
                 {...inputProps}
-                className={cn(isRtl ? "pe-8" : "ps-8", className)}
+                className={cn("pe-8", className)}
               />
             </div>
           </FormControl>

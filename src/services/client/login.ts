@@ -1,3 +1,5 @@
+import { supabaseClient } from "@/lib/supabase/supabaseClient";
+
 export async function loginService(data: {
   email: string;
   password: string;
@@ -27,3 +29,33 @@ export async function loginService(data: {
     throw new Error("An unexpected error occurred during login");
   }
 }
+
+export const googleAuth = async () => {
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    console.log(data);
+    if (error) console.error("Login error:", error);
+  } catch (err) {
+    console.error("Unexpected error during Google Auth:", err);
+  }
+};
+
+export const getGooleSession = async () => {
+  try {
+    const {
+      data: { session },
+      error,
+    } = await supabaseClient.auth.getSession();
+
+    if (error) console.error("getting session info error:", error);
+    return session;
+  } catch (err) {
+    console.error("Unexpected error during getting session info:", err);
+    throw err;
+  }
+};

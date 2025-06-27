@@ -36,7 +36,7 @@ export default function LanguageSwitcher() {
       variant="outline"
     >
       <Globe />
-      {locale === "ar" ? "English" : "العربية"}
+      {locale === "ar" ? "EN" : "AR"}
     </Button>
   );
 }

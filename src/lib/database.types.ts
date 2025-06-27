@@ -432,42 +432,45 @@ export type Database = {
           bio: string | null
           created_at: string
           email: string
+          expires_at: string | null
           full_name: string | null
           hourly_rate: number | null
-          id: number
+          id: string
           otp: string | null
-          otp_expires_at: string | null
           password: string
           speciality: string | null
           title: string | null
+          token: string | null
           user_type: Database["public"]["Enums"]["user_type"] | null
         }
         Insert: {
           bio?: string | null
           created_at?: string
           email: string
+          expires_at?: string | null
           full_name?: string | null
           hourly_rate?: number | null
-          id?: number
+          id?: string
           otp?: string | null
-          otp_expires_at?: string | null
           password: string
           speciality?: string | null
           title?: string | null
+          token?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
         }
         Update: {
           bio?: string | null
           created_at?: string
           email?: string
+          expires_at?: string | null
           full_name?: string | null
           hourly_rate?: number | null
-          id?: number
+          id?: string
           otp?: string | null
-          otp_expires_at?: string | null
           password?: string
           speciality?: string | null
           title?: string | null
+          token?: string | null
           user_type?: Database["public"]["Enums"]["user_type"] | null
         }
         Relationships: []
@@ -479,13 +482,13 @@ export type Database = {
           certificates_urls: string[] | null
           created_at: string | null
           currency: Database["public"]["Enums"]["currency_type"] | null
-          hourly_rate: number
+          hourly_rate: number | null
           id: string
           languages: string[] | null
           portfolio_urls: string[] | null
           rating: number | null
-          specialty: string
-          title: string
+          specialty: string | null
+          title: string | null
           total_reviews: number | null
           updated_at: string | null
           user_id: string
@@ -497,13 +500,13 @@ export type Database = {
           certificates_urls?: string[] | null
           created_at?: string | null
           currency?: Database["public"]["Enums"]["currency_type"] | null
-          hourly_rate?: number
+          hourly_rate?: number | null
           id?: string
           languages?: string[] | null
           portfolio_urls?: string[] | null
           rating?: number | null
-          specialty: string
-          title: string
+          specialty?: string | null
+          title?: string | null
           total_reviews?: number | null
           updated_at?: string | null
           user_id: string
@@ -515,27 +518,19 @@ export type Database = {
           certificates_urls?: string[] | null
           created_at?: string | null
           currency?: Database["public"]["Enums"]["currency_type"] | null
-          hourly_rate?: number
+          hourly_rate?: number | null
           id?: string
           languages?: string[] | null
           portfolio_urls?: string[] | null
           rating?: number | null
-          specialty?: string
-          title?: string
+          specialty?: string | null
+          title?: string | null
           total_reviews?: number | null
           updated_at?: string | null
           user_id?: string
           years_experience?: number | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "professionals_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       profile_pictures: {
         Row: {
@@ -586,7 +581,7 @@ export type Database = {
           full_name?: string
           id: string
           updated_at?: string | null
-          user_type?: Database["public"]["Enums"]["user_type"]
+          user_type: Database["public"]["Enums"]["user_type"]
         }
         Update: {
           avatar_url?: string | null

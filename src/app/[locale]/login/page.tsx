@@ -1,9 +1,22 @@
 import LoginForm from "@/components/forms/LoginForm";
+import GoogleAuthButton from "@/components/GoogleAuthButton";
 import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/navigation";
-import Image from "next/image";
+import { Link, redirect } from "@/i18n/navigation";
+import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
+import { getLocale } from "next-intl/server";
 
-export default function page() {
+export default async function page() {
+  const supabase = await createSupabaseServer();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    const locale = await getLocale();
+
+    return redirect({ href: "/", locale });
+  }
   return (
     <div className="p-4">
       <div className="mx-auto max-w-md mt-5 ">
@@ -22,13 +35,8 @@ export default function page() {
             <span className="text-gray-500 whitespace-nowrap">أو تابع مع</span>
             <div className="h-px bg-gray-300 flex-grow"></div>
           </div>
-          <Button
-            variant="outline"
-            className="flex w-full items-center gap-2 cursor-pointer"
-          >
-            <Image src="/google.svg" alt="Google" width={20} height={20} />
-            <span>تابع مع جوجل</span>
-          </Button>
+          <GoogleAuthButton />
+
           <div className="flex items-center gap-4 ">
             <div className="h-px bg-gray-300 flex-grow"></div>
             <span className="text-gray-500 whitespace-nowrap">

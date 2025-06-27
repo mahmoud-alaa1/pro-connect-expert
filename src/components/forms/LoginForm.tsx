@@ -38,14 +38,15 @@ export default function LoginForm() {
           placeholder={`example@example.com`}
           Icon={<Mail className="h-4 w-4" />}
           label={`البريد الإلكتروني`}
-          dir="ltr"
           autoComplete="email"
+          dir="ltr"
         />
         <FormPassword<loginSchema>
           control={form.control}
           name="password"
           placeholder={`ادخل كلمة المرور`}
           label="كلمة المرور"
+          dir="ltr"
         />
 
         <div className="flex items-center justify-between flex-wrap gap-4">
