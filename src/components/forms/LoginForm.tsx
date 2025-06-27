@@ -12,8 +12,10 @@ import FormCheckbox from "../form-fields/FormCheckbox";
 import { Link } from "@/i18n/navigation";
 import { useLogin } from "@/hooks/auth/useLogin";
 import Spinner from "../Spinner";
+import { useTranslations } from "next-intl";
 
 export default function LoginForm() {
+  const t = useTranslations("Login.form");
   const { mutate, isPending } = useLogin();
   const form = useForm<loginSchema>({
     resolver: zodResolver(loginSchema),
@@ -35,28 +37,28 @@ export default function LoginForm() {
         <FormInput<loginSchema>
           control={form.control}
           name="email"
-          placeholder={`example@example.com`}
+          placeholder={t("fields.email_placeholder")}
           Icon={<Mail className="h-4 w-4" />}
-          label={`البريد الإلكتروني`}
+          label={t("fields.email")}
           autoComplete="email"
           dir="ltr"
         />
         <FormPassword<loginSchema>
           control={form.control}
           name="password"
-          placeholder={`ادخل كلمة المرور`}
-          label="كلمة المرور"
+          placeholder={t("fields.password_placeholder")}
+          label={t("fields.password")}
           dir="ltr"
         />
 
         <div className="flex items-center justify-between flex-wrap gap-4">
           <FormCheckbox<loginSchema>
-            label="تذكر"
+            label={t("fields.remember_me")}
             control={form.control}
             name="rememberMe"
           />
           <Button type="button" variant="link">
-            <Link href={`/forgot-password`}>هل نسيت كلمة المرور؟</Link>
+            <Link href={`/forgot-password`}>{t("fields.forgot_password")}</Link>
           </Button>
         </div>
         <Button
@@ -64,7 +66,7 @@ export default function LoginForm() {
           type="submit"
           className="w-full text-white bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 cursor-pointer transition-colors duration-300 font-semibold shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:from-gray-400 disabled:hover:to-gray-400"
         >
-          {isPending ? <Spinner /> : "تسجيل الدخول"}
+          {isPending ? <Spinner /> : t("submit")}
         </Button>
       </form>
     </Form>

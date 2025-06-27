@@ -37,8 +37,9 @@ export async function createUserAction(user_type: string) {
   // 3. لو المستخدم خبير، نضيفه في جدول professionals
   if (user_type === "expert") {
     const { error: expertError } = await supabase.from("professionals").insert({
+      id,
       user_id: id,
-      title: "", 
+      title: "",
       specialty: "",
       bio: "",
       hourly_rate: 0,

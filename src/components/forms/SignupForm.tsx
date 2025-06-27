@@ -12,11 +12,14 @@ import Spinner from "../Spinner";
 import FormRadioGroup from "../form-fields/FormRadioGroup";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { RadioRoles } from "@/lib/constants";
+import { getRadioRoles } from "@/lib/constants";
 import { useSignup } from "@/hooks/auth/useSignup";
+import { useTranslations } from "next-intl";
 
 export default function SignupForm() {
-  const { isPending, mutate } = useSignup();
+  const t = useTranslations("Signup.form");
+  const tRoot = useTranslations("Signup");
+  const { mutate, isPending } = useSignup();
 
   const searchParams = useSearchParams();
 
@@ -41,22 +44,24 @@ export default function SignupForm() {
     form.setValue("user_type", role);
   }, [searchParams, form]);
 
+  const radioOptions = getRadioRoles(t);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormInput<signupSchema>
           control={form.control}
           name="full_name"
-          placeholder="ادخل اسمك"
-          label="الاسم الكامل"
+          placeholder={t("fields.full_name_placeholder")}
+          label={t("fields.full_name")}
           autoComplete="name"
         />
         <FormInput<signupSchema>
           control={form.control}
           name="email"
-          placeholder={`example@example.com`}
+          placeholder={t("fields.email_placeholder")}
           Icon={<Mail className="h-4 w-4" />}
-          label={`البريد الإلكتروني`}
+          label={t("fields.email")}
           autoComplete="email"
           type="email"
           dir="ltr"
@@ -64,15 +69,15 @@ export default function SignupForm() {
         <FormPassword<signupSchema>
           control={form.control}
           name="password"
-          placeholder={`ادخل كلمة المرور`}
-          label="كلمة المرور"
+          placeholder={t("fields.password_placeholder")}
+          label={t("fields.password")}
           dir="ltr"
         />
         <div className="w-fit mx-auto">
           <FormRadioGroup<signupSchema>
             control={form.control}
             name="user_type"
-            options={RadioRoles}
+            options={radioOptions}
             direction="horizontal"
           />
         </div>
@@ -81,7 +86,7 @@ export default function SignupForm() {
           type="submit"
           className="w-full text-white bg-gradient-to-r from-blue-600 to-teal-500 hover:from-blue-700 hover:to-teal-600 cursor-pointer transition-colors duration-300 font-semibold shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:from-gray-400 disabled:hover:to-gray-400"
         >
-          {isPending ? <Spinner /> : "إنشاء حساب"}
+          {isPending ? <Spinner /> : t("submit")}
         </Button>
       </form>
     </Form>

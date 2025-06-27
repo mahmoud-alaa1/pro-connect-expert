@@ -9,11 +9,12 @@ import {
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import HeaderActions from "./HeaderActions";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function SideNav() {
   const locale = useLocale();
-  const side = locale === "ar" ? "right" : "left"; 
+  const t = useTranslations("Common");
+  const side = locale === "ar" ? "right" : "left";
 
   return (
     <Sheet>
@@ -24,14 +25,12 @@ export default function SideNav() {
       </SheetTrigger>
       <SheetContent side={side} className="pt-5!">
         <SheetHeader>
-          <SheetTitle className="sr-only">
-            side nav menu for navigating
-          </SheetTitle>
+          <SheetTitle className="sr-only">{t("side_nav_menu")}</SheetTitle>
           <div className="flex flex-col gap-4">
             <HeaderActions />
           </div>
           <SheetDescription className="sr-only">
-            هذه القائمة الجانبية من اجل تغير اللغة والتنقل بين الصفحات
+            {t("side_nav_description")}
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

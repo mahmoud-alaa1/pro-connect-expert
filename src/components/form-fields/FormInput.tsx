@@ -39,13 +39,11 @@ export default function FormInput<TFormValues extends FieldValues>({
   ...inputProps
 }: FormInputProps<TFormValues>) {
   const locale = useLocale();
-  console.log(locale);
   let isRtl = ["ar", "he", "fa", "ur"].includes(locale);
   if (dir) {
     isRtl = dir === "rtl";
   }
 
-  console.log(isRtl);
 
   return (
     <FormField

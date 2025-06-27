@@ -13,10 +13,7 @@ export async function loginService(data: {
       body: JSON.stringify(data),
     });
 
-    if (!res.ok) {
-      const error = await res.json();
-      throw new Error(error.error || "Login failed");
-    }
+  
 
     const responseData = await res.json();
     return responseData;

@@ -5,8 +5,10 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Button } from "./ui/button";
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "@/store/useAuthStore";
+import { useTranslations } from "next-intl";
 
 export default function HeaderActions() {
+  const t = useTranslations("Common");
   const user = useAuth((s) => s.user);
 
   return (
@@ -20,12 +22,12 @@ export default function HeaderActions() {
       ) : (
         <>
           <Button variant="outline">
-            <Link href="/login">تسجيل الدخول</Link>
+            <Link href="/login">{t("login")}</Link>
           </Button>
         </>
       )}
       <Button variant="link">
-        <Link href="/professionals">البحث عن محترفين</Link>
+        <Link href="/professionals">{t("search_professionals")}</Link>
       </Button>
     </>
   );

@@ -18,7 +18,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Fetch profile data
   const {
     data: profile,
     error: profileError,
@@ -29,15 +28,20 @@ export async function POST(req: NextRequest) {
     .eq("id", data.user.id)
     .single();
 
-  if (profileError) {
-    return NextResponse.json({ error: profileError.message }, { status });
-  }
-  if (profile.email_confirmed === false) {
+  if (profileError?.message === "No rows found" || !profile) {
     return NextResponse.json(
-      { error: "يرجى تأكيد بريدك الإلكتروني" },
+      {
+        error: "حسابك غير مكتمل. من فضلك أكمل بيانات التسجيل.",
+        needsCompletion: true,
+      },
       { status: 403 }
     );
   }
+
+  if (profileError) {
+    return NextResponse.json({ error: profileError.message }, { status });
+  }
+
   const res = NextResponse.json({
     user: profile,
     token: data.session.access_token,
@@ -45,9 +49,8 @@ export async function POST(req: NextRequest) {
 
   res.cookies.set("token", data.session.access_token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
     maxAge: 60 * 60 * 24 * 7,
   });
+
   return res;
 }

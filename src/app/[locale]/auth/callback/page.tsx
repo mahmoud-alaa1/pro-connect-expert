@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/store/useAuthStore";
 import { supabaseClient } from "@/lib/supabase/supabaseClient";
 import Spinner from "@/components/Spinner";
+import { useTranslations } from "next-intl";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
   const login = useAuth((s) => s.login);
-
+  const t = useTranslations("Callback");
   useEffect(() => {
     const handleOAuth = async () => {
       //1. session
@@ -64,7 +65,7 @@ export default function AuthCallbackPage() {
   return (
     <div className="flex items-center justify-center h-screen flex-col gap-4">
       <Spinner size={80} />
-      <p>جاري تسجيل الدخول...</p>
+      <p>{t("logging_in")}</p>
     </div>
   );
 }

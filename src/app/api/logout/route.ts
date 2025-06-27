@@ -1,17 +1,18 @@
 // app/api/logout/route.ts
 import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
-import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function POST() {
   const supabase = await createSupabaseServer();
 
   await supabase.auth.signOut();
 
-  (await cookies()).set("token", "", {
+  const response = NextResponse.json({ success: true });
+  response.cookies.set("token", "", {
     httpOnly: true,
     maxAge: 0,
     path: "/",
   });
 
-  return Response.json({ success: true });
+  return response;
 }

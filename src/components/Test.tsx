@@ -1,9 +1,11 @@
+import { useTranslations } from "next-intl";
 export default function Test() {
+  const t = useTranslations("Login");
   return (
     <div>
       <div className="mx-auto">
-        <p>مرحبا بعودتك</p>
-        <span>سجل الدخول إلى حساب بروكونكت</span>
+        <p>{t("heading")}</p>
+        <span>{t("subheading")}</span>
       </div>
     </div>
   );

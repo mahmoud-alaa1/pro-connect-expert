@@ -1,10 +1,79 @@
 {
-  "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+   "Logo":{
+    "pro":"برو",
+    "connect":"كونكت"
   },
-  "Logo": {
-    "pro": "برو",
-    "connect": "كونكت"
+   "Callback": {
+    "logging_in": "جارٍ تسجيل الدخول..."
+  },
+  "Signup": {
+    "heading": "أنشئ حسابًا",
+    "subheading": "انضم إلى برو كونّكت",
+    "form": {
+      "title": "أنشئ حسابًا",
+      "subtitle": "املأ التفاصيل لإنشاء حسابك",
+      "submit": "تسجيل",
+      "fields": {
+        "full_name": "الاسم الكامل",
+        "full_name_placeholder": "ادخل اسمك",
+        "email": "البريد الإلكتروني",
+        "email_placeholder": "example@example.com",
+        "password": "كلمة المرور",
+        "password_placeholder": "ادخل كلمة المرور",
+        "user_type": "نوع المستخدم",
+        "client": "عميل",
+        "expert": "خبير"
+      }
+    },
+    "google": {
+      "divider": "أو تابع مع جوجل"
+    },
+    "loginLink": {
+      "text": "لديك حساب بالفعل؟",
+      "cta": "سجّل الدخول من هنا"
+    }
+  },
+  "Login": {
+    "heading": "تسجيل الدخول إلى حسابك",
+    "subheading": "مرحبًا بعودتك! يرجى إدخال بياناتك.",
+    "form": {
+      "title": "تسجيل الدخول",
+      "subtitle": "أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول",
+      "submit": "تسجيل الدخول",
+      "fields": {
+        "email": "البريد الإلكتروني",
+        "email_placeholder": "example@example.com",
+        "password": "كلمة المرور",
+        "password_placeholder": "ادخل كلمة المرور",
+        "remember_me": "تذكرني",
+        "forgot_password": "هل نسيت كلمة المرور؟"
+      }
+    },
+    "no_account": "ليس لديك حساب؟",
+    "join_client": "انضم كعميل",
+    "join_expert": "انضم كخبير",
+    "or_continue_with": "أو تابع مع"
+  },
+  "Common": {
+    "sign_with_google": "تابع مع جوجل",
+    "search_professionals": "البحث عن محترفين",
+    "logout": "تسجيل الخروج",
+    "cancel": "إلغاء",
+    "submit": "إرسال",
+    "login": "تسجيل الدخول",
+    "side_nav_menu":"القائمة الجانبية",
+    "side_nav_description": "الوصول السريع إلى الميزات"
+
+  },
+  "Errors": {
+    "required": "هذا الحقل مطلوب",
+    "invalid_email": "البريد الإلكتروني غير صالح",
+    "login_failed": "فشل تسجيل الدخول: {error}",
+    "signup_failed": "فشل التسجيل: {error}"
+  },
+  "Toasts": {
+    "login_success": "تم تسجيل الدخول بنجاح!",
+    "profile_complete_success": "تم إكمال الملف الشخصي بنجاح!",
+    "profile_complete_failed": "فشل إكمال الملف الشخصي: {error}"
   }
 }

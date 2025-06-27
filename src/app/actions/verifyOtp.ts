@@ -54,7 +54,7 @@ export async function verifyOtpAction({
   }
 
   // 4. احذف من pending_users
-  await supabase.from("pending_users").delete().eq("email", email);
+  supabase.from("pending_users").delete().eq("email", email);
 
   return {
     id: user.id,
