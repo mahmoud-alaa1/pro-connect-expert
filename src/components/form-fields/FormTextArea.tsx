@@ -23,6 +23,7 @@ interface FormInputProps<TFormValues extends FieldValues>
   rightComponent?: React.ReactNode;
   leftComponent?: React.ReactNode;
   onEnterSubmit?: () => void;
+  minHeight?: number;
 }
 
 export default function FormTextArea<TFormValues extends FieldValues>({
@@ -34,11 +35,13 @@ export default function FormTextArea<TFormValues extends FieldValues>({
   description,
   className,
   onEnterSubmit,
+  minHeight = 100,
   ...inputProps
 }: FormInputProps<TFormValues>) {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
@@ -72,6 +75,7 @@ export default function FormTextArea<TFormValues extends FieldValues>({
                 <div className="absolute bottom-4 left-2">{leftComponent}</div>
               )}
               <AutosizeTextarea
+                minHeight={minHeight}
                 id={name}
                 {...inputProps}
                 {...field}

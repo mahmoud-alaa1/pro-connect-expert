@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { Alexandria } from "next/font/google";
 import "@/app/globals.css";
 import Header from "@/components/Header";
+import Provider from "@/providers/Provider";
+import { Toaster } from "sonner";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
@@ -34,8 +36,11 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir}>
       <body className={alexandria.variable}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header />
-          <main>{children}</main>
+          <Provider>
+            <Header />
+            <main>{children}</main>
+            <Toaster position="top-center" />
+          </Provider>
         </NextIntlClientProvider>
       </body>
     </html>

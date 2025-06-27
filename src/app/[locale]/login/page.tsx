@@ -37,13 +37,13 @@ export default function page() {
             <div className="h-px bg-gray-300 flex-grow"></div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Link href="/signup">
+            <Link href="/signup?type=client">
               <Button className="flex w-full cursor-pointer items-center  gap-2 bg-blue-600 text-white hover:bg-blue-700">
                 انضم كعميل
               </Button>
             </Link>
 
-            <Link href="/signup">
+            <Link href="/signup?type=expert">
               <Button className="flex w-full cursor-pointer items-center  gap-2 bg-green-600 text-white hover:bg-green-700">
                 انضم كخبير
               </Button>

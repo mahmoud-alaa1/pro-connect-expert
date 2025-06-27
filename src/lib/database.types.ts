@@ -9,63 +9,101 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      bookings: {
+      balances: {
         Row: {
           created_at: string | null
-          duration: number
+          currency: Database["public"]["Enums"]["currency_type"] | null
+          current_balance: number | null
           id: string
-          message: string | null
-          paypal_capture_id: string | null
-          paypal_order_id: string | null
-          paypal_payment_id: string | null
-          professional_id: number | null
-          professional_name: string
-          professional_title: string
-          session_date: string
-          session_time: string
-          status: string | null
-          total_cost: number
+          last_withdrawal_date: string | null
+          professional_id: string
+          total_earned: number | null
+          total_withdrawn: number | null
           updated_at: string | null
-          user_email: string
-          user_id: string | null
         }
         Insert: {
           created_at?: string | null
-          duration: number
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          current_balance?: number | null
           id?: string
-          message?: string | null
-          paypal_capture_id?: string | null
-          paypal_order_id?: string | null
-          paypal_payment_id?: string | null
-          professional_id?: number | null
-          professional_name: string
-          professional_title: string
-          session_date: string
-          session_time: string
-          status?: string | null
-          total_cost: number
+          last_withdrawal_date?: string | null
+          professional_id: string
+          total_earned?: number | null
+          total_withdrawn?: number | null
           updated_at?: string | null
-          user_email: string
-          user_id?: string | null
         }
         Update: {
           created_at?: string | null
-          duration?: number
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          current_balance?: number | null
           id?: string
-          message?: string | null
-          paypal_capture_id?: string | null
+          last_withdrawal_date?: string | null
+          professional_id?: string
+          total_earned?: number | null
+          total_withdrawn?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "balances_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: true
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          booking_status: Database["public"]["Enums"]["booking_status"] | null
+          client_id: string
+          created_at: string | null
+          currency: Database["public"]["Enums"]["currency_type"] | null
+          duration_minutes: number
+          hourly_rate: number
+          id: string
+          payment_confirmed: boolean | null
+          paypal_order_id: string | null
+          professional_id: string
+          session_date: string
+          session_notes: string | null
+          session_time: string
+          total_cost: number
+          updated_at: string | null
+        }
+        Insert: {
+          booking_status?: Database["public"]["Enums"]["booking_status"] | null
+          client_id: string
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          duration_minutes?: number
+          hourly_rate: number
+          id?: string
+          payment_confirmed?: boolean | null
           paypal_order_id?: string | null
-          paypal_payment_id?: string | null
-          professional_id?: number | null
-          professional_name?: string
-          professional_title?: string
+          professional_id: string
+          session_date: string
+          session_notes?: string | null
+          session_time: string
+          total_cost: number
+          updated_at?: string | null
+        }
+        Update: {
+          booking_status?: Database["public"]["Enums"]["booking_status"] | null
+          client_id?: string
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          duration_minutes?: number
+          hourly_rate?: number
+          id?: string
+          payment_confirmed?: boolean | null
+          paypal_order_id?: string | null
+          professional_id?: string
           session_date?: string
+          session_notes?: string | null
           session_time?: string
-          status?: string | null
           total_cost?: number
           updated_at?: string | null
-          user_email?: string
-          user_id?: string | null
         }
         Relationships: [
           {
@@ -77,244 +115,194 @@ export type Database = {
           },
         ]
       }
-      custom_domains: {
+      case_studies: {
         Row: {
-          created_at: string | null
-          custom_domain: string | null
-          dns_records: Json | null
-          domain_name: string
-          domain_type: string
-          expert_id: string
-          id: string
-          is_verified: boolean | null
-          ssl_status: string | null
-          subdomain_name: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          custom_domain?: string | null
-          dns_records?: Json | null
-          domain_name: string
-          domain_type: string
-          expert_id: string
-          id?: string
-          is_verified?: boolean | null
-          ssl_status?: string | null
-          subdomain_name?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          custom_domain?: string | null
-          dns_records?: Json | null
-          domain_name?: string
-          domain_type?: string
-          expert_id?: string
-          id?: string
-          is_verified?: boolean | null
-          ssl_status?: string | null
-          subdomain_name?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      custom_meeting_links: {
-        Row: {
-          created_at: string | null
-          custom_url: string
-          description: string | null
-          duration_minutes: number
-          expert_id: string
-          expires_at: string | null
-          id: string
-          is_active: boolean | null
-          link_name: string
-          max_usage: number | null
-          meeting_type: string
-          price: number | null
-          settings: Json | null
-          updated_at: string | null
-          usage_count: number | null
-        }
-        Insert: {
-          created_at?: string | null
-          custom_url: string
-          description?: string | null
-          duration_minutes?: number
-          expert_id: string
-          expires_at?: string | null
-          id?: string
-          is_active?: boolean | null
-          link_name: string
-          max_usage?: number | null
-          meeting_type: string
-          price?: number | null
-          settings?: Json | null
-          updated_at?: string | null
-          usage_count?: number | null
-        }
-        Update: {
-          created_at?: string | null
-          custom_url?: string
-          description?: string | null
-          duration_minutes?: number
-          expert_id?: string
-          expires_at?: string | null
-          id?: string
-          is_active?: boolean | null
-          link_name?: string
-          max_usage?: number | null
-          meeting_type?: string
-          price?: number | null
-          settings?: Json | null
-          updated_at?: string | null
-          usage_count?: number | null
-        }
-        Relationships: []
-      }
-      expert_invitations: {
-        Row: {
-          client_email: string
           client_name: string | null
-          created_at: string | null
-          expert_id: string
-          expires_at: string
+          created_at: string
+          description: string
           id: string
-          invitation_message: string | null
-          invitation_type: string
-          responded_at: string | null
-          sent_at: string | null
-          session_details: Json | null
-          status: string
+          images: string[] | null
+          outcome: string | null
+          professional_id: string
+          project_duration: string | null
+          technologies_used: string[] | null
+          title: string
+          updated_at: string
         }
         Insert: {
-          client_email: string
           client_name?: string | null
-          created_at?: string | null
-          expert_id: string
-          expires_at?: string
+          created_at?: string
+          description: string
           id?: string
-          invitation_message?: string | null
-          invitation_type: string
-          responded_at?: string | null
-          sent_at?: string | null
-          session_details?: Json | null
-          status?: string
+          images?: string[] | null
+          outcome?: string | null
+          professional_id: string
+          project_duration?: string | null
+          technologies_used?: string[] | null
+          title: string
+          updated_at?: string
         }
         Update: {
-          client_email?: string
           client_name?: string | null
-          created_at?: string | null
-          expert_id?: string
-          expires_at?: string
+          created_at?: string
+          description?: string
           id?: string
-          invitation_message?: string | null
-          invitation_type?: string
-          responded_at?: string | null
-          sent_at?: string | null
-          session_details?: Json | null
-          status?: string
-        }
-        Relationships: []
-      }
-      expert_marketing_campaigns: {
-        Row: {
-          budget_limit: number | null
-          campaign_content: Json | null
-          campaign_name: string
-          campaign_type: string
-          created_at: string | null
-          end_date: string | null
-          expert_id: string
-          id: string
-          metrics: Json | null
-          spent_amount: number | null
-          start_date: string | null
-          status: string
-          target_audience: Json | null
-          updated_at: string | null
-        }
-        Insert: {
-          budget_limit?: number | null
-          campaign_content?: Json | null
-          campaign_name: string
-          campaign_type: string
-          created_at?: string | null
-          end_date?: string | null
-          expert_id: string
-          id?: string
-          metrics?: Json | null
-          spent_amount?: number | null
-          start_date?: string | null
-          status?: string
-          target_audience?: Json | null
-          updated_at?: string | null
-        }
-        Update: {
-          budget_limit?: number | null
-          campaign_content?: Json | null
-          campaign_name?: string
-          campaign_type?: string
-          created_at?: string | null
-          end_date?: string | null
-          expert_id?: string
-          id?: string
-          metrics?: Json | null
-          spent_amount?: number | null
-          start_date?: string | null
-          status?: string
-          target_audience?: Json | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      expert_subscriptions: {
-        Row: {
-          billing_cycle: string
-          created_at: string | null
-          current_period_end: string
-          current_period_start: string
-          expert_id: string
-          id: string
-          plan_id: number
-          status: string
-          stripe_customer_id: string | null
-          stripe_subscription_id: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          billing_cycle: string
-          created_at?: string | null
-          current_period_end: string
-          current_period_start?: string
-          expert_id: string
-          id?: string
-          plan_id: number
-          status?: string
-          stripe_customer_id?: string | null
-          stripe_subscription_id?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          billing_cycle?: string
-          created_at?: string | null
-          current_period_end?: string
-          current_period_start?: string
-          expert_id?: string
-          id?: string
-          plan_id?: number
-          status?: string
-          stripe_customer_id?: string | null
-          stripe_subscription_id?: string | null
-          updated_at?: string | null
+          images?: string[] | null
+          outcome?: string | null
+          professional_id?: string
+          project_duration?: string | null
+          technologies_used?: string[] | null
+          title?: string
+          updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "expert_subscriptions_plan_id_fkey"
-            columns: ["plan_id"]
+            foreignKeyName: "case_studies_professional_id_fkey"
+            columns: ["professional_id"]
             isOneToOne: false
-            referencedRelation: "subscription_plans"
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      certificates: {
+        Row: {
+          certificate_url: string | null
+          created_at: string
+          description: string | null
+          expiry_date: string | null
+          id: string
+          issue_date: string | null
+          issuer: string
+          professional_id: string
+          title: string
+        }
+        Insert: {
+          certificate_url?: string | null
+          created_at?: string
+          description?: string | null
+          expiry_date?: string | null
+          id?: string
+          issue_date?: string | null
+          issuer: string
+          professional_id: string
+          title: string
+        }
+        Update: {
+          certificate_url?: string | null
+          created_at?: string
+          description?: string | null
+          expiry_date?: string | null
+          id?: string
+          issue_date?: string | null
+          issuer?: string
+          professional_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "certificates_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      client_payments: {
+        Row: {
+          amount: number
+          client_id: string
+          created_at: string
+          currency: string
+          description: string | null
+          id: string
+          payment_method: string | null
+          professional_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          client_id: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          id?: string
+          payment_method?: string | null
+          professional_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          client_id?: string
+          created_at?: string
+          currency?: string
+          description?: string | null
+          id?: string
+          payment_method?: string | null
+          professional_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_payments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_payments_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      expert_withdrawals: {
+        Row: {
+          amount: number
+          bank_account: string | null
+          created_at: string
+          currency: string
+          id: string
+          processed_at: string | null
+          professional_id: string
+          status: string
+          withdrawal_method: string | null
+        }
+        Insert: {
+          amount: number
+          bank_account?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          processed_at?: string | null
+          professional_id: string
+          status?: string
+          withdrawal_method?: string | null
+        }
+        Update: {
+          amount?: number
+          bank_account?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          processed_at?: string | null
+          professional_id?: string
+          status?: string
+          withdrawal_method?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expert_withdrawals_professional_id_fkey"
+            columns: ["professional_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
             referencedColumns: ["id"]
           },
         ]
@@ -325,82 +313,73 @@ export type Database = {
           client_confirmed: boolean | null
           client_confirmed_at: string | null
           created_at: string | null
-          expert_confirmed: boolean | null
-          expert_confirmed_at: string | null
           id: string
-          meeting_id: string | null
-          meeting_url: string | null
+          meeting_link: string | null
+          professional_confirmed: boolean | null
+          professional_confirmed_at: string | null
         }
         Insert: {
           booking_id: string
           client_confirmed?: boolean | null
           client_confirmed_at?: string | null
           created_at?: string | null
-          expert_confirmed?: boolean | null
-          expert_confirmed_at?: string | null
           id?: string
-          meeting_id?: string | null
-          meeting_url?: string | null
+          meeting_link?: string | null
+          professional_confirmed?: boolean | null
+          professional_confirmed_at?: string | null
         }
         Update: {
           booking_id?: string
           client_confirmed?: boolean | null
           client_confirmed_at?: string | null
           created_at?: string | null
-          expert_confirmed?: boolean | null
-          expert_confirmed_at?: string | null
           id?: string
-          meeting_id?: string | null
-          meeting_url?: string | null
+          meeting_link?: string | null
+          professional_confirmed?: boolean | null
+          professional_confirmed_at?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "meeting_confirmations_booking_id_fkey"
             columns: ["booking_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "bookings"
             referencedColumns: ["id"]
           },
         ]
       }
-      meeting_rooms: {
+      messages: {
         Row: {
-          booking_id: string
+          content: string
           created_at: string | null
-          expires_at: string
           id: string
-          meeting_url: string
-          password: string | null
-          recording_enabled: boolean | null
-          recording_url: string | null
-          room_id: string
+          message_status: Database["public"]["Enums"]["message_status"] | null
+          receiver_id: string
+          related_booking_id: string | null
+          sender_id: string
         }
         Insert: {
-          booking_id: string
+          content: string
           created_at?: string | null
-          expires_at: string
           id?: string
-          meeting_url: string
-          password?: string | null
-          recording_enabled?: boolean | null
-          recording_url?: string | null
-          room_id: string
+          message_status?: Database["public"]["Enums"]["message_status"] | null
+          receiver_id: string
+          related_booking_id?: string | null
+          sender_id: string
         }
         Update: {
-          booking_id?: string
+          content?: string
           created_at?: string | null
-          expires_at?: string
           id?: string
-          meeting_url?: string
-          password?: string | null
-          recording_enabled?: boolean | null
-          recording_url?: string | null
-          room_id?: string
+          message_status?: Database["public"]["Enums"]["message_status"] | null
+          receiver_id?: string
+          related_booking_id?: string | null
+          sender_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "meeting_rooms_booking_id_fkey"
-            columns: ["booking_id"]
+            foreignKeyName: "messages_related_booking_id_fkey"
+            columns: ["related_booking_id"]
             isOneToOne: false
             referencedRelation: "bookings"
             referencedColumns: ["id"]
@@ -409,79 +388,251 @@ export type Database = {
       }
       notifications: {
         Row: {
-          booking_id: string | null
           created_at: string | null
           id: string
+          is_read: boolean | null
           message: string
-          read: boolean | null
+          notification_type: Database["public"]["Enums"]["notification_type"]
+          related_booking_id: string | null
           title: string
-          type: string
           user_id: string
         }
         Insert: {
-          booking_id?: string | null
           created_at?: string | null
           id?: string
+          is_read?: boolean | null
           message: string
-          read?: boolean | null
+          notification_type: Database["public"]["Enums"]["notification_type"]
+          related_booking_id?: string | null
           title: string
-          type: string
           user_id: string
         }
         Update: {
-          booking_id?: string | null
           created_at?: string | null
           id?: string
+          is_read?: boolean | null
           message?: string
-          read?: boolean | null
+          notification_type?: Database["public"]["Enums"]["notification_type"]
+          related_booking_id?: string | null
           title?: string
-          type?: string
           user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "notifications_booking_id_fkey"
-            columns: ["booking_id"]
+            foreignKeyName: "notifications_related_booking_id_fkey"
+            columns: ["related_booking_id"]
             isOneToOne: false
             referencedRelation: "bookings"
             referencedColumns: ["id"]
           },
         ]
       }
-      payout_requests: {
+      pending_users: {
         Row: {
-          amount: number
-          id: string
-          notes: string | null
-          processed_date: string | null
-          professional_id: number | null
-          request_date: string | null
-          status: string | null
-          user_id: string | null
+          bio: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          hourly_rate: number | null
+          id: number
+          otp: string | null
+          otp_expires_at: string | null
+          password: string
+          speciality: string | null
+          title: string | null
+          user_type: Database["public"]["Enums"]["user_type"] | null
         }
         Insert: {
-          amount: number
-          id?: string
-          notes?: string | null
-          processed_date?: string | null
-          professional_id?: number | null
-          request_date?: string | null
-          status?: string | null
-          user_id?: string | null
+          bio?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          hourly_rate?: number | null
+          id?: number
+          otp?: string | null
+          otp_expires_at?: string | null
+          password: string
+          speciality?: string | null
+          title?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"] | null
         }
         Update: {
-          amount?: number
+          bio?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          hourly_rate?: number | null
+          id?: number
+          otp?: string | null
+          otp_expires_at?: string | null
+          password?: string
+          speciality?: string | null
+          title?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"] | null
+        }
+        Relationships: []
+      }
+      professionals: {
+        Row: {
+          availability_status: boolean | null
+          bio: string | null
+          certificates_urls: string[] | null
+          created_at: string | null
+          currency: Database["public"]["Enums"]["currency_type"] | null
+          hourly_rate: number
+          id: string
+          languages: string[] | null
+          portfolio_urls: string[] | null
+          rating: number | null
+          specialty: string
+          title: string
+          total_reviews: number | null
+          updated_at: string | null
+          user_id: string
+          years_experience: number | null
+        }
+        Insert: {
+          availability_status?: boolean | null
+          bio?: string | null
+          certificates_urls?: string[] | null
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          hourly_rate?: number
           id?: string
-          notes?: string | null
-          processed_date?: string | null
-          professional_id?: number | null
-          request_date?: string | null
-          status?: string | null
-          user_id?: string | null
+          languages?: string[] | null
+          portfolio_urls?: string[] | null
+          rating?: number | null
+          specialty: string
+          title: string
+          total_reviews?: number | null
+          updated_at?: string | null
+          user_id: string
+          years_experience?: number | null
+        }
+        Update: {
+          availability_status?: boolean | null
+          bio?: string | null
+          certificates_urls?: string[] | null
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          hourly_rate?: number
+          id?: string
+          languages?: string[] | null
+          portfolio_urls?: string[] | null
+          rating?: number | null
+          specialty?: string
+          title?: string
+          total_reviews?: number | null
+          updated_at?: string | null
+          user_id?: string
+          years_experience?: number | null
         }
         Relationships: [
           {
-            foreignKeyName: "payout_requests_professional_id_fkey"
+            foreignKeyName: "professionals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profile_pictures: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profile_pictures_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string
+          id: string
+          updated_at: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string
+          id: string
+          updated_at?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string
+          id?: string
+          updated_at?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
+        }
+        Relationships: []
+      }
+      withdrawal_requests: {
+        Row: {
+          amount: number
+          created_at: string | null
+          currency: Database["public"]["Enums"]["currency_type"] | null
+          id: string
+          paypal_email: string
+          processed_at: string | null
+          professional_id: string
+          status: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          id?: string
+          paypal_email: string
+          processed_at?: string | null
+          professional_id: string
+          status?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          currency?: Database["public"]["Enums"]["currency_type"] | null
+          id?: string
+          paypal_email?: string
+          processed_at?: string | null
+          professional_id?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "withdrawal_requests_professional_id_fkey"
             columns: ["professional_id"]
             isOneToOne: false
             referencedRelation: "professionals"
@@ -489,170 +640,25 @@ export type Database = {
           },
         ]
       }
-      professionals: {
-        Row: {
-          avatar_url: string | null
-          bio: string | null
-          created_at: string | null
-          experience_years: number | null
-          hourly_rate: number
-          id: number
-          is_available: boolean | null
-          name: string
-          rating: number | null
-          specialization: string | null
-          title: string
-          total_sessions: number | null
-          user_id: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string | null
-          experience_years?: number | null
-          hourly_rate: number
-          id?: number
-          is_available?: boolean | null
-          name: string
-          rating?: number | null
-          specialization?: string | null
-          title: string
-          total_sessions?: number | null
-          user_id?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string | null
-          experience_years?: number | null
-          hourly_rate?: number
-          id?: number
-          is_available?: boolean | null
-          name?: string
-          rating?: number | null
-          specialization?: string | null
-          title?: string
-          total_sessions?: number | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          bio: string | null
-          created_at: string | null
-          experience_years: number | null
-          first_name: string | null
-          hourly_rate: number | null
-          id: string
-          last_name: string | null
-          phone: string | null
-          role: string | null
-          specialization: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string | null
-          experience_years?: number | null
-          first_name?: string | null
-          hourly_rate?: number | null
-          id: string
-          last_name?: string | null
-          phone?: string | null
-          role?: string | null
-          specialization?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string | null
-          experience_years?: number | null
-          first_name?: string | null
-          hourly_rate?: number | null
-          id?: string
-          last_name?: string | null
-          phone?: string | null
-          role?: string | null
-          specialization?: string | null
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      subscription_plans: {
-        Row: {
-          created_at: string | null
-          features: Json
-          id: number
-          is_active: boolean | null
-          name: string
-          price_monthly: number
-          price_yearly: number
-        }
-        Insert: {
-          created_at?: string | null
-          features?: Json
-          id?: number
-          is_active?: boolean | null
-          name: string
-          price_monthly: number
-          price_yearly: number
-        }
-        Update: {
-          created_at?: string | null
-          features?: Json
-          id?: number
-          is_active?: boolean | null
-          name?: string
-          price_monthly?: number
-          price_yearly?: number
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      create_custom_subdomain: {
-        Args: { expert_user_id: string; subdomain: string }
-        Returns: Json
-      }
-      email_confirmation_disabled: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      generate_meeting_link: {
-        Args: {
-          expert_user_id: string
-          link_name: string
-          meeting_type: string
-          duration_minutes?: number
-          price?: number
-        }
-        Returns: Json
-      }
-      has_premium_subscription: {
-        Args: { expert_user_id: string }
-        Returns: boolean
-      }
-      send_expert_invitation: {
-        Args: {
-          expert_user_id: string
-          client_email: string
-          client_name?: string
-          invitation_message?: string
-          invitation_type?: string
-          session_details?: Json
-        }
-        Returns: Json
-      }
+      [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      booking_status: "pending" | "confirmed" | "completed" | "cancelled"
+      currency_type: "SAR" | "USD" | "EUR" | "AED"
+      message_status: "sent" | "delivered" | "read"
+      notification_type:
+        | "booking_request"
+        | "booking_confirmed"
+        | "booking_cancelled"
+        | "session_reminder"
+        | "message_received"
+        | "payment_received"
+      user_type: "client" | "expert"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -767,6 +773,19 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: ["pending", "confirmed", "completed", "cancelled"],
+      currency_type: ["SAR", "USD", "EUR", "AED"],
+      message_status: ["sent", "delivered", "read"],
+      notification_type: [
+        "booking_request",
+        "booking_confirmed",
+        "booking_cancelled",
+        "session_reminder",
+        "message_received",
+        "payment_received",
+      ],
+      user_type: ["client", "expert"],
+    },
   },
 } as const

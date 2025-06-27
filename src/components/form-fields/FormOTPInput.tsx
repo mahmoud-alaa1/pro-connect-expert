@@ -40,7 +40,7 @@ export default function FormOTPInput<TFormValues extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col items-center space-y-4">
+        <FormItem dir="ltr" className="flex flex-col items-center space-y-4">
           {label && <FormLabel className="text-center">{label}</FormLabel>}
           <FormControl>
             <InputOTP

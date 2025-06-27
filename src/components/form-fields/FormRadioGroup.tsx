@@ -60,7 +60,7 @@ export default function FormRadioGroup<TFormValues extends FieldValues>({
               name={name}
               id={name}
               onValueChange={field.onChange}
-              defaultValue={field.value}
+              value={field.value} 
               className={cn("gap-4", direction === "horizontal" && "flex")}
               dir={isRtl ? "rtl" : "ltr"}
             >
