@@ -1,4 +1,66 @@
 {
+  "Home": {
+    "welcome": "Welcome to Pro Connect",
+    "description": "Your platform for connecting with professionals",
+    "cta": "Get Started",
+    "title": "Pro Connect - Connect with Experts and Clients"
+  },
+  "HeroSection": {
+    "title": {
+      "line1": "Connect with",
+      "line2": "Verified Experts"
+    },
+    "description": "Find and book sessions with top-tier professionals across industries. From consultants to specialists, get expert guidance when you need it most.",
+    "video_description": "See how our platform works and how experts and clients can benefit from our services",
+    "buttons": {
+      "find_expert": "Find an Expert",
+      "become_expert": "Become an Expert"
+    }
+  },
+  "FeaturesSection": {
+    "title": "Why Choose ProConnect?",
+    "subtitle": "We make it simple to find, connect, and work with the best professionals in your industry.",
+    "features": {
+      "find_experts": {
+        "title": "Find Verified Experts",
+        "description": "Browse through thousands of pre-vetted professionals across various industries."
+      },
+      "easy_scheduling": {
+        "title": "Easy Scheduling",
+        "description": "Book sessions instantly with integrated calendar management and automated reminders."
+      },
+      "secure_trusted": {
+        "title": "Secure & Trusted",
+        "description": "All experts are verified with background checks and professional credentials."
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "How It Works",
+    "subtitle": "Simple steps to get started",
+    "steps": {
+      "step1": {
+        "title": "Search & Browse",
+        "description": "Browse through our curated list of verified experts across various specialties."
+      },
+      "step2": {
+        "title": "Book Session",
+        "description": "Choose your preferred time slot and book a session instantly with secure payment."
+      },
+      "step3": {
+        "title": "Get Results",
+        "description": "Have your session and get the expert guidance you need to achieve your goals."
+      }
+    }
+  },
+  "CTASection": {
+    "title": "Ready to Connect with Experts?",
+    "description": "Join thousands of professionals who trust ProConnect for their expert consultation needs.",
+    "buttons": {
+      "get_started_client": "Get Started as Client",
+      "join_as_expert": "Join as Expert"
+    }
+  },
   "Logo": {
     "pro": "Pro",
     "connect": "Connect"
@@ -75,5 +137,72 @@
     "login_success": "Successfully logged in!",
     "profile_complete_success": "Profile completed successfully!",
     "profile_complete_failed": "Profile completion failed: {error}"
+  },
+  "Footer": {
+    "company": {
+      "description": "Connect with verified experts across industries. Get professional guidance when you need it most."
+    },
+    "sections": {
+      "for_clients": "For Clients",
+      "for_experts": "For Experts",
+      "support": "Support"
+    },
+    "links": {
+      "clients": {
+        "find_experts": "Find Experts",
+        "sign_up": "Sign Up",
+        "how_it_works": "How It Works",
+        "success_stories": "Success Stories",
+        "pricing": "Pricing"
+      },
+      "experts": {
+        "become_expert": "Become an Expert",
+        "expert_resources": "Expert Resources",
+        "community": "Community",
+        "success_tips": "Success Tips",
+        "earnings_calculator": "Earnings Calculator"
+      },
+      "support": {
+        "help_center": "Help Center",
+        "contact_support": "Contact Support",
+        "safety_trust": "Safety & Trust",
+        "terms_of_service": "Terms of Service",
+        "privacy_policy": "Privacy Policy"
+      }
+    },
+    "contact": {
+      "email": "support@proconnect.com",
+      "phone": "1-800-PRO-CONNECT",
+      "address": "San Francisco, CA"
+    },
+    "bottom": {
+      "copyright": "© {year} ProConnect. All rights reserved.",
+      "links": {
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "cookies": "Cookies",
+        "accessibility": "Accessibility"
+      }
+    }
+  },
+  "VideoPlayer": {
+    "header": {
+      "badge": "Watch & Learn",
+      "title": "See ProConnect in Action",
+      "description": "Discover how our platform revolutionizes professional connections with this quick overview"
+    },
+    "video": {
+      "title": "ProConnect Intro Video",
+      "overlay": {
+        "title": "Discover How ProConnect Works",
+        "description": "Watch this quick video to explore how our platform connects professionals and clients seamlessly.",
+        "duration": "2 min watch"
+      }
+    },
+    "stats": {
+      "hd_quality": "HD Quality",
+      "no_ads": "No Ads",
+      "mobile_friendly": "Mobile Friendly"
+    }
   }
 }

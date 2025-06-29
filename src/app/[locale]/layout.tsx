@@ -7,6 +7,7 @@ import "@/app/globals.css";
 import Header from "@/components/Header";
 import Provider from "@/providers/Provider";
 import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
@@ -14,14 +15,33 @@ const alexandria = Alexandria({
   display: "auto",
 });
 
+export async function generateMetadata(props: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await props.params;
+  const messages = await getMessages({ locale });
+
+  return {
+    title: messages.Home.title,
+    description: messages.Home.description,
+    openGraph: {
+      title: messages.Home.title,
+      description: messages.Home.description,
+    },
+    icons: {
+      icon: "/favicon.ico",
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const locale = params.locale;
+  const { locale } = await params;
 
   let messages;
   try {
@@ -39,6 +59,7 @@ export default async function LocaleLayout({
           <Provider>
             <Header />
             <main>{children}</main>
+            <Footer />
             <Toaster position="top-center" />
           </Provider>
         </NextIntlClientProvider>
