@@ -3,7 +3,7 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { Alexandria } from "next/font/google";
-import "@/app/globals.css";
+import "@/styles/index.css";
 import Header from "@/components/Header";
 import Provider from "@/providers/Provider";
 import { Toaster } from "sonner";

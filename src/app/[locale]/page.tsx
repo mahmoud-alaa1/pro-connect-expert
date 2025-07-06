@@ -1,4 +1,4 @@
-import HeroSection from "@/components/home-page-sections/HeroSection";
+import HeroSection from "@/components/home-page-sections/hero-section/HeroSection";
 import FeaturesSection from "@/components/home-page-sections/FeaturesSection";
 import HowItWorks from "@/components/home-page-sections/HowItWorks";
 import CTASection from "@/components/home-page-sections/CTASection";

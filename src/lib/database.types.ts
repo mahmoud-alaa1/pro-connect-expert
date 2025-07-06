@@ -640,11 +640,30 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_languages: {
+        Args: Record<PropertyKey, never>
+        Returns: string[]
+      }
+      get_specialties: {
+        Args: Record<PropertyKey, never>
+        Returns: string[]
+      }
     }
     Enums: {
       booking_status: "pending" | "confirmed" | "completed" | "cancelled"
       currency_type: "SAR" | "USD" | "EUR" | "AED"
+      language_enum:
+        | "English"
+        | "Arabic"
+        | "Spanish"
+        | "French"
+        | "German"
+        | "Turkish"
+        | "Italian"
+        | "Hindi"
+        | "Chinese"
+        | "Portuguese"
+        | "Russian"
       message_status: "sent" | "delivered" | "read"
       notification_type:
         | "booking_request"
@@ -653,6 +672,22 @@ export type Database = {
         | "session_reminder"
         | "message_received"
         | "payment_received"
+      specialty_enum:
+        | "Digital Marketing Strategy"
+        | "Growth Marketing"
+        | "Marketing Analytics"
+        | "Brand Development"
+        | "Customer Acquisition"
+        | "Marketing Automation"
+        | "Social Media Strategy"
+        | "Content Marketing"
+        | "Business Strategy"
+        | "Product Management"
+        | "UI/UX Design"
+        | "Data Analysis"
+        | "SEO & SEM"
+        | "Email Marketing"
+        | "Copywriting"
       user_type: "client" | "expert"
     }
     CompositeTypes: {
@@ -771,6 +806,19 @@ export const Constants = {
     Enums: {
       booking_status: ["pending", "confirmed", "completed", "cancelled"],
       currency_type: ["SAR", "USD", "EUR", "AED"],
+      language_enum: [
+        "English",
+        "Arabic",
+        "Spanish",
+        "French",
+        "German",
+        "Turkish",
+        "Italian",
+        "Hindi",
+        "Chinese",
+        "Portuguese",
+        "Russian",
+      ],
       message_status: ["sent", "delivered", "read"],
       notification_type: [
         "booking_request",
@@ -779,6 +827,23 @@ export const Constants = {
         "session_reminder",
         "message_received",
         "payment_received",
+      ],
+      specialty_enum: [
+        "Digital Marketing Strategy",
+        "Growth Marketing",
+        "Marketing Analytics",
+        "Brand Development",
+        "Customer Acquisition",
+        "Marketing Automation",
+        "Social Media Strategy",
+        "Content Marketing",
+        "Business Strategy",
+        "Product Management",
+        "UI/UX Design",
+        "Data Analysis",
+        "SEO & SEM",
+        "Email Marketing",
+        "Copywriting",
       ],
       user_type: ["client", "expert"],
     },

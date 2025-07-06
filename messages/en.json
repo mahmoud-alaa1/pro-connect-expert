@@ -124,7 +124,10 @@
     "submit": "Submit",
     "login": "Login",
     "side_nav_menu":"القائمة الجانبية",
-    "side_nav_description": "Quick access to features"
+    "side_nav_description": "Quick access to features",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "settings": "Settings"
 
   },
   "Errors": {
