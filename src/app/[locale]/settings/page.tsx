@@ -1,4 +1,5 @@
-import { Camera } from "lucide-react";
+import ProfileBasicInfoForm from "@/components/forms/profile/name/ProfileBasicInfoForm";
+import { ProfileImageForm } from "@/components/forms/profile/ProfileAvatar/ProfileImageForm";
 
 export default function page() {
   return (
@@ -10,31 +11,12 @@ export default function page() {
       </div>
 
       {/* Profile Photo */}
-      <div className="mb-8">
-        <div className="flex items-center space-x-6">
-          <div className="relative">
-            <img
-              src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
-              alt="Profile"
-              className="w-20 h-20 rounded-full"
-            />
-            <button className="absolute bottom-0 right-0 w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center text-white hover:bg-primary-700">
-              <Camera className="h-3 w-3" />
-            </button>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium text-gray-900">Profile Photo</h3>
-            <p className="text-sm text-gray-500">Update your profile picture</p>
-            <button className="mt-2 text-sm text-primary-600 hover:text-primary-700">
-              Change Photo
-            </button>
-          </div>
-        </div>
-      </div>
+      <ProfileImageForm />
 
       {/* Basic Information */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div>
+        <ProfileBasicInfoForm />
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Full Name
           </label>
@@ -70,7 +52,7 @@ export default function page() {
             type="text"
             className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* Bio */}

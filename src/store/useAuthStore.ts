@@ -8,6 +8,7 @@ type State = {
 type Actions = {
   login: (user: ILoginResponse) => void;
   logout: () => void;
+  updateUser: (user: IUser) => void;
 };
 
 export const useAuth = create<State & Actions>()(
@@ -22,6 +23,9 @@ export const useAuth = create<State & Actions>()(
         set({ user: null });
         localStorage.removeItem("token");
         localStorage.removeItem("auth-storage");
+      },
+      updateUser: (user: IUser) => {
+        set({ user });
       },
     }),
     {

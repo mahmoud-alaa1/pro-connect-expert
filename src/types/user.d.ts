@@ -1,5 +1,5 @@
 interface IUser {
-  avatar_url: null | string;
+  avatar_url?: null | string;
   created_at: string;
   email: string;
   full_name: string;

@@ -8,17 +8,14 @@ export default function NotFound() {
   const locale = useLocale();
   const isRtl = locale === "ar";
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full text-center">
         {/* Animated 404 */}
+
         <div className="relative mb-8">
-          <div className="text-8xl sm:text-9xl font-bold text-blue-100 select-none">
+          <div className="text-8xl flex gap-4 justify-center items-center sm:text-9xl font-bold text-blue-100 select-none">
             404
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-24 h-24 sm:w-32 sm:h-32 bg-blue-600 rounded-full flex items-center justify-center animate-pulse">
-              <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-            </div>
+            <Sparkles className="w-12 h-12 sm:w-16 sm:h-16 " />
           </div>
         </div>
 
@@ -28,14 +25,14 @@ export default function NotFound() {
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               {t("title")}
             </h1>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg leading-10">
               {t("description")}
             </p>
           </div>
 
           {/* Action Buttons */}
           <div
-            className={`flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 ${
+            className={`flex flex-col sm:flex-row gap-4 justify-center items-center ${
               isRtl ? "sm:flex-row-reverse" : ""
             }`}>
             <Link
@@ -69,10 +66,10 @@ export default function NotFound() {
           className="absolute top-1/3 right-1/4 w-3 h-3 bg-blue-400 rounded-full animate-bounce"
           style={{ animationDelay: "0.5s" }}></div>
         <div
-          className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-blue-200 rounded-full animate-bounce"
+          className="absolute bottom-1/4 left-1/6 w-2 h-2 bg-blue-200 rounded-full animate-bounce"
           style={{ animationDelay: "1s" }}></div>
         <div
-          className="absolute bottom-1/3 right-1/3 w-1 h-1 bg-blue-500 rounded-full animate-bounce"
+          className="absolute bottom-1/3 right-1/6 w-1 h-1 bg-blue-500 rounded-full animate-bounce"
           style={{ animationDelay: "1.5s" }}></div>
       </div>
     </div>
