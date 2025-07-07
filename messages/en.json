@@ -117,6 +117,7 @@
     "or_continue_with": "Or continue with"
   },
   "Common": {
+    "go_back": "Go Back",
     "sign_with_google": "Continue with Google",
     "search_professionals": "Search Professionals",
     "logout": "Logout",
@@ -206,6 +207,14 @@
       "hd_quality": "HD Quality",
       "no_ads": "No Ads",
       "mobile_friendly": "Mobile Friendly"
+    }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you're looking for seems to have wandered off. Don't worry, even the best explorers sometimes take a wrong turn.",
+    "buttons": {
+      "go_home": "Go Home",
+      "browse_experts": "Browse Experts"
     }
   }
 }

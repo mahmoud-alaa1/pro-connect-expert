@@ -13,7 +13,7 @@ export default function HeaderActions() {
     <>
       <LanguageSwitcher />
       <UserMenu />
-      <Button variant="link">
+      <Button className="p-0!" variant="link">
         <Link href="/professionals">{t("search_professionals")}</Link>
       </Button>
     </>
