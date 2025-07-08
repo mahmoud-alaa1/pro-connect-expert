@@ -8,7 +8,8 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Plus, Clock } from "lucide-react";
-import { weekdays } from "@/lib/constants";
+import { getTranslatedWeekdays } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 type Props = {
   day: string;
@@ -29,71 +30,74 @@ export function AvailabilityForm({
   onToChange,
   onAddSlot,
 }: Props) {
+  const t = useTranslations("Settings.expert_form.availability.form");
+  const tConstants = useTranslations();
+  const weekdays = getTranslatedWeekdays(tConstants);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg ">
-      <div className="space-y-2">
-        <label
-          htmlFor="day-select"
-          className="text-sm font-medium text-gray-700">
-          Day
-        </label>
-        <Select value={day} onValueChange={onDayChange}>
-          <SelectTrigger id="day-select">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {weekdays.map((d) => (
-              <SelectItem key={d.value} value={d.value}>
-                {d.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+    <>
+      <div className="p-4 bg-gray-50 rounded-lg ">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="space-y-2 flex flex-col">
+            <label
+              htmlFor="day-select"
+              className="text-sm font-medium text-gray-700">
+              {t("day")}
+            </label>
+            <Select value={day} onValueChange={onDayChange}>
+              <SelectTrigger className="mb-0!" id="day-select">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {weekdays.map((d) => (
+                  <SelectItem key={d.value} value={d.value}>
+                    {d.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="from-time"
-          className="text-sm font-medium text-gray-700">
-          From
-        </label>
-        <div className="relative">
-          <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <Input
-            id="from-time"
-            type="time"
-            value={from}
-            onChange={(e) => onFromChange(e.target.value)}
-            className="pl-10"
-          />
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="space-y-2 flex flex-col gap-2">
+              <label
+                htmlFor="from-time"
+                className="text-sm font-medium text-gray-700">
+                {t("from")}
+              </label>
+              <Input
+                id="from-time"
+                type="time"
+                value={from}
+                onChange={(e) => onFromChange(e.target.value)}
+                className="w-fit"
+              />
+            </div>
+
+            <div className="space-y-2 flex flex-col gap-2">
+              <label
+                htmlFor="to-time"
+                className="text-sm font-medium text-gray-700">
+                {t("to")}
+              </label>
+              <Input
+                id="to-time"
+                type="time"
+                value={to}
+                onChange={(e) => onToChange(e.target.value)}
+                className="w-fit"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="space-y-2">
-        <label htmlFor="to-time" className="text-sm font-medium text-gray-700">
-          To
-        </label>
-        <div className="relative">
-          <Clock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-          <Input
-            id="to-time"
-            type="time"
-            value={to}
-            onChange={(e) => onToChange(e.target.value)}
-            className="pl-10"
-          />
-        </div>
-      </div>
-
-      <div className="flex items-end">
         <Button
           type="button"
           onClick={onAddSlot}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+          className=" bg-blue-600 hover:bg-blue-700 text-white">
           <Plus className="h-4 w-4 mr-2" />
-          Add Slot
+          {t("add_slot")}
         </Button>
       </div>
-    </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import FormInput from "@/components/form-fields/FormInput";
+import { useTranslations } from "next-intl";
 
 const profileBasicInfoSchema = z.object({
   full_name: z.string().min(2).max(50),
@@ -15,7 +16,9 @@ import { Form } from "@/components/ui/form";
 import { useUpdateProfile } from "@/hooks/profile/useUpdateProfile";
 import { useAuth } from "@/store/useAuthStore";
 import { useEffect } from "react";
+
 export default function ProfileBasicInfoForm() {
+  const t = useTranslations("Settings.basic_form");
   const { mutate, isPending } = useUpdateProfile();
   const { user } = useAuth();
   const form = useForm<profileBasicInfoSchema>({
@@ -37,15 +40,15 @@ export default function ProfileBasicInfoForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mb-6">
         <FormInput<profileBasicInfoSchema>
           name="full_name"
           control={form.control}
-          placeholder={`ادخل اسمك`}
-          label="الاسم الكامل"
+          placeholder={t("full_name.placeholder")}
+          label={t("full_name.label")}
         />
         <Button disabled={isPending} type="submit">
-          حفظ
+          {t("save")}
         </Button>
       </form>
     </Form>

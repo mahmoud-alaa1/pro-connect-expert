@@ -15,17 +15,23 @@ import { useUpdateProfessional } from "@/hooks/profile/useUpdateProfessional";
 import FormInput from "@/components/form-fields/FormInput";
 import FormTextArea from "@/components/form-fields/FormTextArea";
 import FormSelect from "@/components/form-fields/FormSelectWithOptions";
+import { useTranslations } from "next-intl";
 
 import { LanguagesSelect } from "./LanguagesSelect";
 import { ExpertAvailabilityInput } from "./ExpertAvailabilityInputRefactored";
 import { ExpertProfileFormSkeleton } from "./ExpertProfileFormSkeleton";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
-import { CURRENCIES } from "@/lib/constants";
+import { getTranslatedCurrencies } from "@/lib/constants";
 import useGetProfessionalProfile from "@/hooks/profile/useGetProfessionalProfile";
 import { expertProfileSchema } from "@/schemas/profileSchema";
 
 export default function ExpertBasicProfileForm() {
+  const t = useTranslations("Settings.expert_form");
+  const tLoading = useTranslations("Settings.loading");
+  const tConstants = useTranslations();
+  const currencies = getTranslatedCurrencies(tConstants);
+
   const form = useForm<expertProfileSchema>({
     resolver: zodResolver(expertProfileSchema),
     defaultValues: {
@@ -78,9 +84,7 @@ export default function ExpertBasicProfileForm() {
     return (
       <Alert variant="destructive">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription>
-          Failed to load profile data. Please try again later.
-        </AlertDescription>
+        <AlertDescription>{tLoading("error_loading")}</AlertDescription>
       </Alert>
     );
   }
@@ -92,38 +96,38 @@ export default function ExpertBasicProfileForm() {
           <FormInput<expertProfileSchema>
             control={form.control}
             name="title"
-            placeholder="e.g., Marketing Consultant"
-            label="Title"
+            placeholder={t("title.placeholder")}
+            label={t("title.label")}
           />
           <FormInput<expertProfileSchema>
             control={form.control}
             name="specialty"
-            placeholder="e.g., Digital Marketing"
-            label="Specialty"
+            placeholder={t("specialty.placeholder")}
+            label={t("specialty.label")}
           />
         </div>
 
         <FormTextArea<expertProfileSchema>
           control={form.control}
           name="bio"
-          placeholder="Write a short bio..."
-          label="Bio"
+          placeholder={t("bio.placeholder")}
+          label={t("bio.label")}
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4">
           <FormInput<expertProfileSchema>
             control={form.control}
             name="hourly_rate"
-            placeholder="e.g., 150"
-            label="Hourly Rate"
+            placeholder={t("hourly_rate.placeholder")}
+            label={t("hourly_rate.label")}
             type="number"
           />
           <FormSelect<expertProfileSchema>
             control={form.control}
             name="currency"
-            options={CURRENCIES}
-            label="Currency"
-            placeholder="Select a currency"
+            options={currencies}
+            label={t("currency.label")}
+            placeholder={t("currency.placeholder")}
           />
         </div>
 
@@ -132,7 +136,7 @@ export default function ExpertBasicProfileForm() {
           name="languages"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Languages</FormLabel>
+              <FormLabel>{t("languages.label")}</FormLabel>
               <LanguagesSelect
                 selected={field.value || []}
                 onChange={(langs) => field.onChange(langs)}
@@ -146,7 +150,7 @@ export default function ExpertBasicProfileForm() {
           name="availability"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Availability</FormLabel>
+              <FormLabel>{t("availability.label")}</FormLabel>
               <ExpertAvailabilityInput
                 value={field.value || []}
                 onChange={field.onChange}
@@ -157,7 +161,7 @@ export default function ExpertBasicProfileForm() {
         />
 
         <Button disabled={isPending} type="submit" className="w-full">
-          {isPending ? "Saving..." : "Save Changes"}
+          {isPending ? t("buttons.saving") : t("buttons.save_changes")}
         </Button>
       </form>
     </Form>

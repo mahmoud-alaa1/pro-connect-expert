@@ -11,7 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { availableLanguages } from "@/lib/constants";
+import { getTranslatedLanguages } from "@/lib/constants";
+import { useTranslations } from "next-intl";
 
 type Props = {
   selected: string[];
@@ -19,8 +20,12 @@ type Props = {
 };
 
 export function LanguagesSelect({ selected, onChange }: Props) {
+  const t = useTranslations("Settings.expert_form.languages");
+  const tConstants = useTranslations();
+  const availableLanguages = getTranslatedLanguages(tConstants);
+
   const availableOptions = availableLanguages.filter(
-    (opt) => !selected.includes(opt)
+    (opt) => !selected.includes(opt.value)
   );
 
   const handleSelect = (value: string) => {
@@ -36,28 +41,36 @@ export function LanguagesSelect({ selected, onChange }: Props) {
   return (
     <div className="space-y-4">
       <Select onValueChange={handleSelect}>
-        <SelectTrigger>Add Language</SelectTrigger>
+        <SelectTrigger>
+          <SelectValue placeholder={t("add_language")} />
+        </SelectTrigger>
         <SelectContent>
           {availableOptions.map((lang) => (
-            <SelectItem key={lang} value={lang}>
-              {lang}
+            <SelectItem key={lang.value} value={lang.value}>
+              {lang.label}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
 
       <div className="flex flex-wrap gap-2">
-        {selected.map((lang) => (
-          <Badge key={lang} className="flex items-center gap-1">
-            {lang}
-            <button
-              type="button"
-              onClick={() => handleRemove(lang)}
-              className="hover:text-red-600">
-              <X size={12} />
-            </button>
-          </Badge>
-        ))}
+        {selected.map((langValue) => {
+          // Find the translated label for display
+          const langObj = availableLanguages.find((l) => l.value === langValue);
+          const displayLabel = langObj?.label || langValue;
+
+          return (
+            <Badge key={langValue} className="flex items-center gap-1">
+              {displayLabel}
+              <button
+                type="button"
+                onClick={() => handleRemove(langValue)}
+                className="hover:text-red-600">
+                <X size={12} />
+              </button>
+            </Badge>
+          );
+        })}
       </div>
     </div>
   );

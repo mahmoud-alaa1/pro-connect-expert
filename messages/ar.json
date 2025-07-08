@@ -216,5 +216,134 @@
       "go_home": "العودة للرئيسية",
       "browse_experts": "تصفح الخبراء"
     }
+  },
+  "Settings": {
+    "page_title": "معلومات الملف الشخصي",
+    "layout": {
+      "title": "الإعدادات",
+      "description": "إدارة تفضيلات حسابك والإعدادات"
+    },
+    "navigation": {
+      "profile": "الملف الشخصي",
+      "security": "الأمان",
+      "billing": "الفواتير"
+    },
+    "sections": {
+      "basic_info": "المعلومات الأساسية",
+      "expert_info": "معلومات الخبير"
+    },
+    "profile_photo": {
+      "title": "صورة الملف الشخصي",
+      "description": "قم بتحديث صورة ملفك الشخصي",
+      "change_photo": "تغيير الصورة"
+    },
+    "basic_form": {
+      "full_name": {
+        "label": "الاسم الكامل",
+        "placeholder": "أدخل اسمك الكامل"
+      },
+      "save": "حفظ"
+    },
+    "expert_form": {
+      "title": {
+        "label": "المسمى الوظيفي",
+        "placeholder": "مثلاً، مستشار تسويق"
+      },
+      "specialty": {
+        "label": "التخصص",
+        "placeholder": "مثلاً، التسويق الرقمي"
+      },
+      "bio": {
+        "label": "نبذة تعريفية",
+        "placeholder": "اكتب نبذة مختصرة..."
+      },
+      "hourly_rate": {
+        "label": "التسعيرة بالساعة",
+        "placeholder": "مثلاً، 150"
+      },
+      "currency": {
+        "label": "العملة",
+        "placeholder": "اختر العملة"
+      },
+      "languages": {
+        "label": "اللغات",
+        "add_language": "أضف لغة"
+      },
+      "availability": {
+        "label": "المواعيد المتاحة",
+        "title": "حدد مواعيدك المتاحة",
+        "description": "اختر الأوقات التي تكون فيها متاحاً للاستشارات",
+        "schedule_title": "جدولك الزمني",
+        "form": {
+          "day": "اليوم",
+          "from": "من",
+          "to": "إلى",
+          "add_slot": "أضف فترة زمنية"
+        },
+        "summary": {
+          "total_hours": "إجمالي الساعات",
+          "per_week": "في الأسبوع",
+          "days_scheduled": "يوم مجدول",
+          "days_scheduled_plural": "أيام مجدولة"
+        },
+        "empty_state": {
+          "title": "لم يتم تحديد مواعيد",
+          "description": "أضف أول فترة زمنية للبدء"
+        },
+        "day_schedule": {
+          "no_slots": "لم يتم تحديد مواعيد"
+        },
+        "errors": {
+          "required_fields": "يرجى ملء جميع الحقول المطلوبة",
+          "invalid_time": "وقت الانتهاء يجب أن يكون بعد وقت البدء",
+          "slot_exists": "هذه الفترة الزمنية موجودة بالفعل"
+        }
+      },
+      "buttons": {
+        "save_changes": "حفظ التغييرات",
+        "saving": "جاري الحفظ..."
+      }
+    },
+    "buttons": {
+      "save_changes": "حفظ التغييرات"
+    },
+    "loading": {
+      "fetching_profile": "جاري تحميل بيانات الملف الشخصي...",
+      "error_loading": "فشل في تحميل بيانات الملف الشخصي. يرجى المحاولة مرة أخرى لاحقاً."
+    }
+  },
+  "Constants": {
+    "weekdays": {
+      "Monday": "الاثنين",
+      "Tuesday": "الثلاثاء",
+      "Wednesday": "الأربعاء",
+      "Thursday": "الخميس",
+      "Friday": "الجمعة",
+      "Saturday": "السبت",
+      "Sunday": "الأحد"
+    },
+    "weekdays_short": {
+      "Monday": "إثنين",
+      "Tuesday": "ثلاثاء",
+      "Wednesday": "أربعاء",
+      "Thursday": "خميس",
+      "Friday": "جمعة",
+      "Saturday": "سبت",
+      "Sunday": "أحد"
+    },
+    "languages": {
+      "English": "الإنجليزية",
+      "Arabic": "العربية",
+      "French": "الفرنسية",
+      "Spanish": "الإسبانية",
+      "German": "الألمانية",
+      "Chinese": "الصينية"
+    },
+    "currencies": {
+      "USD": "الدولار الأمريكي (USD)",
+      "EUR": "اليورو (EUR)",
+      "EGP": "الجنيه المصري (EGP)",
+      "SAR": "الريال السعودي (SAR)"
+    }
   }
 }

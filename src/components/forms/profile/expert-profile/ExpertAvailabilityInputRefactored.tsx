@@ -11,6 +11,7 @@ import { ErrorMessage } from "./components/ErrorMessage";
 import { AvailabilitySummary } from "./components/AvailabilitySummary";
 import { ScheduleDisplay } from "./components/ScheduleDisplay";
 import { EmptyState } from "./components/EmptyState";
+import { useTranslations } from "next-intl";
 
 type Props = {
   value: Availability[];
@@ -18,6 +19,8 @@ type Props = {
 };
 
 export function ExpertAvailabilityInput({ value, onChange }: Props) {
+  const t = useTranslations("Settings.expert_form.availability");
+
   const {
     day,
     from,
@@ -30,7 +33,7 @@ export function ExpertAvailabilityInput({ value, onChange }: Props) {
     removeSlot,
     getTotalHours,
     formatTime,
-  } = useAvailabilityManager(value, onChange);
+  } = useAvailabilityManager(value, onChange, t);
 
   return (
     <div className="space-y-6">
@@ -39,11 +42,9 @@ export function ExpertAvailabilityInput({ value, onChange }: Props) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
             <Calendar className="h-5 w-5" />
-            Set Your Availability
+            {t("title")}
           </CardTitle>
-          <p className="text-sm text-gray-600">
-            Choose when you&apos;re available for consultations
-          </p>
+          <p className="text-sm text-gray-600">{t("description")}</p>
         </CardHeader>
         <CardContent>
           <AvailabilityForm

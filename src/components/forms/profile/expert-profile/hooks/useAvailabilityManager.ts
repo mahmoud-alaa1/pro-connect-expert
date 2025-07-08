@@ -8,7 +8,8 @@ export type Availability = {
 
 export const useAvailabilityManager = (
   value: Availability[],
-  onChange: (val: Availability[]) => void
+  onChange: (val: Availability[]) => void,
+  t?: (key: string) => string
 ) => {
   const [day, setDay] = useState("Monday");
   const [from, setFrom] = useState("");
@@ -24,11 +25,14 @@ export const useAvailabilityManager = (
 
   const validateTimeSlot = (from: string, to: string): string | null => {
     if (!from || !to) {
-      return "Please select both start and end times";
+      return (
+        t?.("errors.required_fields") ||
+        "Please select both start and end times"
+      );
     }
 
     if (from >= to) {
-      return "Start time must be before end time";
+      return t?.("errors.invalid_time") || "Start time must be before end time";
     }
 
     return null;
@@ -60,7 +64,10 @@ export const useAvailabilityManager = (
       const existing = updated[dayIndex].times;
 
       if (checkForOverlap(existing, newRange)) {
-        setError("Time slot overlaps with existing schedule!");
+        setError(
+          t?.("errors.slot_exists") ||
+            "Time slot overlaps with existing schedule!"
+        );
         return;
       }
 

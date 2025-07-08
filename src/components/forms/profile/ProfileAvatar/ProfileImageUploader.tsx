@@ -3,6 +3,7 @@
 import { Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type Props = {
   imageUrl: string;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export function ProfileImageUploader({ imageUrl, onChangeClick }: Props) {
+  const t = useTranslations("Settings.profile_photo");
+
   return (
     <div className="mb-8">
       <div className="flex items-center space-x-6">
@@ -33,14 +36,14 @@ export function ProfileImageUploader({ imageUrl, onChangeClick }: Props) {
           </Button>
         </div>
         <div>
-          <h3 className="text-lg font-medium text-gray-900">Profile Photo</h3>
-          <p className="text-sm text-gray-500">Update your profile picture</p>
+          <h3 className="text-lg font-medium text-gray-900">{t("title")}</h3>
+          <p className="text-sm text-gray-500">{t("description")}</p>
           <Button
             type="button"
             variant="link"
             className="mt-2 text-sm p-0 h-auto text-primary-600"
             onClick={onChangeClick}>
-            Change Photo
+            {t("change_photo")}
           </Button>
         </div>
       </div>

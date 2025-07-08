@@ -18,7 +18,7 @@ export function TimeSlot({
 }: Props) {
   return (
     <div className="flex items-center gap-2 px-3 py-2 bg-white border border-blue-200 rounded-lg shadow-sm">
-      <span className="text-sm font-medium text-blue-900">
+      <span dir="ltr" className="text-sm font-medium text-blue-900">
         {formatTime(slot.from)} - {formatTime(slot.to)}
       </span>
       <button

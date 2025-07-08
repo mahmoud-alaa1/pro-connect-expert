@@ -1,6 +1,7 @@
 import { TimeSlot } from "./TimeSlot";
 import { Availability } from "../hooks/useAvailabilityManager";
 import TodayBadge from "./TodayBadge";
+import { useTranslations } from "next-intl";
 
 type WeekdayType = {
   value: string;
@@ -21,6 +22,8 @@ export function DaySchedule({
   formatTime,
   onRemoveSlot,
 }: Props) {
+  const t = useTranslations("Settings.expert_form.availability.day_schedule");
+
   return (
     <div
       className={`p-4 rounded-lg border-2 transition-all ${
@@ -37,7 +40,7 @@ export function DaySchedule({
       </div>
 
       {daySchedule ? (
-        <div className="flex flex-wrap gap-2">
+        <div dir="ltr" className="flex flex-wrap gap-2">
           {daySchedule.times.map((slot, i) => (
             <TimeSlot
               key={i}
@@ -50,7 +53,7 @@ export function DaySchedule({
           ))}
         </div>
       ) : (
-        <p className="text-sm text-gray-500 italic">No availability set</p>
+        <p className="text-sm text-gray-500 italic">{t("no_slots")}</p>
       )}
     </div>
   );

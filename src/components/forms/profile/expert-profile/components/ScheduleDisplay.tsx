@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DaySchedule } from "./DaySchedule";
-import { weekdays } from "@/lib/constants";
+import { getTranslatedWeekdays } from "@/lib/constants";
 import { Availability } from "../hooks/useAvailabilityManager";
+import { useTranslations } from "next-intl";
 
 type Props = {
   availability: Availability[];
@@ -14,12 +15,16 @@ export function ScheduleDisplay({
   formatTime,
   onRemoveSlot,
 }: Props) {
+  const t = useTranslations("Settings.expert_form.availability");
+  const tConstants = useTranslations();
+  const weekdays = getTranslatedWeekdays(tConstants);
+
   if (availability.length === 0) return null;
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Your Schedule</CardTitle>
+        <CardTitle className="text-lg">{t("schedule_title")}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4">
