@@ -13,7 +13,7 @@ interface OptimisticUpdateConfig<TData, TInput> {
 }
 
 export default function useOptimisticUpdate<
-  TData extends Record<string, any>,
+  TData extends Record<string, unknown>,
   TInput,
 >({
   updateFn,
@@ -41,10 +41,11 @@ export default function useOptimisticUpdate<
         typeof previousData === "object" &&
         "pages" in previousData
       ) {
-        queryClient.setQueryData(queryKey, (old: any) => {
+        queryClient.setQueryData(queryKey, (old: unknown) => {
+          const oldData = old as { pages: { data: TData[] }[] };
           return {
-            ...old,
-            pages: old.pages.map((page: any) => ({
+            ...oldData,
+            pages: oldData.pages.map((page: { data: TData[] }) => ({
               ...page,
               data: page.data.map((item: TData) =>
                 matcher(item, input) ? updater(item, input) : item,

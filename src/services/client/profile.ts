@@ -1,3 +1,5 @@
+import { expertProfileSchema } from "@/schemas/profileSchema";
+
 export async function changeAvatar(file: File, userId: string) {
   const formData = new FormData();
   formData.append("file", file);
@@ -32,6 +34,22 @@ export async function updateProfile(data: { id: string; full_name: string }) {
   const resData = (await res.json()) as IUser;
 
   return resData;
+}
+
+export async function updateProfessionalProfile(updates: expertProfileSchema) {
+  const res = await fetch("/api/professionals/profile", {
+    method: "PATCH",
+    body: JSON.stringify(updates),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to update profile");
+  }
+  return (await res.json()) as IProfessional;
 }
 
 export async function getProfile() {

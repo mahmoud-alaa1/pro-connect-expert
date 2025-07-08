@@ -128,8 +128,10 @@
     "side_nav_description": "Quick access to features",
     "profile": "Profile",
     "dashboard": "Dashboard",
-    "settings": "Settings"
-
+    "settings": "Settings",
+    "verified": "Verified",
+    "reviews": "reviews",
+    "years_experience": "years experience"
   },
   "Errors": {
     "required": "This field is required",
@@ -310,6 +312,49 @@
     "loading": {
       "fetching_profile": "Loading profile data...",
       "error_loading": "Failed to load profile data. Please try again later."
+    }
+  },
+  "profile": {
+    "error_loading_profile": "Failed to load profile. Please try again later.",
+    "profile_not_found": "Profile not found.",
+    "header": {
+      "verified": "Verified",
+      "reviews": "reviews",
+      "years_experience": "years experience"
+    },
+    "bio": {
+      "title": "About"
+    },
+    "languages": {
+      "title": "Languages"
+    },
+    "hourly_rate": {
+      "title": "Hourly Rate",
+      "per_hour": "/ hour"
+    },
+    "availability": {
+      "title": "Availability",
+      "available": "Available",
+      "unavailable": "Unavailable",
+      "total_available_days": "Available Days"
+    },
+    "experience": {
+      "title": "Experience"
+    },
+    "education": {
+      "title": "Education"
+    },
+    "certifications": {
+      "title": "Certifications",
+      "total": "Total Certifications",
+      "count": "certifications"
+    },
+    "portfolio": {
+      "title": "Portfolio & Certificates",
+      "work_samples": "Work Samples",
+      "certificates": "Certificates",
+      "project": "Project",
+      "certificate": "Certificate"
     }
   },
   "Constants": {

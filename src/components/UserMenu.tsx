@@ -6,7 +6,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/store/useAuthStore";
 import { Button } from "./ui/button";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
@@ -16,10 +15,9 @@ import LogoutButton from "./LogoutButton";
 import { useGetProfile } from "@/hooks/profile/useGetProfile";
 
 export default function UserMenu() {
-  const user = useAuth((s) => s.user);
   const t = useTranslations("Common");
   const { data: profile } = useGetProfile();
-  if (!user) {
+  if (!profile) {
     return (
       <Button variant="outline">
         <Link href="/login">{t("login")}</Link>
@@ -31,15 +29,17 @@ export default function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger className="rounded-full">
         <Avatar>
-          <AvatarImage src={user.avatar_url || "/default-user.png"} />
+          <AvatarImage src={profile.avatar_url || "/default-user.png"} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user.full_name}</p>
+            <p className="text-sm font-medium leading-none">
+              {profile.full_name}
+            </p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user.email}
+              {profile.email}
             </p>
           </div>
         </DropdownMenuLabel>

@@ -1,12 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateProfile } from "@/services/client/profile";
 import { toast } from "sonner";
 import { useAuth } from "@/store/useAuthStore";
 import { profileBasicInfoSchema } from "@/components/forms/profile/name/ProfileBasicInfoForm";
 
 export function useUpdateProfile() {
-  const updateUser = useAuth((s) => s.updateUser);
   const user = useAuth((s) => s.user!);
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: profileBasicInfoSchema) =>
       updateProfile({
@@ -15,7 +15,9 @@ export function useUpdateProfile() {
       }),
     onSuccess: (data) => {
       console.log("Profile updated successfully:", data);
-      updateUser({ ...user, full_name: data.full_name });
+      queryClient.invalidateQueries({
+        queryKey: ["profile"],
+      });
       toast.success("تم تحديث البيانات بنجاح");
     },
     onError: (error) => {

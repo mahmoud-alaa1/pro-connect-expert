@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 interface OptimisticDeleteConfig<TData, TId> {
-  deleteFn: (id: TId) => Promise<any>;
+  deleteFn: (id: TId) => Promise<void>;
   queryKey: unknown[];
   matcher: (item: TData, id: TId) => boolean;
   messages?: {
@@ -12,7 +12,7 @@ interface OptimisticDeleteConfig<TData, TId> {
 }
 
 export default function useOptimisticDelete<
-  TData extends Record<string, any>,
+  TData extends Record<string, unknown>,
   TId = number | string,
 >({
   deleteFn,
@@ -50,7 +50,7 @@ export default function useOptimisticDelete<
       return { previousData };
     },
 
-    onSuccess: (_, id) => {
+    onSuccess: () => {
       toast.success(messages.success);
       queryClient.invalidateQueries({ queryKey });
     },

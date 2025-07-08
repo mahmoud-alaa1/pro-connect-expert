@@ -128,8 +128,10 @@
     "side_nav_description": "الوصول السريع إلى الميزات",
     "profile": "الملف الشخصي",
     "dashboard": "لوحة التحكم",
-    "settings": "الإعدادات"
-
+    "settings": "الإعدادات",
+    "verified": "موثق",
+    "reviews": "مراجعات",
+    "years_experience": "سنوات خبرة"
   },
   "Errors": {
     "required": "هذا الحقل مطلوب",
@@ -310,6 +312,49 @@
     "loading": {
       "fetching_profile": "جاري تحميل بيانات الملف الشخصي...",
       "error_loading": "فشل في تحميل بيانات الملف الشخصي. يرجى المحاولة مرة أخرى لاحقاً."
+    }
+  },
+  "profile": {
+    "error_loading_profile": "فشل في تحميل الملف الشخصي. يرجى المحاولة مرة أخرى لاحقاً.",
+    "profile_not_found": "الملف الشخصي غير موجود.",
+    "header": {
+      "verified": "موثق",
+      "reviews": "تقييمات",
+      "years_experience": "سنوات خبرة"
+    },
+    "bio": {
+      "title": "حول"
+    },
+    "languages": {
+      "title": "اللغات"
+    },
+    "hourly_rate": {
+      "title": "الأجر بالساعة",
+      "per_hour": "/ ساعة"
+    },
+    "availability": {
+      "title": "الأوقات المتاحة",
+      "available": "متاح",
+      "unavailable": "غير متاح",
+      "total_available_days": "الأيام المتاحة"
+    },
+    "experience": {
+      "title": "الخبرة"
+    },
+    "education": {
+      "title": "التعليم"
+    },
+    "certifications": {
+      "title": "الشهادات",
+      "total": "إجمالي الشهادات",
+      "count": "شهادات"
+    },
+    "portfolio": {
+      "title": "المعرض والشهادات",
+      "work_samples": "نماذج العمل",
+      "certificates": "الشهادات",
+      "project": "مشروع",
+      "certificate": "شهادة"
     }
   },
   "Constants": {
