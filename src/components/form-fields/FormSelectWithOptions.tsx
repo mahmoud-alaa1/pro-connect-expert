@@ -24,11 +24,12 @@ interface FormSelectProps<TFormValues extends FieldValues> {
   description?: string;
   labelClassName?: string;
   placeholder?: string;
-  options: { label: string; value: string | number }[];
+  options: { label: string; value: string }[];
   className?: string;
   disabled?: boolean;
   required?: boolean;
   autoFocus?: boolean;
+  dir?: "ltr" | "rtl";
 }
 
 export default function FormSelect<TFormValues extends FieldValues>({
@@ -42,54 +43,54 @@ export default function FormSelect<TFormValues extends FieldValues>({
   labelClassName,
   disabled,
   required,
+  dir = "ltr",
   ...props
 }: FormSelectProps<TFormValues>) {
   return (
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
-        <FormItem>
-          {label && (
-            <FormLabel htmlFor={name} className={cn("mb-1", labelClassName)}>
-              {label}
-            </FormLabel>
-          )}
-          <FormControl>
-            <Select
-              onValueChange={field.onChange}
-              defaultValue={field.value?.toString()}
-              value={field.value?.toString()}
-              disabled={disabled}
-              required={required}
-              {...props}
-            >
-              <SelectTrigger
-                id={name}
-                dir="rtl"
-                className={cn("w-full", className)}
-              >
-                <SelectValue placeholder={placeholder} />
-              </SelectTrigger>
-              <SelectContent
-                dir="rtl"
-                className="max-h-[200px] overflow-y-auto"
-              >
-                {options.map((option) => (
-                  <SelectItem
-                    key={option.value}
-                    value={option.value.toString()}
-                  >
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
-        </FormItem>
-      )}
+      render={({ field }) => {
+        return (
+          <FormItem>
+            {label && (
+              <FormLabel htmlFor={name} className={cn("mb-1", labelClassName)}>
+                {label}
+              </FormLabel>
+            )}
+            <FormControl>
+              <Select
+                onValueChange={(value) => {
+                  if (value) field.onChange(value);
+                }}
+                value={field.value}
+                disabled={disabled}
+                required={required}
+                {...props}>
+                <SelectTrigger
+                  id={name}
+                  dir={dir}
+                  className={cn("w-full", className)}>
+                  <SelectValue placeholder={placeholder} />
+                </SelectTrigger>
+                <SelectContent
+                  dir={dir}
+                  className="max-h-[200px] overflow-y-auto">
+                  {options.map((option) => (
+                    <SelectItem
+                      key={String(option.value)}
+                      value={String(option.value)}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormControl>
+            {description && <FormDescription>{description}</FormDescription>}
+            <FormMessage />
+          </FormItem>
+        );
+      }}
     />
   );
 }

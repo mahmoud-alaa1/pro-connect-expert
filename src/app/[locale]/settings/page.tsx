@@ -1,3 +1,4 @@
+import ExpertBasicProfileForm from "@/components/forms/profile/expert-profile/ExpertProfileForm";
 import ProfileBasicInfoForm from "@/components/forms/profile/name/ProfileBasicInfoForm";
 import { ProfileImageForm } from "@/components/forms/profile/ProfileAvatar/ProfileImageForm";
 
@@ -14,8 +15,15 @@ export default function page() {
       <ProfileImageForm />
 
       {/* Basic Information */}
+      <div className="flex items-center gap-4 mb-4">
+        <p className="text-muted-foreground whitespace-nowrap">
+          Basic Information
+        </p>
+        <div className="h-px bg-border flex-1" />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <ProfileBasicInfoForm />
+
         {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Full Name
@@ -55,55 +63,11 @@ export default function page() {
         </div> */}
       </div>
 
-      {/* Bio */}
-      <div className="mb-8">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Professional Bio
-        </label>
-        <textarea
-          rows={4}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
-          placeholder="Tell clients about your expertise and experience..."
-        />
+      <div className="flex items-center gap-4 mb-4">
+        <p className="text-muted-foreground whitespace-nowrap">Expert Info</p>
+        <div className="h-px bg-border flex-1" />
       </div>
-
-      {/* Expert-specific fields
-          {user?.type === "expert" && (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Hourly Rate ($)
-                  </label>
-                  <input
-                    type="number"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Website
-                  </label>
-                  <input
-                    type="url"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  />
-                </div>
-              </div>
-
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Specialties
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {"specialties"}
-                  <button className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200">
-                    + Add Specialty
-                  </button>
-                </div>
-              </div>
-            </>
-          )} */}
+      <ExpertBasicProfileForm />
 
       <div className="flex justify-end">
         <button

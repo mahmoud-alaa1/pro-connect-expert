@@ -13,10 +13,12 @@ import { useTranslations } from "next-intl";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { LayoutDashboard, Settings, User } from "lucide-react";
 import LogoutButton from "./LogoutButton";
+import { useGetProfile } from "@/hooks/profile/useGetProfile";
 
 export default function UserMenu() {
   const user = useAuth((s) => s.user);
   const t = useTranslations("Common");
+  const { data: profile } = useGetProfile();
   if (!user) {
     return (
       <Button variant="outline">

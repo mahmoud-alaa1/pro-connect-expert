@@ -33,3 +33,42 @@ export async function updateProfile(data: { id: string; full_name: string }) {
 
   return resData;
 }
+
+export async function getProfile() {
+  const res = await fetch("/api/profile", {
+    method: "GET",
+    credentials: "include", // ensures cookies are sent
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to fetch profile");
+  }
+
+  return (await res.json()) as IUser;
+}
+
+export async function getProfessionalProfile() {
+  const res = await fetch("/api/professionals/profile", {
+    method: "GET",
+    credentials: "include",
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to fetch professional profile");
+  }
+
+  return (await res.json()) as IProfessional;
+}
+
+export async function getProfessionalById(id: string) {
+  const res = await fetch(`/api/professionals/${id}`);
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Failed to fetch professional");
+  }
+
+  return (await res.json()) as IProfessional;
+}
