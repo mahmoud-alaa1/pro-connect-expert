@@ -14,6 +14,8 @@ export async function GET(req: NextRequest) {
   const search = searchParams.get("name");
   const minRating = searchParams.get("minRating");
   const maxHourly = searchParams.get("maxHourlyRate");
+  const specialty = searchParams.get("specialty");
+  const title = searchParams.get("title");
 
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
@@ -53,6 +55,12 @@ export async function GET(req: NextRequest) {
   if (maxHourly) {
     query = query.lte("hourly_rate", Number(maxHourly));
   }
+  if (specialty) {
+    query = query.ilike("specialty", `%${specialty}%`);
+  }
+  if (title) {
+    query = query.ilike("title", `%${title}%`);
+  }
 
   const { data, error, count } = await query;
 
@@ -68,6 +76,7 @@ export async function GET(req: NextRequest) {
       total: count,
       totalPages,
       page,
+      pageSize,
     },
   });
 }

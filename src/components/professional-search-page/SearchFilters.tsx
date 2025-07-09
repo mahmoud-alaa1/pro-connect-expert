@@ -73,12 +73,21 @@ export default function SearchFilters() {
           />
           <FormInput
             control={form.control}
-            name="specialty"
-            label="Specialty"
-            placeholder="Enter specialty"
+            name="title"
+            label="Title"
+            placeholder="EX: Software Engineer"
             className="rounded-2xl h-12 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             type="text"
           />
+          <FormInput
+            control={form.control}
+            name="specialty"
+            label="Specialty"
+            placeholder="EX: Frontend Development"
+            className="rounded-2xl h-12 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            type="text"
+          />
+
           <Button
             type="button"
             className="w-full"

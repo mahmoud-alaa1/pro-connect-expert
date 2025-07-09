@@ -1,6 +1,7 @@
 "use client";
 
 import HeroSection from "@/components/professional-search-page/HeroSection";
+import MobileSearchFilters from "@/components/professional-search-page/MobileSearchFilters";
 import ProfessionalsCards from "@/components/professional-search-page/ProfessionalsCards";
 import ResultsHeader from "@/components/professional-search-page/ResultsHeader";
 import SearchFilters from "@/components/professional-search-page/SearchFilters";
@@ -19,8 +20,13 @@ export default function page() {
           </div>
 
           <div className="lg:col-span-9">
-            <div className="animate-fade-in mb-6">
-              <SearchInput searchKey="name" />
+            <div className="animate-fade-in mb-6 flex gap-3 items-center">
+              <div className="flex-1">
+                <SearchInput searchKey="name" />
+              </div>
+              <div className="lg:hidden h-full ">
+                <MobileSearchFilters />
+              </div>
             </div>
 
             <ResultsHeader />

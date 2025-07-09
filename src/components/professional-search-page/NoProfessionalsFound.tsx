@@ -1,5 +1,4 @@
 import { Search } from "lucide-react";
-import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 export default function NoProfessionalsFound() {
   return (
@@ -20,7 +19,6 @@ export default function NoProfessionalsFound() {
       <p className="text-gray-600 text-lg mb-6">
         Try adjusting your search criteria or filters
       </p>
-      <Button>Clear All Filters</Button>
     </motion.div>
   );
 }

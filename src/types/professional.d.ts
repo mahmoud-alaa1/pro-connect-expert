@@ -39,4 +39,5 @@ interface IProfessionalSearchFilters {
   maxHourlyRate?: number;
   specialty?: string;
   availability?: boolean;
+  title?: string;
 }

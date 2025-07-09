@@ -14,6 +14,7 @@ export async function fetchPaginatedProfessionals(
   if (filters.minRating)
     params.append("minRating", filters.minRating.toString());
   if (filters.specialty) params.append("specialty", filters.specialty);
+  if (filters.title) params.append("title", filters.title);
 
   console.log(
     `/api/professionals?${params.toString()}`,
