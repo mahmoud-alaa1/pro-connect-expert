@@ -52,3 +52,34 @@ interface IProfessional {
     | null;
   created_at: string;
 }
+
+export interface IBookingSlot {
+  date: string;
+  time: string;
+  available: boolean;
+}
+
+export interface ITransaction {
+  id: string;
+  session_id: string;
+  amount: number;
+  currency: string;
+  date: string;
+  status: "completed" | "pending" | "failed";
+  professional_name: string;
+}
+
+
+export interface ISession {
+  id: string;
+  professional_id: string;
+  professional_name: string;
+  professional_avatar: string;
+  date: string;
+  time: string;
+  duration: number;
+  status: 'confirmed' | 'pending' | 'completed' | 'cancelled';
+  amount: number;
+  currency: string;
+  notes?: string;
+}

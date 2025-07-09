@@ -102,3 +102,5 @@ export const getTranslatedCurrencies = (t: (key: string) => string) => [
   { value: "EGP", label: t("Constants.currencies.EGP") },
   { value: "SAR", label: t("Constants.currencies.SAR") },
 ];
+
+export const PROFESSIONALS_PER_PAGE = 6;

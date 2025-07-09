@@ -19,7 +19,7 @@ export function ProfileHeader({ professional }: ProfileHeaderProps) {
   };
 
   return (
-    <Card className="bg-white/70 backdrop-blur-xl border-0 shadow-2xl shadow-blue-500/10 overflow-hidden relative">
+    <Card className="bg-white/70 backdrop-blur-xl border shadow-2xl shadow-blue-500/10 overflow-hidden relative ">
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-indigo-600/5"></div>
 

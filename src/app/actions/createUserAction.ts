@@ -43,7 +43,10 @@ export async function createUserAction(user_type: string) {
       specialty: "",
       bio: "",
       hourly_rate: 0,
-      
+      name: full_name,
+      avatar: avatar_url,
+      verified: true,
+      availability_status: true,
     });
 
     console.log("expertError", expertError);

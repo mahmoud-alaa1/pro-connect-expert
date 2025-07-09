@@ -5,12 +5,9 @@ import {
   Clock,
   Star,
   DollarSign,
-  Users,
-  TrendingUp,
   BookOpen,
   Settings,
   Eye,
-  MessageCircle,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useAuth } from "@/store/useAuthStore";

@@ -623,6 +623,60 @@ export type Database = {
         }
         Relationships: []
       }
+      sessions: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          end_time: string | null
+          expert_id: string | null
+          id: number
+          notes: string | null
+          payment_status: string | null
+          start_time: string | null
+          status: string | null
+          zoom_link: string | null
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          end_time?: string | null
+          expert_id?: string | null
+          id?: number
+          notes?: string | null
+          payment_status?: string | null
+          start_time?: string | null
+          status?: string | null
+          zoom_link?: string | null
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          end_time?: string | null
+          expert_id?: string | null
+          id?: number
+          notes?: string | null
+          payment_status?: string | null
+          start_time?: string | null
+          status?: string | null
+          zoom_link?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sessions_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sessions_expert_id_fkey"
+            columns: ["expert_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       withdrawal_requests: {
         Row: {
           amount: number

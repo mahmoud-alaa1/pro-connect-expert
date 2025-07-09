@@ -7,7 +7,7 @@ function useInfinite<T>({
   fetchFn,
   refetchInterval,
 }: {
-  queryKey: string[];
+  queryKey: unknown[];
   fetchFn: (pageNumber: number) => Promise<IPaginatedResponse<T>>;
   refetchInterval?: number;
 }) {
