@@ -44,7 +44,6 @@ export default function FormInput<TFormValues extends FieldValues>({
     isRtl = dir === "rtl";
   }
 
-
   return (
     <FormField
       control={control}
@@ -64,8 +63,7 @@ export default function FormInput<TFormValues extends FieldValues>({
                   className={cn(
                     "absolute inset-y-0 flex items-center justify-center text-gray-400",
                     isRtl ? "start-2.5 " : "end-2.5 "
-                  )}
-                >
+                  )}>
                   {Icon}
                 </div>
               )}
@@ -74,7 +72,7 @@ export default function FormInput<TFormValues extends FieldValues>({
                 id={name}
                 {...field}
                 {...inputProps}
-                className={cn("pe-8", className)}
+                className={cn(Icon && "pe-8", className)}
               />
             </div>
           </FormControl>

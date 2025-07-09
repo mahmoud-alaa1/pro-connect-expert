@@ -1,14 +1,13 @@
-import ProfileDecoration from "@/components/profile/ProfileDecoration";
 import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
 import { notFound } from "next/navigation";
 
-import { ProfileHeader } from "./components/profile-header/ProfileHeader";
-import HourlyRate from "./components/hourly-rate/HourlyRate";
-import LanguageCard from "./components/language-card/LanguageCard";
-import AvailabilityCard from "./components/availability-card/AvailabilityCard";
-import { ProfileBio } from "./components/profile-bio/ProfileBio";
-import ProfileExperience from "./components/profile-experience/ProfileExperience";
-import ProfileEducation from "./components/profile-education/ProfileEducation";
+import { ProfileHeader } from "../../../../components/expert-profile/profile-header/ProfileHeader";
+import HourlyRate from "../../../../components/expert-profile/hourly-rate/HourlyRate";
+import LanguageCard from "../../../../components/expert-profile/language-card/LanguageCard";
+import AvailabilityCard from "../../../../components/expert-profile/availability-card/AvailabilityCard";
+import { ProfileBio } from "../../../../components/expert-profile/profile-bio/ProfileBio";
+import ProfileExperience from "../../../../components/expert-profile/profile-experience/ProfileExperience";
+import ProfileEducation from "../../../../components/expert-profile/profile-education/ProfileEducation";
 export async function generateMetadata({
   params,
 }: {
@@ -51,7 +50,6 @@ export default async function page({
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      <ProfileDecoration />
       <div className="relative max-w-7xl mx-auto px-4 py-12 ">
         <div className=" delay-200">
           <ProfileHeader professional={professional} />

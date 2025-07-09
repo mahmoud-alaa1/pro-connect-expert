@@ -13,6 +13,7 @@ export async function fetchPaginatedProfessionals(
     params.append("maxHourlyRate", filters.maxHourlyRate.toString());
   if (filters.minRating)
     params.append("minRating", filters.minRating.toString());
+  if (filters.specialty) params.append("specialty", filters.specialty);
 
   console.log(
     `/api/professionals?${params.toString()}`,
