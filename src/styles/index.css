@@ -4,7 +4,19 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-@keyframes fadeIn {
+  @keyframes fade-in-scale {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  --animate-fade-in-scale: fade-in-scale 0.6s ease-out forwards;
+
+  @keyframes fadeIn {
     0% {
       opacity: 0;
     }
@@ -70,7 +82,7 @@
 :root {
   --font-alexandria: Alexandria, sans-serif;
   --radius: 0.625rem;
-  --background: #F9FAFB;
+  --background: #f9fafb;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);

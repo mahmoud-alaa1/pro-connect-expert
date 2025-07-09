@@ -1,3 +1,4 @@
+
 interface IProfessionalPreview {
   id: string;
   name: string | null;
@@ -15,21 +16,7 @@ interface IProfessionalPreview {
   rating: number;
   created_at: string;
 }
-interface IProfessional extends IProfessionalPreview {
-  profile_picture: string | null;
-  reviews: {
-    id: string;
-    rating: number;
-    comment: string;
-    created_at: string;
-  }[];
-  sessions: {
-    id: string;
-    date: string;
-    time: string;
-    duration: number;
-  }[];
-}
+
 interface IProfessionalFilters {
   specialty: string;
   minRating: string;

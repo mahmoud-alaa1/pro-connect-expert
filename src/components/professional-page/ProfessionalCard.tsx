@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Card } from "../ui/card";
-import { IProfessionalPreview } from "@/types/professional";
 import ViewProfileButton from "./ViewProfileButton";
 
 export default function ProfessionalCard({

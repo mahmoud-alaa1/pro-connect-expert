@@ -13,13 +13,17 @@ export default function ProfessionalsCards() {
 
   console.log(isFetching, "isFetching in ProfessionalsCards");
 
-  if (!professionals || professionals.length === 0) {
+  if (!isFetching && (!professionals || professionals.length === 0)) {
     return <NoProfessionalsFound />;
   }
 
   return (
     <AnimatePresence mode="sync">
-      <div className={`grid gap-6 grid-cols-1 md:grid-cols-2`}>
+      <motion.div
+        className={`grid gap-6 grid-cols-1 md:grid-cols-2 `}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}>
         {professionals?.map((professional, index) => (
           <motion.div
             key={professional.id}
@@ -31,19 +35,12 @@ export default function ProfessionalsCards() {
             </div>
           </motion.div>
         ))}
-      </div>
 
-      {isFetching && (
-        <motion.div
-          className={`grid gap-6 grid-cols-1 md:grid-cols-2`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}>
-          {Array.from({ length: 4 }).map((_, index) => (
+        {isFetching &&
+          Array.from({ length: 4 }).map((_, index) => (
             <SkeletonProfessionalCard key={index} />
           ))}
-        </motion.div>
-      )}
+      </motion.div>
     </AnimatePresence>
   );
 }
