@@ -6,11 +6,19 @@ import { ProfileHeader } from "./components/profile-header/ProfileHeader";
 import HourlyRate from "./components/hourly-rate/HourlyRate";
 import LanguageCard from "./components/language-card/LanguageCard";
 import AvailabilityCard from "./components/availability-card/AvailabilityCard";
-export async function generateMetadata({ params }: { params: { id: string } }) {
+import { ProfileBio } from "./components/profile-bio/ProfileBio";
+import ProfileExperience from "./components/profile-experience/ProfileExperience";
+import ProfileEducation from "./components/profile-education/ProfileEducation";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const { data: professional } = await supabaseAdmin
     .from("professionals")
     .select("title, specialty")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!professional) return {};
@@ -21,7 +29,12 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default async function page({ params }: { params: { id: string } }) {
+export default async function page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const {
     data: professional,
     error,
@@ -29,7 +42,7 @@ export default async function page({ params }: { params: { id: string } }) {
   } = await supabaseAdmin
     .from("professionals")
     .select(`*`)
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!professional || error || status !== 200) {
@@ -40,20 +53,22 @@ export default async function page({ params }: { params: { id: string } }) {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
       <ProfileDecoration />
       <div className="relative max-w-7xl mx-auto px-4 py-12 ">
-        <div className="animate-fade-in-scale delay-200">
+        <div className=" delay-200">
           <ProfileHeader professional={professional} />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-12">
           {/* sidebar */}
-          <div className="animate-fade-in-scale delay-300 lg:col-span-4 space-y-8">
+          <div className=" delay-300 lg:col-span-4 space-y-8">
             <HourlyRate professional={professional} />
             <LanguageCard professional={professional} />
             <AvailabilityCard professional={professional} />
           </div>
 
           {/* main content */}
-          <div className="animate-fade-in-scale delay-400 lg:col-span-8 space-y-8">
-            Child 3
+          <div className=" delay-400 lg:col-span-8 space-y-8">
+            <ProfileBio professional={professional} />
+            <ProfileExperience professional={professional} />
+            <ProfileEducation professional={professional} />
           </div>
         </div>
       </div>

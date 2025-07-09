@@ -46,7 +46,9 @@ export default function UserMenu() {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link href="/profile" className="flex items-center cursor-pointer">
+          <Link
+            href={`/professionals/${profile.id}`}
+            className="flex items-center cursor-pointer">
             <User className="mr-2 h-4 w-4" />
             <span>{t("profile")}</span>
           </Link>

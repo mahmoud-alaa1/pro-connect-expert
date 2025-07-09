@@ -8,6 +8,24 @@ interface IUser {
   user_type: "expert" | "client";
 }
 
+interface IExperience {
+  title: string;
+  company: string;
+  duration: string;
+  description: string;
+}
+
+interface IEducation {
+  degree: string;
+  institution: string;
+  year: string;
+}
+
+interface IAvailability {
+  day: string;
+  times: { from: string; to: string }[];
+}
+
 interface IProfessional {
   id: string;
   user_id: string;
@@ -35,21 +53,8 @@ interface IProfessional {
   portfolio_urls: string[];
   certificates_urls: string[];
   certifications: string[] | null;
-  experience:
-    | {
-        title: string;
-        company: string;
-        duration: string;
-        description: string;
-      }[]
-    | null;
-  education:
-    | {
-        degree: string;
-        institution: string;
-        year: string;
-      }[]
-    | null;
+  experience: IExperience[] | null;
+  education: IEducation[] | null;
   created_at: string;
 }
 
@@ -69,7 +74,7 @@ interface ITransaction {
   professional_name: string;
 }
 
- interface ISession {
+interface ISession {
   id: string;
   professional_id: string;
   professional_name: string;

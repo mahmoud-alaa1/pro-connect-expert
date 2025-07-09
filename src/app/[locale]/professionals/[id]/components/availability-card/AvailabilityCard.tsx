@@ -14,7 +14,6 @@ export default function AvailabilityCard({
     !professional.availability ||
     ((professional.availability as TAvailability) || []).length === 0
   ) {
-    // Handle null availability status
     return <AvailabilityPlaceholder professional={professional} />;
   }
   const availabilityStatus = professional.availability_status;
