@@ -58,12 +58,11 @@ export default function FormInfiniteSelect<
     queryKey,
     fetchFn: (pageNumber) => fetchFn(pageNumber),
   });
-  console.log("fuck form ", data);
 
   const options = data?.pages?.flatMap((page) => page.data) ?? [];
   const lastPage = data?.pages[data.pages.length - 1];
   const hasMoreData =
-    lastPage && lastPage?.meta?.currentPage < lastPage?.meta?.totalPages;
+    lastPage && lastPage?.meta?.page < lastPage?.meta?.totalPages;
 
   return (
     <FormField
@@ -84,21 +83,18 @@ export default function FormInfiniteSelect<
               value={field.value?.toString()}
               disabled={disabled}
               required={required}
-              {...props}
-            >
+              {...props}>
               <SelectTrigger
                 id={name}
                 dir="rtl"
-                className={cn("w-full", className)}
-              >
+                className={cn("w-full", className)}>
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
               <SelectContent id={name} className="max-h-56" dir="rtl">
                 {options.map((item) => (
                   <SelectItem
                     key={getOptionValue(item).toString()}
-                    value={getOptionValue(item).toString()}
-                  >
+                    value={getOptionValue(item).toString()}>
                     {getOptionLabel(item)}
                   </SelectItem>
                 ))}

@@ -8,6 +8,7 @@ import AvailabilityCard from "../../../../components/expert-profile/availability
 import { ProfileBio } from "../../../../components/expert-profile/profile-bio/ProfileBio";
 import ProfileExperience from "../../../../components/expert-profile/profile-experience/ProfileExperience";
 import ProfileEducation from "../../../../components/expert-profile/profile-education/ProfileEducation";
+import CertificationsCard from "@/components/expert-profile/cerifications-card/CertificationsCard";
 export async function generateMetadata({
   params,
 }: {
@@ -60,6 +61,7 @@ export default async function page({
             <HourlyRate professional={professional} />
             <LanguageCard professional={professional} />
             <AvailabilityCard professional={professional} />
+            <CertificationsCard professional={professional} />
           </div>
 
           {/* main content */}

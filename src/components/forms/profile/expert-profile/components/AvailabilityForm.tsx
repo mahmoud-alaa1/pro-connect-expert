@@ -7,7 +7,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { Plus, Clock } from "lucide-react";
+import { Plus } from "lucide-react";
 import { getTranslatedWeekdays } from "@/lib/constants";
 import { useTranslations } from "next-intl";
 

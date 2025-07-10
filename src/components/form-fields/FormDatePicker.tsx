@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "../ui/button";
 import { CalendarIcon } from "lucide-react";
-import Calendar from "@/components/Calendar";
+import { Calendar } from "@/components/ui/calendar";
 
 interface FormDatePickerProps<TFormValues extends FieldValues>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "defaultValue"> {
@@ -39,7 +39,6 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
   labelClassName,
   defaultValue,
   placeholder,
-  ...props
 }: FormDatePickerProps<TFormValues>) {
   return (
     <FormField
@@ -58,14 +57,12 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
                 <Button
                   id={name}
                   variant={"outline"}
-                  className="group border-input w-full justify-between border-2 bg-white px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]"
-                >
+                  className="group border-input w-full justify-between border-2 bg-white px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]">
                   <span
                     className={cn(
                       "truncate",
-                      !field.value && "text-muted-foreground",
-                    )}
-                  >
+                      !field.value && "text-muted-foreground"
+                    )}>
                     {field.value
                       ? format(field.value, "PPP", { locale: ar })
                       : placeholder}

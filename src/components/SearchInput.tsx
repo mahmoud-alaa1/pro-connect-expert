@@ -1,13 +1,12 @@
-// components/search/SearchInput.tsx
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { Search } from "lucide-react";
-import { cn } from "@/lib/utils"; // Optional utility for classNames
-import { Label } from "@radix-ui/react-label";
+import { cn } from "@/lib/utils";
+import { Label } from "./ui/label";
 
 interface SearchInputProps {
   searchKey: string;
@@ -21,27 +20,37 @@ export default function SearchInput({
   className,
 }: SearchInputProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  const initialValue = searchParams.get(searchKey) || "";
-  const [input, setInput] = useState(initialValue);
+  const [input, setInput] = useState(() => {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(searchKey) || "";
+  });
+
   const debounced = useDebouncedValue(input, 500);
 
   useEffect(() => {
-    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    const url = new URL(window.location.href);
+    const searchParams = url.searchParams;
+
     if (debounced) {
-      params.set(searchKey, debounced);
+      searchParams.set(searchKey, debounced);
     } else {
-      params.delete(searchKey);
+      searchParams.delete(searchKey);
     }
-    router.replace(`?${params.toString()}`);
+
+    const newSearch = searchParams.toString();
+    const currentSearch = window.location.search.replace(/^\?/, "");
+
+    if (newSearch !== currentSearch) {
+      router.replace(`${url.pathname}?${newSearch}`, { scroll: false });
+    }
   }, [debounced, router, searchKey]);
 
   return (
     <div className={cn("relative", className)}>
       <Search
         strokeWidth={3}
-        className="absolute end-3 top-1/2 text-blue-600  -translate-y-1/2  size-8"
+        className="absolute end-3 top-1/2 text-blue-600 -translate-y-1/2 size-8"
       />
       <Label htmlFor={searchKey} className="sr-only">
         Search
@@ -50,7 +59,7 @@ export default function SearchInput({
         placeholder={placeholder || "Search..."}
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        className="pe-12 h-14 text-lg bg-white/70  border-2 border-blue-200 focus:border-blue-500!"
+        className="pe-12 h-14 text-lg bg-white/70 border-2 border-blue-200 focus:border-blue-500!"
         id={searchKey}
         autoComplete={searchKey}
       />

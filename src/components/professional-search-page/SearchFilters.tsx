@@ -32,16 +32,21 @@ export default function SearchFilters() {
 
   useEffect(() => {
     const currentParams = new URLSearchParams(window.location.search);
-    const newParams = new URLSearchParams();
+    const newParams = new URLSearchParams(currentParams.toString()); // Clone
 
     Object.entries(debouncedValues).forEach(([key, value]) => {
       if (value) {
         newParams.set(key, value.toString());
+      } else {
+        newParams.delete(key);
       }
     });
 
-    if (currentParams.toString() !== newParams.toString()) {
-      router.replace(`${pathname}?${newParams.toString()}`);
+    const newSearch = newParams.toString();
+    const currentSearch = currentParams.toString();
+
+    if (newSearch !== currentSearch) {
+      router.replace(`${pathname}?${newSearch}`, { scroll: false });
     }
   }, [debouncedValues, pathname, router]);
 
@@ -93,7 +98,7 @@ export default function SearchFilters() {
             className="w-full"
             onClick={() => {
               form.reset();
-              router.replace(pathname); // Remove all query params
+              router.replace(pathname, { scroll: false }); // Remove all query params
             }}>
             Clear Filters
           </Button>
