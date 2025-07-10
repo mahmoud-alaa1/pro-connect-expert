@@ -27,11 +27,15 @@ import { CheckCircle, Clock, DollarSign } from "lucide-react";
 import { useBookSession } from "@/hooks/sessions/useBookSession";
 import { useAuth } from "@/store/useAuthStore";
 import Spinner from "../Spinner";
+import { TProfessional } from "@/types/tableTypes";
+import { useTranslations } from "next-intl";
+
 export default function BookingForm({
   professional,
 }: {
-  professional: IProfessional;
+  professional: TProfessional;
 }) {
+  const t = useTranslations("booking.form");
   const availableTimes = groupAvailability(professional.expert_availability);
 
   const form = useForm<bookingSchema>({
@@ -70,8 +74,8 @@ export default function BookingForm({
           <FormDatePicker<bookingSchema>
             control={form.control}
             name="date"
-            label="Date"
-            placeholder="Select a date"
+            label={t("date_label")}
+            placeholder={t("date_placeholder")}
             disabledFn={(date) => {
               const dayName = WEEKDAYS[date.getUTCDay()];
               const availableDays = availableTimes?.map((t) => t.day);
@@ -88,7 +92,7 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>
                     <Clock className="size-4" />
-                    <span>Available times on {weekday}</span>
+                    <span>{t("time_label", { weekday: weekday || "" })}</span>
                   </FormLabel>
                   <FormControl>
                     <RadioGroup
@@ -121,7 +125,7 @@ export default function BookingForm({
                         })
                       ) : (
                         <p className="text-muted-foreground">
-                          No times available.
+                          {t("no_times_available")}
                         </p>
                       )}
                     </RadioGroup>
@@ -134,38 +138,42 @@ export default function BookingForm({
           <FormTextArea<bookingSchema>
             control={form.control}
             name="notes"
-            label="Notes"
-            placeholder="Any additional notes or requests"
+            label={t("notes_label")}
+            placeholder={t("notes_placeholder")}
           />
         </div>
 
         <div className="bg-gradient-to-r from-gray-50 to-indigo-100 border-t border-gray-100 p-8 animate-fade-in-scale">
           <div className="flex items-center gap-3 mb-6">
             <DollarSign className="w-6 h-6 text-blue-600" />
-            <h3 className="text-xl font-bold text-gray-900">Session Summary</h3>
+            <h3 className="text-xl font-bold text-gray-900">
+              {t("session_summary")}
+            </h3>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             <div className="text-center p-4 bg-white rounded-2xl shadow-sm hover:scale-[101%]">
               <div className="text-sm text-gray-600 font-medium mb-1">
-                Duration
+                {t("duration")}
               </div>
               <div className="text-xl font-bold text-gray-900">
-                {duration} min
+                {duration} {t("min")}
               </div>
             </div>
 
             <div className="text-center p-4 bg-white rounded-2xl shadow-sm">
-              <div className="text-sm text-gray-600 font-medium mb-1">Rate</div>
+              <div className="text-sm text-gray-600 font-medium mb-1">
+                {t("rate")}
+              </div>
               <div className="text-xl font-bold text-gray-900">
                 {professional.hourly_rate}&nbsp;
-                {professional.currency} / hr
+                {professional.currency} / {t("hr")}
               </div>
             </div>
 
             <div className="text-center p-4 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-2xl shadow-lg">
               <div className="text-sm text-blue-100 font-medium mb-1">
-                Total
+                {t("total")}
               </div>
               <div className="text-xl font-bold">{totalAmount.toFixed(2)}</div>
               <div>{professional.currency}</div>
@@ -179,7 +187,7 @@ export default function BookingForm({
               <Spinner />
             ) : (
               <>
-                Confirm Booking
+                {t("confirm_booking")}
                 <CheckCircle className="ml-2 size-5" />
               </>
             )}

@@ -1,14 +1,14 @@
 import { User, Quote } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TProfessional } from "@/types/tableTypes";
+import { useTranslations } from "next-intl";
 
 export function ProfileBio({ professional }: { professional: TProfessional }) {
+  const t = useTranslations("expert_profile.bio");
+
   // Handle empty or missing bio
   const { bio } = professional;
-  const displayBio =
-    bio && bio.trim()
-      ? bio
-      : "This professional is passionate about their craft and dedicated to delivering exceptional results. They bring creativity, expertise, and a commitment to excellence to every project.";
+  const displayBio = bio && bio.trim() ? bio : t("placeholder");
   const isPlaceholder = !bio || !bio.trim();
 
   return (
@@ -21,7 +21,7 @@ export function ProfileBio({ professional }: { professional: TProfessional }) {
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
             <User className="w-5 h-5 text-white" />
           </div>
-          About Me
+          {t("title")}
         </CardTitle>
       </CardHeader>
 
@@ -43,7 +43,7 @@ export function ProfileBio({ professional }: { professional: TProfessional }) {
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-full border border-blue-200/50">
                 <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                 <span className="text-xs font-medium text-blue-600">
-                  Bio coming soon
+                  {t("bio_coming_soon")}
                 </span>
               </div>
             </div>

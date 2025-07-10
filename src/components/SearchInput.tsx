@@ -7,6 +7,7 @@ import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Label } from "./ui/label";
+import { useTranslations } from "next-intl";
 
 interface SearchInputProps {
   searchKey: string;
@@ -20,6 +21,7 @@ export default function SearchInput({
   className,
 }: SearchInputProps) {
   const router = useRouter();
+  const t = useTranslations("professionals_search.search");
 
   const [input, setInput] = useState(() => {
     const url = new URL(window.location.href);
@@ -53,10 +55,10 @@ export default function SearchInput({
         className="absolute end-3 top-1/2 text-blue-600 -translate-y-1/2 size-8"
       />
       <Label htmlFor={searchKey} className="sr-only">
-        Search
+        {t("label")}
       </Label>
       <Input
-        placeholder={placeholder || "Search..."}
+        placeholder={placeholder || t("placeholder")}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         className="pe-12 h-14 text-lg bg-white/70 border-2 border-blue-200 focus:border-blue-500!"

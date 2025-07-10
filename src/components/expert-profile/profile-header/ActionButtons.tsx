@@ -3,11 +3,15 @@
 import BookButton from "@/components/book-professional/BookingButton";
 import { Button } from "@/components/ui/button";
 import { TProfessional } from "@/types/tableTypes";
+import { useTranslations } from "next-intl";
+
 export default function ActionButtons({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.actions");
+
   return (
     <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-slide-up">
       <BookButton professional={professional} />
@@ -15,7 +19,7 @@ export default function ActionButtons({
       <Button
         variant="outline"
         className="p-8 text-lg  backdrop-blur-sm text-gray-700 font-semibold rounded-2xl border border-gray-200  hover:shadow-lg transform hover:scale-105 transition-all hover:border-blue-600 duration-300">
-        Send Message
+        {t("send_message")}
       </Button>
     </div>
   );

@@ -3,12 +3,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Card } from "../ui/card";
 import ViewProfileButton from "./ViewProfileButton";
+import { useTranslations } from "next-intl";
 
 export default function ProfessionalCard({
   professional,
 }: {
   professional: IProfessionalPreview;
 }) {
+  const t = useTranslations("professionals_search.professional_card");
+
   return (
     <Card className="p-6 group shadow-lg hover:shadow-2xl hover:scale-[102.5%] hover:border-blue-500 hover:bg-neutral-50 transition duration-300 relative overflow-hidden">
       <div className="flex items-start gap-4 mb-4">
@@ -63,7 +66,7 @@ export default function ProfessionalCard({
         ))}
         {professional.languages.length > 3 && (
           <Badge variant="secondary">
-            +{professional.languages.length - 3} more
+            +{professional.languages.length - 3} {t("more_languages")}
           </Badge>
         )}
       </div>
@@ -75,7 +78,9 @@ export default function ProfessionalCard({
             &nbsp;
             {professional.currency}
           </span>
-          <span className="text-sm text-gray-500 font-medium">/hour</span>
+          <span className="text-sm text-gray-500 font-medium">
+            {t("per_hour")}
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <ViewProfileButton id={professional.id} />
@@ -98,7 +103,7 @@ export default function ProfessionalCard({
                   ? "text-green-600"
                   : "text-gray-500"
               }`}>
-              {professional.availability_status ? "Available" : "Busy"}
+              {professional.availability_status ? t("available") : t("busy")}
             </span>
           </div>
           {/* <span className="text-gray-500 font-medium">

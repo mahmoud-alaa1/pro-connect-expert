@@ -9,26 +9,31 @@ import {
 import { Button } from "@/components/ui/button";
 import BookingHeader from "./BookingHeader";
 import BookingForm from "./BookingForm";
+import { TProfessional } from "@/types/tableTypes";
+import { useTranslations } from "next-intl";
 
 export default function BookingButton({
   professional,
 }: {
-  professional: IProfessional;
+  professional: TProfessional;
 }) {
+  const t = useTranslations("booking");
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button className="p-8 text-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transform hover:scale-105 transition-all duration-300">
-          Book Session
+          {t("button")}
         </Button>
       </DialogTrigger>
       <DialogContent className="p-0! block w-[clamp(350px,900vw,600px)]! max-h-[90dvh]  sm:w-[500px] overflow-auto">
         <DialogHeader className="p-6 pt-8 bg-gradient-to-r from-blue-50 to-purple-50 border-b border-gray-100 rounded-[inherit] ">
           <DialogTitle className="text-xl font-semibold text-gray-800 sr-only">
-            Book a Session
+            {t("dialog.title")}
           </DialogTitle>
           <DialogDescription className="text-gray-600 sr-only">
-            Schedule a session with {professional.name}.
+            {t("dialog.description", {
+              name: professional.name || "Professional",
+            })}
           </DialogDescription>
 
           {/* Dialog Header */}

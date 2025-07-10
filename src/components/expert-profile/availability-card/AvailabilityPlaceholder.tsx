@@ -1,13 +1,22 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TProfessional } from "@/types/tableTypes";
-import { Calendar, CheckCircle, Clock, Hourglass, MessageSquare, XCircle } from "lucide-react";
+import {
+  Calendar,
+  CheckCircle,
+  Clock,
+  Hourglass,
+  MessageSquare,
+  XCircle,
+} from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function AvailabilityPlaceholder({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.availability");
   const availability_status = professional.availability_status;
   return (
     <Card className="bg-white/70 backdrop-blur-xl border-0 shadow-xl shadow-blue-500/10 overflow-hidden relative group">
@@ -30,7 +39,7 @@ export default function AvailabilityPlaceholder({
               }`}>
               <Calendar className="w-5 h-5 text-white" />
             </div>
-            Availability
+            {t("title")}
           </CardTitle>
 
           <div>
@@ -45,7 +54,7 @@ export default function AvailabilityPlaceholder({
               ) : (
                 <XCircle className="w-3 h-3 mr-1" />
               )}
-              {availability_status ? "Available" : "Unavailable"}
+              {availability_status ? t("available") : t("unavailable")}
             </Badge>
           </div>
         </div>

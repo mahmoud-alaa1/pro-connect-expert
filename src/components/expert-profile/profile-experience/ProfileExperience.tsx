@@ -2,12 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TProfessional } from "@/types/tableTypes";
 import { Briefcase, Building, Calendar } from "lucide-react";
 import ProfileExperiencePlaceHolder from "./ProfileExperiencePlaceHolder";
+import { useTranslations } from "next-intl";
 
 export default function ProfileExperience({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.experience");
   const experience = professional.experience as IExperience[] | null;
 
   if (!experience || experience.length === 0) {
@@ -24,7 +26,7 @@ export default function ProfileExperience({
           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
             <Briefcase className="w-5 h-5 text-white" />
           </div>
-          Experience
+          {t("title")}
         </CardTitle>
       </CardHeader>
 

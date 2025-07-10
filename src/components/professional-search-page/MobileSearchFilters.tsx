@@ -9,7 +9,11 @@ import {
 import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
 import SearchFilters from "./SearchFilters";
+import { useTranslations } from "next-intl";
+
 export default function MobileSearchFilters() {
+  const t = useTranslations("professionals_search.filters");
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -19,10 +23,10 @@ export default function MobileSearchFilters() {
       </SheetTrigger>
       <SheetContent side="bottom">
         <SheetHeader>
-          <SheetTitle>Search Filters</SheetTitle>
+          <SheetTitle>{t("mobile_title")}</SheetTitle>
           <SearchFilters />
           <SheetDescription className="sr-only">
-            Use the filters below to refine your search results.
+            {t("mobile_description")}
           </SheetDescription>
         </SheetHeader>
       </SheetContent>

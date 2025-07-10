@@ -1,7 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, GraduationCap, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ProfileEducationPlaceholder() {
+  const t = useTranslations("expert_profile.education");
+
   return (
     <Card className="bg-white/70 backdrop-blur-xl border-0 shadow-xl shadow-blue-500/10 overflow-hidden relative group">
       {/* Animated background */}
@@ -12,7 +15,7 @@ export default function ProfileEducationPlaceholder() {
           <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
             <GraduationCap className="w-5 h-5 text-white" />
           </div>
-          Education
+          {t("title")}
         </CardTitle>
       </CardHeader>
 
@@ -22,16 +25,15 @@ export default function ProfileEducationPlaceholder() {
             <BookOpen className="w-10 h-10 text-emerald-500" />
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Self-Taught Excellence
+            {t("placeholder.self_taught")}
           </h3>
           <p className="text-gray-600 mb-6 max-w-md mx-auto">
-            This professional has developed their expertise through hands-on
-            experience and continuous learning.
+            {t("placeholder.description")}
           </p>
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-full border border-emerald-200/50">
             <Sparkles className="w-4 h-4 text-emerald-600" />
             <span className="text-sm font-medium text-emerald-700">
-              Experience-driven learning
+              {t("placeholder.experience_driven")}
             </span>
           </div>
         </div>

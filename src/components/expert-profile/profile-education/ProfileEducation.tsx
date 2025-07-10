@@ -2,12 +2,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TProfessional } from "@/types/tableTypes";
 import { Calendar, GraduationCap, School } from "lucide-react";
 import ProfileEducationPlaceholder from "./ProfileEducationPlaceholder";
+import { useTranslations } from "next-intl";
 
 export default function ProfileEducation({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.education");
   const education = professional.education as IEducation[] | null;
 
   if (!education || education.length === 0) {
@@ -24,7 +26,7 @@ export default function ProfileEducation({
           <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
             <GraduationCap className="w-5 h-5 text-white" />
           </div>
-          Education
+          {t("title")}
         </CardTitle>
       </CardHeader>
 

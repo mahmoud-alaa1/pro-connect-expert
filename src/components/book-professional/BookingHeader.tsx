@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { TProfessional } from "@/types/tableTypes";
+import { useTranslations } from "next-intl";
 
 export default function BookingHeader({
   professional,
 }: {
-  professional: IProfessional;
+  professional: TProfessional;
 }) {
+  const t = useTranslations("booking.header");
   return (
     <div>
       <div className="flex  flex-col sm:items-center sm:flex-row gap-6 animate-fade-in">
@@ -34,7 +37,7 @@ export default function BookingHeader({
             {professional.title}
           </p>
           <p className="text-sm flex text-gray-500">
-            {professional.specialty || "Specialty not specified"}
+            {professional.specialty || t("specialty_not_specified")}
           </p>
         </div>
       </div>

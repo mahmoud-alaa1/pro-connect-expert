@@ -1,16 +1,19 @@
-import { TAvailability, TProfessional } from "@/types/tableTypes";
+import { TProfessional } from "@/types/tableTypes";
 import React from "react";
 import AvailabilityPlaceholder from "./AvailabilityPlaceholder";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, CheckCircle, Clock, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { groupAvailability } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export default function AvailabilityCard({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.availability");
+
   if (
     !professional.expert_availability ||
     (professional.expert_availability || []).length === 0
@@ -41,7 +44,7 @@ export default function AvailabilityCard({
               }`}>
               <Calendar className="w-5 h-5 text-white" />
             </div>
-            Availability
+            {t("title")}
           </CardTitle>
 
           <div>
@@ -56,7 +59,7 @@ export default function AvailabilityCard({
               ) : (
                 <XCircle className="w-3 h-3 mr-1" />
               )}
-              {availabilityStatus ? "Available" : "Unavailable"}
+              {availabilityStatus ? t("available") : t("unavailable")}
             </Badge>
           </div>
         </div>
@@ -90,7 +93,7 @@ export default function AvailabilityCard({
         {/* Quick booking hint */}
         <div className="mt-6 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200/50">
           <p className="text-sm text-blue-700 font-medium text-center">
-            💡 Book sessions up to 2 weeks in advance
+            {t("booking_hint")}
           </p>
         </div>
       </CardContent>

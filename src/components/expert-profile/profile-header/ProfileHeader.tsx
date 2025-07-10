@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 import ActionButtons from "./ActionButtons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -17,6 +18,8 @@ export function ProfileHeader({
 }: {
   professional: TProfessional;
 }) {
+  const t = useTranslations("expert_profile.header");
+
   return (
     <Card className="bg-white/70 backdrop-blur-xl border shadow-2xl shadow-blue-500/10 overflow-hidden relative ">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-indigo-600/5"></div>
@@ -47,7 +50,7 @@ export function ProfileHeader({
               {professional?.verified && (
                 <Badge className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 shadow-lg w-fit">
                   <CheckCircle className="w-3 h-3 mr-1" />
-                  Verified Pro
+                  {t("verified_pro")}
                 </Badge>
               )}
             </div>
@@ -71,7 +74,7 @@ export function ProfileHeader({
                 </div>
                 <p className="text-sm text-gray-600">
                   {professional?.total_reviews}
-                  reviews
+                  {t("reviews")}
                 </p>
               </div>
 
@@ -84,7 +87,7 @@ export function ProfileHeader({
                     {professional?.years_experience}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600">years exp.</p>
+                <p className="text-sm text-gray-600">{t("years_exp")}</p>
               </div>
 
               {/* Sessions */}
@@ -96,7 +99,7 @@ export function ProfileHeader({
                     {professional?.total_sessions ?? 0}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600">sessions</p>
+                <p className="text-sm text-gray-600">{t("sessions")}</p>
               </div>
             </div>
             <ActionButtons professional={professional} />

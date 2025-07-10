@@ -357,6 +357,136 @@
       "certificate": "Certificate"
     }
   },
+  "professionals_search": {
+    "hero": {
+      "badge_text": "Find Your Perfect Professional Match",
+      "title_part1": "Connect with",
+      "title_part2": "Top Experts",
+      "description": "Discover professionals who can help you achieve your goals with personalized one-on-one sessions"
+    },
+    "search": {
+      "placeholder": "Search by name...",
+      "label": "Search"
+    },
+    "filters": {
+      "title": "Filters",
+      "min_rating": "Min Rating",
+      "min_rating_placeholder": "Minimum rating",
+      "max_hourly_rate": "Max Hourly Rate",
+      "max_hourly_rate_placeholder": "Enter maximum hourly rate",
+      "title_label": "Title",
+      "title_placeholder": "EX: Software Engineer",
+      "specialty": "Specialty",
+      "specialty_placeholder": "EX: Frontend Development",
+      "clear_filters": "Clear Filters",
+      "mobile_title": "Search Filters",
+      "mobile_description": "Use the filters below to refine your search results."
+    },
+    "results": {
+      "professionals_found": "professionals found",
+      "subtitle": "Ready to help you succeed"
+    },
+    "professional_card": {
+      "per_hour": "/hour",
+      "more_languages": "more",
+      "available": "Available",
+      "busy": "Busy",
+      "view_profile": "View Profile",
+      "sessions_completed": "sessions completed"
+    },
+    "no_results": {
+      "title": "No professionals found",
+      "description": "Try adjusting your search criteria or filters"
+    }
+  },
+  "expert_profile": {
+    "page": {
+      "meta_title": "{title} - {specialty}",
+      "meta_description": "Explore the profile of {title}, specialized in {specialty}"
+    },
+    "header": {
+      "verified_pro": "Verified Pro",
+      "reviews": "reviews",
+      "years_exp": "years exp.",
+      "sessions": "sessions"
+    },
+    "actions": {
+      "send_message": "Send Message"
+    },
+    "hourly_rate": {
+      "title": "Hourly Rate",
+      "per_hour": "/hour",
+      "competitive": "Competitive",
+      "quick_response": "Quick Response",
+      "available_now": "Available Now"
+    },
+    "languages": {
+      "title": "Languages",
+      "primary_language": "Primary language: English",
+      "languages_spoken": "{count} language{plural} spoken"
+    },
+    "availability": {
+      "title": "Availability",
+      "available": "Available",
+      "unavailable": "Unavailable",
+      "booking_hint": "💡 Book sessions up to 2 weeks in advance"
+    },
+    "bio": {
+      "title": "About Me",
+      "placeholder": "This professional is passionate about their craft and dedicated to delivering exceptional results. They bring creativity, expertise, and a commitment to excellence to every project.",
+      "bio_coming_soon": "Bio coming soon"
+    },
+    "experience": {
+      "title": "Experience",
+      "placeholder": {
+        "building": "Building Experience",
+        "description": "This professional is currently building their experience portfolio. Check back soon for updates!",
+        "coming_soon": "Experience coming soon"
+      }
+    },
+    "education": {
+      "title": "Education",
+      "placeholder": {
+        "self_taught": "Self-Taught Excellence",
+        "description": "This professional has developed their expertise through hands-on experience and continuous learning.",
+        "experience_driven": "Experience-driven learning"
+      }
+    },
+    "certifications": {
+      "title": "Certifications",
+      "count": "{count} Professional Certification{plural}",
+      "placeholder": {
+        "skill_focused": "Skill-Focused Professional",
+        "description": "This professional focuses on practical skills and real-world experience.",
+        "experience_driven": "Experience-driven expertise"
+      }
+    }
+  },
+  "booking": {
+    "button": "Book Session",
+    "dialog": {
+      "title": "Book a Session",
+      "description": "Schedule a session with {name}"
+    },
+    "header": {
+      "specialty_not_specified": "Specialty not specified"
+    },
+    "form": {
+      "date_label": "Date",
+      "date_placeholder": "Select a date",
+      "time_label": "Available times on {weekday}",
+      "no_times_available": "No times available.",
+      "notes_label": "Notes",
+      "notes_placeholder": "Any additional notes or requests",
+      "session_summary": "Session Summary",
+      "duration": "Duration",
+      "rate": "Rate",
+      "total": "Total",
+      "confirm_booking": "Confirm Booking",
+      "min": "min",
+      "hr": "hr"
+    }
+  },
   "Constants": {
     "weekdays": {
       "Monday": "Monday",

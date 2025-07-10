@@ -1,7 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, Plus, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ProfileExperiencePlaceHolder() {
+  const t = useTranslations("expert_profile.experience");
+
   return (
     <Card className="bg-white/70 backdrop-blur-xl border-0 shadow-xl shadow-blue-500/10 overflow-hidden relative group">
       {/* Animated background */}
@@ -12,7 +15,7 @@ export default function ProfileExperiencePlaceHolder() {
           <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
             <Briefcase className="w-5 h-5 text-white" />
           </div>
-          Experience
+          {t("title")}
         </CardTitle>
       </CardHeader>
 
@@ -22,16 +25,15 @@ export default function ProfileExperiencePlaceHolder() {
             <Sparkles className="w-10 h-10 text-purple-500" />
           </div>
           <h3 className="text-xl font-bold text-gray-900 mb-3">
-            Building Experience
+            {t("placeholder.building")}
           </h3>
           <p className="text-gray-600 mb-6 max-w-md mx-auto">
-            This professional is currently building their experience portfolio.
-            Check back soon for updates!
+            {t("placeholder.description")}
           </p>
           <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-full border border-purple-200/50">
             <Plus className="w-4 h-4 text-purple-600" />
             <span className="text-sm font-medium text-purple-700">
-              Experience coming soon
+              {t("placeholder.coming_soon")}
             </span>
           </div>
         </div>

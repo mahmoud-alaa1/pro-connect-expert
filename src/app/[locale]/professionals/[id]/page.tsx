@@ -1,5 +1,6 @@
 import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 import { ProfileHeader } from "../../../../components/expert-profile/profile-header/ProfileHeader";
 import HourlyRate from "../../../../components/expert-profile/hourly-rate/HourlyRate";
@@ -13,9 +14,11 @@ import { getExpertById } from "@/services/server/expertsServices";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }) {
-  const { id } = await params;
+  const { id, locale } = await params;
+  const t = await getTranslations({ locale, namespace: "expert_profile" });
+
   const { data: professional } = await supabaseAdmin
     .from("professionals")
     .select("title, specialty")
@@ -25,15 +28,21 @@ export async function generateMetadata({
   if (!professional) return {};
 
   return {
-    title: `${professional.title} - ${professional.specialty}`,
-    description: `Explore the profile of ${professional.title}, specialized in ${professional.specialty}`,
+    title: t("page.meta_title", {
+      title: professional.title || "Professional",
+      specialty: professional.specialty || "Expert",
+    }),
+    description: t("page.meta_description", {
+      title: professional.title || "Professional",
+      specialty: professional.specialty || "Expert",
+    }),
   };
 }
 
 export default async function page({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }) {
   const { id } = await params;
   const { data: professional, error, status } = await getExpertById(id);

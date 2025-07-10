@@ -1,6 +1,10 @@
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+
 export default function NoProfessionalsFound() {
+  const t = useTranslations("professionals_search.no_results");
+
   return (
     <motion.div
       className="text-center py-16"
@@ -13,12 +17,8 @@ export default function NoProfessionalsFound() {
         transition={{ duration: 2, repeat: Infinity }}>
         <Search size={64} className="mx-auto" />
       </motion.div>
-      <h3 className="text-2xl font-bold text-gray-900 mb-3">
-        No professionals found
-      </h3>
-      <p className="text-gray-600 text-lg mb-6">
-        Try adjusting your search criteria or filters
-      </p>
+      <h3 className="text-2xl font-bold text-gray-900 mb-3">{t("title")}</h3>
+      <p className="text-gray-600 text-lg mb-6">{t("description")}</p>
     </motion.div>
   );
 }
