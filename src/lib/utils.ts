@@ -1,6 +1,7 @@
 export const RTL_LOCALES = new Set(["ar", "he", "fa", "ur"]);
 
 import { clsx, type ClassValue } from "clsx";
+import { differenceInMinutes, parse } from "date-fns";
 import { useLocale } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
@@ -17,3 +18,24 @@ export function useIsRtl(): boolean {
   return RTL_LOCALES.has(locale);
 }
 
+export function enable2Weeks(date: Date): boolean {
+  const today = new Date();
+
+  today.setHours(0, 0, 0, 0);
+  const twoWeeksFromNow = new Date();
+  twoWeeksFromNow.setDate(today.getDate() + 14);
+  twoWeeksFromNow.setHours(23, 59, 59, 999);
+  return date < today || date > twoWeeksFromNow;
+}
+
+export function calculateDuration(time: string) {
+  {
+    const [from, to] = time.split("-");
+    const fromDate = parse(from, "HH:mm", new Date());
+    const toDate = parse(to, "HH:mm", new Date());
+
+    const totalMinutes = differenceInMinutes(toDate, fromDate);
+
+    return totalMinutes;
+  }
+}

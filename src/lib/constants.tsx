@@ -13,7 +13,7 @@ export const getRadioRoles = (t: (key: string) => string) => [
   },
 ];
 
-export const daysOfWeek = [
+export const WEEKDAYS = [
   "Monday",
   "Tuesday",
   "Wednesday",

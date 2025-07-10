@@ -22,7 +22,7 @@ export default function HourlyRate({
 
       <CardContent className="relative">
         <div className="flex items-baseline gap-2">
-          <span className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
             {professional?.hourly_rate} {professional?.currency}
           </span>
           <span className="text-lg font-medium text-gray-600">/hour</span>

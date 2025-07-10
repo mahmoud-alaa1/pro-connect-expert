@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FormControl,
   FormDescription,
@@ -11,7 +10,7 @@ import { Control, FieldValues, Path } from "react-hook-form";
 import { InputHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { ar } from "date-fns/locale";
+import { ar, enUS } from "date-fns/locale";
 import {
   Popover,
   PopoverContent,
@@ -20,6 +19,7 @@ import {
 import { Button } from "../ui/button";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
+import { useLocale } from "next-intl";
 
 interface FormDatePickerProps<TFormValues extends FieldValues>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "name" | "defaultValue"> {
@@ -29,6 +29,7 @@ interface FormDatePickerProps<TFormValues extends FieldValues>
   description?: string;
   labelClassName?: string;
   defaultValue?: Date;
+  disabledFn?: (date: Date) => boolean;
 }
 
 export default function FormDatePicker<TFormValues extends FieldValues>({
@@ -37,53 +38,46 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
   name,
   description,
   labelClassName,
-  defaultValue,
   placeholder,
+  disabledFn,
 }: FormDatePickerProps<TFormValues>) {
+  const locale = useLocale();
+
   return (
     <FormField
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          {label && (
-            <FormLabel htmlFor={name} className={cn("mb-1", labelClassName)}>
-              {label}
-            </FormLabel>
-          )}
-          <FormControl>
-            <Popover>
-              <PopoverTrigger asChild>
+        <FormItem className="flex flex-col">
+          {label && <FormLabel className={labelClassName}>{label}</FormLabel>}
+          <Popover>
+            <PopoverTrigger asChild>
+              <FormControl>
                 <Button
-                  id={name}
                   variant={"outline"}
-                  className="group border-input w-full justify-between border-2 bg-white px-3 font-normal outline-offset-0 outline-none focus-visible:outline-[3px]">
-                  <span
-                    className={cn(
-                      "truncate",
-                      !field.value && "text-muted-foreground"
-                    )}>
-                    {field.value
-                      ? format(field.value, "PPP", { locale: ar })
-                      : placeholder}
-                  </span>
-                  <CalendarIcon
-                    size={16}
-                    className="text-muted-foreground/80 group-hover:text-foreground shrink-0 transition-colors"
-                    aria-hidden="true"
-                  />
+                  className={cn(!field.value && "text-muted-foreground")}>
+                  {field.value ? (
+                    format(field.value, "PPP")
+                  ) : (
+                    <span>{placeholder}</span>
+                  )}
+                  <CalendarIcon className="ms-auto h-4 w-4 opacity-50" />
                 </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-2" align="start">
-                <Calendar
-                  selected={field.value}
-                  onSelect={field.onChange}
-                  defaultMonth={defaultValue}
-                />
-              </PopoverContent>
-            </Popover>
-          </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
+              </FormControl>
+            </PopoverTrigger>
+            <PopoverContent className="p-0 min-w-xs" align="start">
+              <Calendar
+                mode="single"
+                selected={field.value}
+                onSelect={field.onChange}
+                disabled={disabledFn}
+                captionLayout="dropdown"
+                className="w-xs"
+                locale={locale === "ar" ? ar : enUS}
+              />
+            </PopoverContent>
+          </Popover>
+          <FormDescription>{description}</FormDescription>
           <FormMessage />
         </FormItem>
       )}
