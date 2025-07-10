@@ -625,39 +625,39 @@ export type Database = {
       }
       sessions: {
         Row: {
-          client_id: string | null
+          client_id: string
           created_at: string
-          end_time: string | null
-          expert_id: string | null
+          date: string
+          expert_id: string
           id: number
           notes: string | null
           payment_status: string | null
-          start_time: string | null
           status: string | null
+          time: string
           zoom_link: string | null
         }
         Insert: {
-          client_id?: string | null
+          client_id?: string
           created_at?: string
-          end_time?: string | null
-          expert_id?: string | null
+          date: string
+          expert_id?: string
           id?: number
           notes?: string | null
           payment_status?: string | null
-          start_time?: string | null
           status?: string | null
+          time: string
           zoom_link?: string | null
         }
         Update: {
-          client_id?: string | null
+          client_id?: string
           created_at?: string
-          end_time?: string | null
-          expert_id?: string | null
+          date?: string
+          expert_id?: string
           id?: number
           notes?: string | null
           payment_status?: string | null
-          start_time?: string | null
           status?: string | null
+          time?: string
           zoom_link?: string | null
         }
         Relationships: [

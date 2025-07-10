@@ -20,6 +20,9 @@ import { TProfessional } from "@/types/tableTypes";
 import { WEEKDAYS } from "@/lib/constants";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { CheckCircle, Clock, DollarSign } from "lucide-react";
+import { useBookSession } from "@/hooks/sessions/useBookSession";
+import { useAuth } from "@/store/useAuthStore";
+import Spinner from "../Spinner";
 export default function BookingForm({
   professional,
 }: {
@@ -30,7 +33,8 @@ export default function BookingForm({
   const form = useForm<bookingSchema>({
     resolver: zodResolver(bookingSchema),
   });
-
+  const id = useAuth((state) => state.user?.id);
+  const { mutate, isPending } = useBookSession();
   const selectedDate = form.watch("date");
   const weekday = selectedDate ? WEEKDAYS[selectedDate.getUTCDay()] : undefined;
   const timesForDay =
@@ -43,6 +47,16 @@ export default function BookingForm({
 
   function onSubmit(values: bookingSchema) {
     console.log(values);
+
+    console.log(new Date(values.date).toISOString());
+
+    mutate({
+      expert_id: professional.id,
+      client_id: id!,
+      date: values.date.toISOString(),
+      time: values.time,
+      notes: values.notes,
+    });
   }
 
   return (
@@ -79,7 +93,6 @@ export default function BookingForm({
                       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                       {timesForDay.length > 0 ? (
                         timesForDay.map((slot, idx) => {
-                          console.log("here", slot);
                           const value = `${slot.from}-${slot.to}`;
                           return (
                             <FormItem key={idx}>
@@ -154,9 +167,17 @@ export default function BookingForm({
             </div>
           </div>
 
-          <Button className="flex-1 h-14 text-base font-semibold rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-purple-700 shadow-lg  w-full transition  hover:scale-105">
-            Confirm Booking
-            <CheckCircle className="ml-2 size-5" />
+          <Button
+            disabled={isPending}
+            className="flex-1 h-14 text-base font-semibold rounded-2xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-purple-700 shadow-lg  w-full transition  hover:scale-105">
+            {isPending ? (
+              <Spinner />
+            ) : (
+              <>
+                Confirm Booking
+                <CheckCircle className="ml-2 size-5" />
+              </>
+            )}
           </Button>
         </div>
       </form>

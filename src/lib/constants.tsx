@@ -14,13 +14,13 @@ export const getRadioRoles = (t: (key: string) => string) => [
 ];
 
 export const WEEKDAYS = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "Sunday", // index 0
+  "Monday", // index 1
+  "Tuesday", // index 2
+  "Wednesday", // index 3
+  "Thursday", // index 4
+  "Friday", // index 5
+  "Saturday", // index 6
 ];
 
 export const availableLanguages = [

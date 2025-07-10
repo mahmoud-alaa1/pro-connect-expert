@@ -74,6 +74,7 @@ export default function FormDatePicker<TFormValues extends FieldValues>({
                 captionLayout="dropdown"
                 className="w-xs"
                 locale={locale === "ar" ? ar : enUS}
+                timeZone="UTC"
               />
             </PopoverContent>
           </Popover>
