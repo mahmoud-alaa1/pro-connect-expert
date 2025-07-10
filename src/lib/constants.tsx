@@ -21,7 +21,7 @@ export const WEEKDAYS = [
   "Thursday", // index 4
   "Friday", // index 5
   "Saturday", // index 6
-];
+] as const;
 
 export const availableLanguages = [
   "English",
@@ -42,16 +42,22 @@ export const getTranslatedLanguages = (t: (key: string) => string) => [
 ];
 
 export const weekdays = [
+  { value: "Sunday", label: "Sunday", short: "Sun" },
+
   { value: "Monday", label: "Monday", short: "Mon" },
   { value: "Tuesday", label: "Tuesday", short: "Tue" },
   { value: "Wednesday", label: "Wednesday", short: "Wed" },
   { value: "Thursday", label: "Thursday", short: "Thu" },
   { value: "Friday", label: "Friday", short: "Fri" },
   { value: "Saturday", label: "Saturday", short: "Sat" },
-  { value: "Sunday", label: "Sunday", short: "Sun" },
 ];
 
 export const getTranslatedWeekdays = (t: (key: string) => string) => [
+  {
+    value: "Sunday",
+    label: t("Constants.weekdays.Sunday"),
+    short: t("Constants.weekdays_short.Sunday"),
+  },
   {
     value: "Monday",
     label: t("Constants.weekdays.Monday"),
@@ -81,11 +87,6 @@ export const getTranslatedWeekdays = (t: (key: string) => string) => [
     value: "Saturday",
     label: t("Constants.weekdays.Saturday"),
     short: t("Constants.weekdays_short.Saturday"),
-  },
-  {
-    value: "Sunday",
-    label: t("Constants.weekdays.Sunday"),
-    short: t("Constants.weekdays_short.Sunday"),
   },
 ];
 

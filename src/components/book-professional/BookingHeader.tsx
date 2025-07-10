@@ -1,4 +1,3 @@
-import { TProfessional } from "@/types/tableTypes";
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import { Badge } from "../ui/badge";
@@ -6,7 +5,7 @@ import { Badge } from "../ui/badge";
 export default function BookingHeader({
   professional,
 }: {
-  professional: TProfessional;
+  professional: IProfessional;
 }) {
   return (
     <div>

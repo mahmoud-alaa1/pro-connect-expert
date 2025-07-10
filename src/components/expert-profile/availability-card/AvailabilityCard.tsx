@@ -4,6 +4,7 @@ import AvailabilityPlaceholder from "./AvailabilityPlaceholder";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, CheckCircle, Clock, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { groupAvailability } from "@/lib/utils";
 
 export default function AvailabilityCard({
   professional,
@@ -11,13 +12,13 @@ export default function AvailabilityCard({
   professional: TProfessional;
 }) {
   if (
-    !professional.availability ||
-    ((professional.availability as TAvailability) || []).length === 0
+    !professional.expert_availability ||
+    (professional.expert_availability || []).length === 0
   ) {
     return <AvailabilityPlaceholder professional={professional} />;
   }
   const availabilityStatus = professional.availability_status;
-  const availability = professional.availability as TAvailability;
+  const availability = groupAvailability(professional.expert_availability);
 
   return (
     <Card className="bg-white/70 backdrop-blur-xl border-0 shadow-xl shadow-blue-500/10 overflow-hidden relative group">

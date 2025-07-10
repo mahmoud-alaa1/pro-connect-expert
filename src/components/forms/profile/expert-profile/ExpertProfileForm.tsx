@@ -25,6 +25,7 @@ import { AlertCircle } from "lucide-react";
 import { getTranslatedCurrencies } from "@/lib/constants";
 import useGetProfessionalProfile from "@/hooks/profile/useGetProfessionalProfile";
 import { expertProfileSchema } from "@/schemas/profileSchema";
+import { groupAvailability } from "@/lib/utils";
 
 export default function ExpertBasicProfileForm() {
   const t = useTranslations("Settings.expert_form");
@@ -57,6 +58,9 @@ export default function ExpertBasicProfileForm() {
     if (!data) {
       return;
     }
+    console.log(data);
+
+    const availability = groupAvailability(data.expert_availability || []);
 
     const resetData = {
       title: data.title || "",
@@ -65,7 +69,7 @@ export default function ExpertBasicProfileForm() {
       languages: data.languages || [],
       hourly_rate: data.hourly_rate || 0,
       currency: data.currency || "SAR",
-      availability: data.availability || [],
+      availability: availability || [],
     };
     form.reset(resetData);
   }, [data, form]);

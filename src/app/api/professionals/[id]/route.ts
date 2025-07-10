@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
+import { getExpertById } from "@/services/server/expertsServices";
 
 export async function GET(
   _req: Request,
@@ -7,11 +7,7 @@ export async function GET(
 ): Promise<NextResponse> {
   const { id } = await params;
 
-  const { data, error } = await supabaseAdmin
-    .from("professionals")
-    .select("*")
-    .eq("user_id", id)
-    .single();
+  const { data, error } = await getExpertById(id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

@@ -8,13 +8,12 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import BookingHeader from "./BookingHeader";
-import { TProfessional } from "@/types/tableTypes";
 import BookingForm from "./BookingForm";
 
 export default function BookingButton({
   professional,
 }: {
-  professional: TProfessional;
+  professional: IProfessional;
 }) {
   return (
     <Dialog>

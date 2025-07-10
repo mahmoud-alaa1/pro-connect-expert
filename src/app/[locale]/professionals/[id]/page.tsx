@@ -9,6 +9,7 @@ import { ProfileBio } from "../../../../components/expert-profile/profile-bio/Pr
 import ProfileExperience from "../../../../components/expert-profile/profile-experience/ProfileExperience";
 import ProfileEducation from "../../../../components/expert-profile/profile-education/ProfileEducation";
 import CertificationsCard from "@/components/expert-profile/cerifications-card/CertificationsCard";
+import { getExpertById } from "@/services/server/expertsServices";
 export async function generateMetadata({
   params,
 }: {
@@ -35,15 +36,7 @@ export default async function page({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const {
-    data: professional,
-    error,
-    status,
-  } = await supabaseAdmin
-    .from("professionals")
-    .select(`*`)
-    .eq("id", id)
-    .single();
+  const { data: professional, error, status } = await getExpertById(id);
 
   if (!professional || error || status !== 200) {
     return notFound();

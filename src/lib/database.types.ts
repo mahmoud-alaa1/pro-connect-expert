@@ -268,6 +268,41 @@ export type Database = {
           },
         ]
       }
+      expert_availability: {
+        Row: {
+          created_at: string
+          day: Database["public"]["Enums"]["day_of_week"]
+          expert_id: string
+          from_time: string
+          id: number
+          to_time: string
+        }
+        Insert: {
+          created_at?: string
+          day: Database["public"]["Enums"]["day_of_week"]
+          expert_id?: string
+          from_time?: string
+          id?: number
+          to_time: string
+        }
+        Update: {
+          created_at?: string
+          day?: Database["public"]["Enums"]["day_of_week"]
+          expert_id?: string
+          from_time?: string
+          id?: number
+          to_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expert_availability_expert_id_fkey"
+            columns: ["expert_id"]
+            isOneToOne: false
+            referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       expert_withdrawals: {
         Row: {
           amount: number
@@ -482,7 +517,6 @@ export type Database = {
       }
       professionals: {
         Row: {
-          availability: Json | null
           availability_status: boolean | null
           avatar: string | null
           bio: string | null
@@ -508,7 +542,6 @@ export type Database = {
           years_experience: number | null
         }
         Insert: {
-          availability?: Json | null
           availability_status?: boolean | null
           avatar?: string | null
           bio?: string | null
@@ -534,7 +567,6 @@ export type Database = {
           years_experience?: number | null
         }
         Update: {
-          availability?: Json | null
           availability_status?: boolean | null
           avatar?: string | null
           bio?: string | null
@@ -735,6 +767,14 @@ export type Database = {
     Enums: {
       booking_status: "pending" | "confirmed" | "completed" | "cancelled"
       currency_type: "SAR" | "USD" | "EUR" | "AED"
+      day_of_week:
+        | "Sunday"
+        | "Monday"
+        | "Tuesday"
+        | "Wednesday"
+        | "Thursday"
+        | "Friday"
+        | "Saturday"
       language_enum:
         | "English"
         | "Arabic"
@@ -901,6 +941,15 @@ export const Constants = {
     Enums: {
       booking_status: ["pending", "confirmed", "completed", "cancelled"],
       currency_type: ["SAR", "USD", "EUR", "AED"],
+      day_of_week: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
       language_enum: [
         "English",
         "Arabic",

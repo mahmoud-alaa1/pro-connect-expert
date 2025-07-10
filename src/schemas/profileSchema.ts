@@ -1,5 +1,5 @@
 import { z } from "zod";
-
+import { currencyLiterals } from "@/types/tableTypes";
 export const expertProfileSchema = z.object({
   title: z.string({
     required_error: "Title is required",
@@ -25,10 +25,25 @@ export const expertProfileSchema = z.object({
       required_error: "Hourly rate is required",
     })
     .positive(),
-  currency: z.string({ required_error: "Currency is required" }),
+  currency: z.enum(currencyLiterals, {
+    required_error: "Currency is required",
+  }),
   availability: z.array(
     z.object({
-      day: z.string({ required_error: "Day is required" }),
+      day: z.enum(
+        [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        {
+          required_error: "Day is required",
+        }
+      ),
       times: z.array(z.object({ from: z.string(), to: z.string() }), {
         required_error: "At least one time slot is required",
       }),

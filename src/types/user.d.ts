@@ -1,3 +1,10 @@
+type CurrencyType = Database["public"]["Enums"]["currency_type"];
+const currencyLiterals = [
+  "SAR",
+  "USD",
+  "EUR",
+  "AED",
+] as const satisfies CurrencyType[];
 interface IUser {
   avatar_url?: null | string;
   created_at: string;
@@ -22,8 +29,19 @@ interface IEducation {
 }
 
 interface IAvailability {
-  day: string;
-  times: { from: string; to: string }[];
+  created_at: string;
+  day:
+    | "Monday"
+    | "Tuesday"
+    | "Wednesday"
+    | "Thursday"
+    | "Friday"
+    | "Saturday"
+    | "Sunday";
+  expert_id: string;
+  from_time: string;
+  id: number;
+  to_time: string;
 }
 
 interface IProfessional {
@@ -37,17 +55,12 @@ interface IProfessional {
   rating: number;
   reviewCount?: number;
   hourly_rate: number;
-  currency: string;
+  currency: CurrencyType;
   verified: boolean;
   total_sessions: number | null;
   total_reviews: number;
   availability_status: boolean;
-  availability:
-    | {
-        day: string;
-        times: { from: string; to: string }[];
-      }[]
-    | null;
+  expert_availability: IAvailability[] | null;
   years_experience: number | null;
   languages: string[];
   portfolio_urls: string[];

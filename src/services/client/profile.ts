@@ -38,7 +38,7 @@ export async function updateProfile(data: { id: string; full_name: string }) {
 
 export async function updateProfessionalProfile(updates: expertProfileSchema) {
   const res = await fetch("/api/professionals/profile", {
-    method: "PATCH",
+    method: "PUT",
     body: JSON.stringify(updates),
     headers: {
       "Content-Type": "application/json",

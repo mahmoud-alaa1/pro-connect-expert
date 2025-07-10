@@ -39,3 +39,19 @@ export function calculateDuration(time: string) {
     return totalMinutes;
   }
 }
+
+export function groupAvailability(availabilities?: IAvailability[] | null) {
+  const map = new Map<
+    IAvailability["day"],
+    { day: IAvailability["day"]; times: { from: string; to: string }[] }
+  >();
+
+  availabilities?.forEach((slot) => {
+    if (!map.has(slot.day)) {
+      map.set(slot.day, { day: slot.day, times: [] });
+    }
+    map.get(slot.day)!.times.push({ from: slot.from_time, to: slot.to_time });
+  });
+
+  return Array.from(map.values());
+}

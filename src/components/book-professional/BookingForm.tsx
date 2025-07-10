@@ -15,8 +15,12 @@ import {
 import FormDatePicker from "../form-fields/FormDatePicker";
 import { bookingSchema } from "@/schemas/bookingSchema";
 import FormTextArea from "../form-fields/FormTextArea";
-import { calculateDuration, cn, enable2Weeks } from "@/lib/utils";
-import { TProfessional } from "@/types/tableTypes";
+import {
+  calculateDuration,
+  cn,
+  enable2Weeks,
+  groupAvailability,
+} from "@/lib/utils";
 import { WEEKDAYS } from "@/lib/constants";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { CheckCircle, Clock, DollarSign } from "lucide-react";
@@ -26,9 +30,9 @@ import Spinner from "../Spinner";
 export default function BookingForm({
   professional,
 }: {
-  professional: TProfessional;
+  professional: IProfessional;
 }) {
-  const availableTimes = professional.availability as IAvailability[] | null;
+  const availableTimes = groupAvailability(professional.expert_availability);
 
   const form = useForm<bookingSchema>({
     resolver: zodResolver(bookingSchema),
@@ -90,7 +94,7 @@ export default function BookingForm({
                     <RadioGroup
                       onValueChange={field.onChange}
                       value={field.value}
-                      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      className="grid grid-cols-2 md:grid-cols-3  gap-4">
                       {timesForDay.length > 0 ? (
                         timesForDay.map((slot, idx) => {
                           const value = `${slot.from}-${slot.to}`;
@@ -105,7 +109,7 @@ export default function BookingForm({
                               </FormControl>
                               <FormLabel
                                 className={cn(
-                                  "cursor-pointer border p-5 rounded-lg hover:bg-blue-50 hover:border-blue-500 transition",
+                                  "cursor-pointer border p-4 flex justify-center rounded-lg hover:bg-blue-50 hover:border-blue-500 transition",
                                   field.value === value &&
                                     "bg-blue-100 border-blue-600 text-blue-700"
                                 )}
@@ -164,6 +168,7 @@ export default function BookingForm({
                 Total
               </div>
               <div className="text-xl font-bold">{totalAmount.toFixed(2)}</div>
+              <div>{professional.currency}</div>
             </div>
           </div>
 
