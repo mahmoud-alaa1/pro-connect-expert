@@ -21,7 +21,7 @@ export default function MobileSearchFilters() {
           <Menu className="h-6 w-6 " />
         </Button>
       </SheetTrigger>
-      <SheetContent side="bottom">
+      <SheetContent side="bottom" className="pt-10">
         <SheetHeader>
           <SheetTitle>{t("mobile_title")}</SheetTitle>
           <SearchFilters />

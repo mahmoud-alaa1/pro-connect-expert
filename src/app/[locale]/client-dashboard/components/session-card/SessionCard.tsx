@@ -9,15 +9,29 @@ import SessionStatus from "../session-status/SessionStatus";
 import { useLocale } from "next-intl";
 import { format } from "date-fns";
 import { ar } from "date-fns/locale";
+import PastSessionsActions from "./PastSessionsActions";
 
 export default function SessionCard({
   session,
+  type,
+  userType = "client",
 }: {
   session: ISessionResponse;
+  type: "upcoming" | "past";
+  userType: "expert" | "client";
 }) {
   const isRtl = useIsRtl();
-  console.log("here", isRtl);
   const locale = useLocale();
+  const avatar =
+    userType === "expert"
+      ? session.professional.profile.avatar_url
+      : session.client.avatar_url;
+
+  const name =
+    userType === "expert"
+      ? session.professional.profile.full_name
+      : session.client.full_name;
+
   return (
     <div dir={isRtl ? "rtl" : "ltr"} className="animate-slide-up">
       <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-blue-500">
@@ -26,23 +40,20 @@ export default function SessionCard({
             <div className="flex items-center gap-4">
               <div className="relative size-14 sm:size-20">
                 <Image
-                  src={
-                    session.professional.profile.avatar_url ||
-                    "default-user.png"
-                  }
-                  alt={session.professional.profile.full_name}
+                  src={avatar || "default-user.png"}
+                  alt={"User Name"}
                   layout="fill"
                   className="rounded-full"
                 />
               </div>
 
               <div>
-                <h3 className="font-semibold text-lg text-gray-900">
-                  {session.professional.profile.full_name}
-                </h3>
-                <p className="text-sm text-gray-600">
-                  {session.professional.title}
-                </p>
+                <h3 className="font-semibold text-lg text-gray-900">{name}</h3>
+                {userType === "expert" && (
+                  <h4 className="text-sm text-gray-600">
+                    {session.professional.title}
+                  </h4>
+                )}
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-sm font-medium text-blue-600">
                     {format(session.date, "dd MMMM yyyy", {
@@ -65,7 +76,11 @@ export default function SessionCard({
           <SessionFeedback />
 
           {/* Actions */}
-          <UpcomingSessionsActions />
+          {type === "upcoming" ? (
+            <UpcomingSessionsActions />
+          ) : (
+            <PastSessionsActions />
+          )}
         </CardContent>
       </Card>
     </div>

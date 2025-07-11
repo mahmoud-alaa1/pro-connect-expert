@@ -570,5 +570,40 @@
         "description": "Your completed sessions will appear here"
       }
     }
+  },
+  "ExpertDashboard": {
+    "title": "Professional Dashboard",
+    "description": "Manage your sessions and track your success",
+    "badge": {
+      "active": "Active"
+    },
+    "stats": {
+      "total_earnings": "Total Earnings",
+      "total_sessions": "Total Sessions", 
+      "pending_earnings": "Pending Earnings",
+      "average_rating": "Average Rating"
+    },
+    "quick_actions": {
+      "title": "Quick Actions",
+      "update_profile": "Update Profile",
+      "view_profile": "View Profile"
+    },
+    "earnings_summary": {
+      "title": "Earnings Summary",
+      "this_week": "This Week",
+      "this_month": "This Month",
+      "available_balance": "Available Balance",
+      "withdraw_request": "Request Withdrawal"
+    },
+    "sessions": {
+      "tabs": {
+        "upcoming": "Upcoming",
+        "past": "Past"
+      },
+      "no_upcoming": {
+        "title": "No upcoming sessions",
+        "description": "Your upcoming sessions will appear here"
+      }
+    }
   }
 }

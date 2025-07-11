@@ -571,6 +571,42 @@
         "description": "ستظهر جلساتك المكتملة هنا"
       }
     }
+  },
+  
+   "ExpertDashboard": {
+    "title": "لوحة تحكم الخبير",
+    "description": "إدارة جلساتك وتتبع نجاحك",
+    "badge": {
+      "active": "نشط"
+    },
+    "stats": {
+      "total_earnings": "إجمالي الأرباح",
+      "total_sessions": "إجمالي الجلسات",
+      "pending_earnings": "الأرباح المعلقة", 
+      "average_rating": "متوسط التقييم"
+    },
+    "quick_actions": {
+      "title": "الإجراءات السريعة",
+      "update_profile": "تحديث الملف الشخصي",
+      "view_profile": "عرض الملف الشخصي"
+    },
+    "earnings_summary": {
+      "title": "ملخص الأرباح",
+      "this_week": "هذا الأسبوع",
+      "this_month": "هذا الشهر",
+      "available_balance": "الرصيد المتاح",
+      "withdraw_request": "طلب سحب الأموال"
+    },
+    "sessions": {
+      "tabs": {
+        "upcoming": "القادمة",
+        "past": "السابقة"
+      },
+      "no_upcoming": {
+        "title": "لا توجد جلسات قادمة",
+        "description": "ستظهر جلساتك القادمة هنا"
+      }
+    }
   }
 
 

@@ -1,8 +1,8 @@
 import useGetSession from "@/hooks/sessions/useGetSession";
-import SessionCard from "../session-card/SessionCard";
-import NoPastSessions from "../NoPastSessions";
+import NoPastSessions from "@/app/[locale]/client-dashboard/components/NoPastSessions";
+import SessionCard from "@/app/[locale]/client-dashboard/components/session-card/SessionCard";
 
-export default function PastSessionsList() {
+export default function ExpertPastList() {
   const { data: pastSessions } = useGetSession("past");
   console.log("Past Sessions:", pastSessions);
 
@@ -15,7 +15,7 @@ export default function PastSessionsList() {
       {pastSessions?.map((session) => (
         <SessionCard
           type="past"
-          userType="expert"
+          userType="client"
           key={session.id}
           session={session}
         />
