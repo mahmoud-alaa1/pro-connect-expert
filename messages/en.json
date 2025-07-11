@@ -521,5 +521,44 @@
       "EGP": "Egyptian Pound (EGP)",
       "SAR": "Saudi Riyal (SAR)"
     }
+  },
+  "ClientDashboard": {
+    "title": "My Sessions",
+    "description": "Manage your sessions and track your learning journey",
+    "stats": {
+      "total_sessions": "Total Sessions",
+      "total_investment": "Total Investment",
+      "avg_rating": "Avg Session Rating",
+      "trend_sessions": "+2 this month",
+      "trend_investment": "+15% vs last month",
+      "trend_rating": "Excellent feedback"
+    },
+    "tabs": {
+      "upcoming": "Upcoming",
+      "past": "Past"
+    },
+    "session_card": {
+      "join_session": "Join Session",
+      "cancel": "Cancel",
+      "reschedule": "Reschedule",
+      "rate_session": "Rate Session",
+      "leave_review": "Leave Review",
+      "zoom_ready": "Zoom Ready",
+      "notes": "Notes",
+      "no_notes": "No notes available",
+      "feedback": "Feedback",
+      "no_feedback": "No feedback available"
+    },
+    "empty_states": {
+      "no_upcoming": {
+        "title": "No upcoming sessions",
+        "description": "Book a session with a professional to get started",
+        "action": "Find Professionals"
+      },
+      "no_past": {
+        "title": "No past sessions",
+        "description": "Your completed sessions will appear here"
+      }
+    }
   }
 }

@@ -521,5 +521,47 @@
       "EGP": "الجنيه المصري (EGP)",
       "SAR": "الريال السعودي (SAR)"
     }
+  },
+  "ClientDashboard": {
+    "title": "جلساتي",
+    "description": "إدارة الجلسات الخاصة بك وتتبع رحلة التعلم الخاصة بك",
+    "stats": {
+      "total_sessions": "إجمالي الجلسات",
+      "total_investment": "إجمالي الاستثمار",
+      "avg_rating": "متوسط تقييم الجلسة",
+      "trend_sessions": "+2 هذا الشهر",
+      "trend_investment": "+15% مقارنة بالشهر الماضي",
+      "trend_rating": "تقييمات ممتازة"
+    },
+    "tabs": {
+      "upcoming": "القادمة",
+      "past": "السابقة"
+    },
+    "session_card": {
+      "join_session": "انضم للجلسة",
+      "cancel": "إلغاء",
+      "reschedule": "إعادة جدولة",
+      "rate_session": "تقييم الجلسة",
+      "leave_review": "اترك مراجعة",
+      "zoom_ready": "زووم جاهز",
+      "notes": "ملاحظات",
+      "no_notes": "لا توجد ملاحظات متاحة",
+      "feedback": "التقييم",
+      "no_feedback": "لا يوجد تقييم متاح"
+    },
+    "empty_states": {
+      "no_upcoming": {
+        "title": "لا توجد جلسات قادمة",
+        "description": "احجز جلسة مع خبير للبدء",
+        "action": "البحث عن خبراء"
+      },
+      "no_past": {
+        "title": "لا توجد جلسات سابقة",
+        "description": "ستظهر جلساتك المكتملة هنا"
+      }
+    }
   }
+
+
+  
 }

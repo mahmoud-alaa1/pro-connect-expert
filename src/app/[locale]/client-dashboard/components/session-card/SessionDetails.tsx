@@ -1,11 +1,13 @@
 import { Clock, DollarSign, Video } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function SessionDetails({
   session,
 }: {
   session: ISessionResponse;
 }) {
-  console.log(session);
+  const t = useTranslations("ClientDashboard.session_card");
+  
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
@@ -29,7 +31,7 @@ export default function SessionDetails({
 
       <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
         <Video className="w-4 h-4 text-purple-500" />
-        <span className="font-medium">Zoom Ready</span>
+        <span className="font-medium">{t("zoom_ready")}</span>
       </div>
     </div>
   );
