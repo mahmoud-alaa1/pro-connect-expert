@@ -92,41 +92,6 @@ export const getPaymentStatusColor = (status: string | null) => {
   }
 };
 
-export function getValidationMessages(locale = "ar") {
-  const t = createTranslator({ locale, messages, namespace: "validation" });
-
-  return {
-    auth: {
-      email_required: t("auth.email_required"),
-      email_empty: t("auth.email_empty"),
-      email_invalid: t("auth.email_invalid"),
-      password_required: t("auth.password_required"),
-      password_min_length: t("auth.password_min_length"),
-      full_name_required: t("auth.full_name_required"),
-      full_name_empty: t("auth.full_name_empty"),
-      user_type_required: t("auth.user_type_required"),
-      otp_required: t("auth.otp_required"),
-      otp_length: t("auth.otp_length"),
-    },
-    profile: {
-      title_required: t("profile.title_required"),
-      specialty_required: t("profile.specialty_required"),
-      bio_required: t("profile.bio_required"),
-      bio_max_length: t("profile.bio_max_length"),
-      bio_min_length: t("profile.bio_min_length"),
-      languages_required: t("profile.languages_required"),
-      hourly_rate_required: t("profile.hourly_rate_required"),
-      hourly_rate_positive: t("profile.hourly_rate_positive"),
-      currency_required: t("profile.currency_required"),
-      day_required: t("profile.day_required"),
-      time_slots_required: t("profile.time_slots_required"),
-    },
-    booking: {
-      date_future: t("booking.date_future"),
-      time_required: t("booking.time_required"),
-    },
-  };
-}
 
 export const staticValidationMessages = {
   en: {
