@@ -1,16 +1,18 @@
 // hooks/useBookSession.ts
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 interface BookSessionPayload {
   expert_id: string;
   client_id: string;
   date: string;
-  time: string; // Format: "HH:mm-HH:mm"
+  time_id: string;
   notes?: string;
 }
 
 export function useBookSession() {
+  const queryclient = useQueryClient();
+
   return useMutation({
     mutationFn: async (payload: BookSessionPayload) => {
       const res = await fetch("/api/sessions/book", {
@@ -25,17 +27,41 @@ export function useBookSession() {
       if (!res.ok) {
         throw new Error(data.error || "Failed to book session");
       }
-      console.log(data);
 
       return data.data;
     },
     onError: (error: Error) => {
-      console.error("Booking session failed:", error);
       toast.error(`Booking failed: ${error.message}`);
+      console.error("Booking error:", error);
     },
-    onSuccess: (data) => {
-      console.log("Session booked successfully:", data);
+    onSuccess: (data, variables) => {
       toast.success("Session booked successfully!");
+
+      queryclient.setQueryData<
+        {
+          day: string;
+          times: { id: string; from: string; to: string; isBooked: boolean }[];
+        }[]
+      >(
+        ["availability", variables.expert_id, variables.date.split("T")[0]],
+        (oldData) => {
+          if (!oldData) return oldData;
+
+          return oldData.map((dayObj) => {
+            if (dayObj.times.some((time) => time.id === variables.time_id)) {
+              return {
+                ...dayObj,
+                times: dayObj.times.map((time) =>
+                  time.id === variables.time_id
+                    ? { ...time, isBooked: true }
+                    : time
+                ),
+              };
+            }
+            return dayObj;
+          });
+        }
+      );
     },
   });
 }

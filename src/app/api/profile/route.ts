@@ -21,11 +21,10 @@ export async function PATCH(req: Request) {
   const { error, data } = await supabaseAdmin
     .from("profiles")
     .update({ full_name })
-    .eq("id", user.id)
+    .eq("id", user.user?.id)
     .select("*")
     .single();
 
-  console.log("profile: ", data);
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -43,7 +42,7 @@ export async function GET() {
   const { data, error } = await supabaseAdmin
     .from("profiles")
     .select("*")
-    .eq("id", user.id)
+    .eq("id", user.user?.id)
     .single();
 
   if (error) {

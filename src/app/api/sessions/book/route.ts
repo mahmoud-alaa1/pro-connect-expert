@@ -1,79 +1,69 @@
-// app/api/sessions/book/route.ts
 import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
 import { NextResponse } from "next/server";
 
-// Helper to parse "14:00-15:00" -> [14:00, 15:00]
-function parseTimeRange(range: string): [string, string] {
-  const [start, end] = range.split("-");
-  return [start, end];
-}
-
-function isOverlapping(t1: [string, string], t2: [string, string]) {
-  return t1[0] < t2[1] && t2[0] < t1[1];
-}
-
 export async function POST(req: Request) {
-  try {
-    const { expert_id, client_id, date, time, notes } = await req.json();
+  const supabase = supabaseAdmin;
 
-    if (!expert_id || !client_id || !date || !time) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
+  const { expert_id, client_id, time_id, date, notes } = await req.json();
 
-    const sessionDate = new Date(date).toISOString().split("T")[0];
-    const [newStart, newEnd] = parseTimeRange(time);
+  if (!expert_id || !client_id || !time_id || !date) {
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+  }
 
-    const { data: existing, error: overlapError } = await supabaseAdmin
-      .from("sessions")
-      .select("time")
-      .eq("expert_id", expert_id)
-      .eq("date", sessionDate)
-      .not("status", "eq", "cancelled");
+  // Check if the time_id belongs to expert
+  const { data: timeSlot, error: timeError } = await supabase
+    .from("expert_availability")
+    .select("*")
+    .eq("id", time_id)
+    .eq("expert_id", expert_id)
+    .single();
 
-    if (overlapError) {
-      return NextResponse.json(
-        { error: overlapError.message },
-        { status: 500 }
-      );
-    }
+  if (!timeSlot || timeError)
+    return NextResponse.json({ error: "Invalid time slot" }, { status: 400 });
 
-    const hasConflict = existing?.some((session) => {
-      const [start, end] = parseTimeRange(session.time);
-      return isOverlapping([newStart, newEnd], [start, end]);
-    });
+  // Check if already booked
+  const { data: existing } = await supabase
+    .from("sessions")
+    .select("id")
+    .eq("expert_id", expert_id)
+    .eq("time_id", time_id)
+    .eq("date", date)
+    .neq("status", "cancelled")
+    .maybeSingle();
 
-    if (hasConflict) {
-      return NextResponse.json(
-        { error: "This time slot is already booked" },
-        { status: 409 }
-      );
-    }
+  if (existing)
+    return NextResponse.json({ error: "Slot already booked" }, { status: 409 });
 
-    const { data, error } = await supabaseAdmin
-      .from("sessions")
-      .insert({
-        expert_id,
-        client_id,
-        date: sessionDate,
-        time,
-        notes,
-        status: "pending",
-      })
-      .select()
-      .single();
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    return NextResponse.json({ data }, { status: 201 });
-  } catch {
+  const { data: professional } = await supabase
+    .from("professionals")
+    .select("hourly_rate")
+    .eq("user_id", expert_id)
+    .single();
+  if (!professional) {
     return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
+      { error: "Professional not found" },
+      { status: 404 }
     );
   }
+
+  // Create session
+  const { data, error } = await supabase
+    .from("sessions")
+    .insert({
+      expert_id,
+      client_id,
+      time_id,
+      date,
+      notes,
+      status: "pending",
+      payment_status: "unpaid",
+      price: timeSlot.duration * professional.hourly_rate,
+    })
+    .select()
+    .single();
+
+  if (error)
+    return NextResponse.json({ error: error.message }, { status: 500 });
+
+  return NextResponse.json({ session: data }, { status: 201 });
 }

@@ -19,9 +19,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const filePath = await uploadAvatar(user.id, file);
+    const filePath = await uploadAvatar(user.user?.id, file);
     const publicUrl = await getPublicUrl(filePath);
-    await updateProfileAvatar(user.id, publicUrl);
+    await updateProfileAvatar(user.user?.id, publicUrl);
 
     return NextResponse.json({ avatar_url: publicUrl });
   } catch (error: unknown) {

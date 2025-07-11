@@ -1,4 +1,4 @@
-import { User } from "lucide-react";
+import { AlertCircle, CheckCircle, User, XCircle } from "lucide-react";
 
 export const getRadioRoles = (t: (key: string) => string) => [
   {
@@ -12,6 +12,21 @@ export const getRadioRoles = (t: (key: string) => string) => [
     icon: <User className="h-4 w-4 text-green-700" />,
   },
 ];
+
+export const getStatusIcon = (status: string | null) => {
+  switch (status) {
+    case "confirmed":
+      return <CheckCircle className="w-4 h-4 text-green-500" />;
+    case "pending":
+      return <AlertCircle className="w-4 h-4 text-yellow-500" />;
+    case "completed":
+      return <CheckCircle className="w-4 h-4 text-blue-500" />;
+    case "cancelled":
+      return <XCircle className="w-4 h-4 text-red-500" />;
+    default:
+      return <AlertCircle className="w-4 h-4 text-gray-400" />;
+  }
+};
 
 export const WEEKDAYS = [
   "Sunday", // index 0
@@ -51,6 +66,11 @@ export const weekdays = [
   { value: "Friday", label: "Friday", short: "Fri" },
   { value: "Saturday", label: "Saturday", short: "Sat" },
 ];
+
+export const translatedWeekday = (day?: string, t: (key: string) => string) => {
+  if (!day) return "";
+  return t(`Constants.weekdays.${day}`);
+};
 
 export const getTranslatedWeekdays = (t: (key: string) => string) => [
   {

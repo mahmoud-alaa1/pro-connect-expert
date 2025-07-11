@@ -87,16 +87,3 @@ interface ITransaction {
   professional_name: string;
 }
 
-interface ISession {
-  id: string;
-  professional_id: string;
-  professional_name: string;
-  professional_avatar: string;
-  date: string;
-  time: string;
-  duration: number;
-  status: "confirmed" | "pending" | "completed" | "cancelled";
-  amount: number;
-  currency: string;
-  notes?: string;
-}

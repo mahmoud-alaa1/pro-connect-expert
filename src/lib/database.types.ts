@@ -272,25 +272,28 @@ export type Database = {
         Row: {
           created_at: string
           day: Database["public"]["Enums"]["day_of_week"]
+          duration: number
           expert_id: string
           from_time: string
-          id: number
+          id: string
           to_time: string
         }
         Insert: {
           created_at?: string
           day: Database["public"]["Enums"]["day_of_week"]
-          expert_id?: string
-          from_time?: string
-          id?: number
+          duration: number
+          expert_id: string
+          from_time: string
+          id?: string
           to_time: string
         }
         Update: {
           created_at?: string
           day?: Database["public"]["Enums"]["day_of_week"]
+          duration?: number
           expert_id?: string
           from_time?: string
-          id?: number
+          id?: string
           to_time?: string
         }
         Relationships: [
@@ -526,7 +529,7 @@ export type Database = {
           currency: Database["public"]["Enums"]["currency_type"] | null
           education: Json | null
           experience: Json | null
-          hourly_rate: number | null
+          hourly_rate: number
           id: string
           languages: string[] | null
           name: string | null
@@ -551,7 +554,7 @@ export type Database = {
           currency?: Database["public"]["Enums"]["currency_type"] | null
           education?: Json | null
           experience?: Json | null
-          hourly_rate?: number | null
+          hourly_rate?: number
           id?: string
           languages?: string[] | null
           name?: string | null
@@ -576,7 +579,7 @@ export type Database = {
           currency?: Database["public"]["Enums"]["currency_type"] | null
           education?: Json | null
           experience?: Json | null
-          hourly_rate?: number | null
+          hourly_rate?: number
           id?: string
           languages?: string[] | null
           name?: string | null
@@ -591,7 +594,22 @@ export type Database = {
           verified?: boolean
           years_experience?: number | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "professionals_id_fkey1"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "professionals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profile_pictures: {
         Row: {
@@ -664,8 +682,9 @@ export type Database = {
           id: number
           notes: string | null
           payment_status: string | null
+          price: number
           status: string | null
-          time: string
+          time_id: string
           zoom_link: string | null
         }
         Insert: {
@@ -676,8 +695,9 @@ export type Database = {
           id?: number
           notes?: string | null
           payment_status?: string | null
+          price: number
           status?: string | null
-          time: string
+          time_id: string
           zoom_link?: string | null
         }
         Update: {
@@ -688,8 +708,9 @@ export type Database = {
           id?: number
           notes?: string | null
           payment_status?: string | null
+          price?: number
           status?: string | null
-          time?: string
+          time_id?: string
           zoom_link?: string | null
         }
         Relationships: [
@@ -705,6 +726,13 @@ export type Database = {
             columns: ["expert_id"]
             isOneToOne: false
             referencedRelation: "professionals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sessions_time_id_fkey"
+            columns: ["time_id"]
+            isOneToOne: false
+            referencedRelation: "expert_availability"
             referencedColumns: ["id"]
           },
         ]

@@ -6,6 +6,7 @@ import { Calendar, CheckCircle, Clock, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { groupAvailability } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import TranslatedWeekDay from "@/components/TranslatedWeekDay";
 
 export default function AvailabilityCard({
   professional,
@@ -72,7 +73,7 @@ export default function AvailabilityCard({
               key={index}
               className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-gray-50 to-blue-50/50 border border-gray-100 hover:shadow-md transition-all duration-300">
               <span className="text-sm font-semibold text-gray-800">
-                {daySchedule.day}
+                <TranslatedWeekDay day={daySchedule.day} />
               </span>
               <div className="flex flex-col items-end gap-1">
                 {daySchedule.times.map((time, timeIndex) => (

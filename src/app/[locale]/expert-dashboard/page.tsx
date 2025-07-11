@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useAuth } from "@/store/useAuthStore";
+import { Button } from "@/components/ui/button";
 
 const Page: React.FC = () => {
   const user = useAuth((state) => state.user);
@@ -90,14 +91,6 @@ const Page: React.FC = () => {
       bg: "bg-yellow-100",
       changeColor: "text-gray-500",
     },
-  ];
-
-  const profileViews = [
-    { date: "2025-01-10", views: 45 },
-    { date: "2025-01-11", views: 52 },
-    { date: "2025-01-12", views: 38 },
-    { date: "2025-01-13", views: 61 },
-    { date: "2025-01-14", views: 48 },
   ];
 
   return (
@@ -267,64 +260,6 @@ const Page: React.FC = () => {
 
           {/* Sidebar */}
           <div className="space-y-8">
-            {/* Profile Performance */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-              <div className="p-6 border-b border-gray-100">
-                <h3 className="text-lg font-semibold text-gray-900">
-                  أداء الملف الشخصي
-                </h3>
-              </div>
-              <div className="p-6">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">
-                      مشاهدات الملف الشخصي
-                    </span>
-                    <span className="text-lg font-semibold text-gray-900">
-                      244
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">معدل الحجز</span>
-                    <span className="text-lg font-semibold text-green-600">
-                      18%
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-600">
-                      العملاء المتكررين
-                    </span>
-                    <span className="text-lg font-semibold text-primary-600">
-                      45%
-                    </span>
-                  </div>
-                </div>
-
-                {/* Simple Profile Views Chart */}
-                <div className="mt-6">
-                  <h4 className="text-sm font-medium text-gray-700 mb-3">
-                    مشاهدات الملف الشخصي اليومية
-                  </h4>
-                  <div className="flex items-end space-x-1 h-16">
-                    {profileViews.map((day, index) => (
-                      <div
-                        key={index}
-                        className="flex-1 bg-primary-200 rounded-t"
-                        style={{ height: `${(day.views / 70) * 100}%` }}>
-                        <div
-                          className="w-full bg-primary-500 rounded-t"
-                          style={{ height: "80%" }}></div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-500 mt-2">
-                    <span>منذ 5 أيام</span>
-                    <span>اليوم</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Quick Actions */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100">
               <div className="p-6 border-b border-gray-100">
@@ -333,27 +268,19 @@ const Page: React.FC = () => {
                 </h3>
               </div>
               <div className="p-6">
-                <div className="space-y-3">
-                  <Link
-                    href="/settings"
-                    className="flex items-center justify-between p-3 bg-primary-50 text-primary-700 rounded-lg hover:bg-primary-100 transition-colors">
-                    <div className="flex items-center">
-                      <Settings className="h-5 w-5 mr-3" />
-                      تحديث الملف الشخصي
-                    </div>
-                  </Link>
-                  <button className="flex items-center justify-between w-full p-3 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 transition-colors">
-                    <div className="flex items-center">
-                      <Calendar className="h-5 w-5 mr-3" />
-                      إدارة التوفر
-                    </div>
-                  </button>
-                  <button className="flex items-center justify-between w-full p-3 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className="flex items-center">
-                      <Eye className="h-5 w-5 mr-3" />
-                      عرض الملف الشخصي العام
-                    </div>
-                  </button>
+                <div className="space-y-4">
+                  <Button className="flex items-center justify-between w-full p-5 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                    <Link href="/settings" className="flex items-center">
+                      <Settings className="size-5 mr-3" />
+                      &nbsp; تحديث الملف الشخصي
+                    </Link>
+                  </Button>
+                  <Button className="flex items-center justify-between w-full p-5 bg-gray-50 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors">
+                    <Link href="/profile" className="flex items-center">
+                      <Eye className="size-5 mr-3" />
+                      &nbsp;عرض الملف الشخصي العام
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>

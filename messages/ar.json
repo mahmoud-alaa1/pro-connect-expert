@@ -411,7 +411,8 @@
       "sessions": "جلسات"
     },
     "actions": {
-      "send_message": "إرسال رسالة"
+      "send_message": "إرسال رسالة",
+      "edit_profile": "تعديل الملف الشخصي"
     },
     "hourly_rate": {
       "title": "الأجر بالساعة",
@@ -423,7 +424,7 @@
     "languages": {
       "title": "اللغات",
       "primary_language": "اللغة الأساسية: الإنجليزية",
-      "languages_spoken": "{count} لغة{plural} محكية"
+      "languages_spoken": "{count} لغة{plural} متحدثة"
     },
     "availability": {
       "title": "الأوقات المتاحة",

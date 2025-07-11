@@ -1,5 +1,3 @@
-"use client";
-
 import HeroSection from "@/components/professional-search-page/HeroSection";
 import MobileSearchFilters from "@/components/professional-search-page/MobileSearchFilters";
 import ProfessionalsCards from "@/components/professional-search-page/ProfessionalsCards";

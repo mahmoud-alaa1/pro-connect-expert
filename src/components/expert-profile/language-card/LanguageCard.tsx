@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Globe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TProfessional } from "@/types/tableTypes";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function LanguageCard({
   professional,
@@ -10,6 +10,7 @@ export default function LanguageCard({
   professional: TProfessional;
 }) {
   const t = useTranslations("expert_profile.languages");
+  const locale = useLocale();
   const languages = professional?.languages || [];
   const displayLanguages = languages && languages.length > 0 ? languages : [];
   const isPlaceholder = !languages || languages.length === 0;
@@ -55,7 +56,8 @@ export default function LanguageCard({
               ? t("primary_language")
               : t("languages_spoken", {
                   count: displayLanguages.length,
-                  plural: displayLanguages.length !== 1 ? "s" : "",
+                  plural:
+                    displayLanguages.length !== 1 && locale === "en" ? "s" : "",
                 })}
           </span>
         </div>

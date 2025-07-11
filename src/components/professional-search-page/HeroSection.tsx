@@ -10,8 +10,8 @@ export default function HeroSection() {
         <Sparkles size={16} />
         {t("badge_text")}
       </div>
-      <h1 className="text-5xl font-bold  mb-4  ">
-        {t("title_part1")}
+      <h1 className="text-5xl font-bold  mb-4">
+        {t("title_part1")}&nbsp;
         <span className="bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-800 bg-clip-text text-transparent">
           {t("title_part2")}
         </span>

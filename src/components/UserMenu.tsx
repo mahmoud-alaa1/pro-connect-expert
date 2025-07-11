@@ -12,12 +12,12 @@ import { useTranslations } from "next-intl";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { LayoutDashboard, Settings, User } from "lucide-react";
 import LogoutButton from "./LogoutButton";
-import { useGetProfile } from "@/hooks/profile/useGetProfile";
+import { useAuth } from "@/store/useAuthStore";
 
 export default function UserMenu() {
   const t = useTranslations("Common");
-  const { data: profile } = useGetProfile();
-  if (!profile) {
+  const user = useAuth((s) => s.user);
+  if (!user) {
     return (
       <Button variant="outline">
         <Link href="/login">{t("login")}</Link>
@@ -29,33 +29,37 @@ export default function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger className="rounded-full">
         <Avatar>
-          <AvatarImage src={profile.avatar_url || "/default-user.png"} />
+          <AvatarImage src={user.avatar_url || "/default-user.png"} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {profile.full_name}
-            </p>
+            <p className="text-sm font-medium leading-none">{user.full_name}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {profile.email}
+              {user.email}
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
+        {user.user_type === "expert" && (
+          <DropdownMenuItem asChild>
+            <Link
+              href={`/professionals/${user.id}`}
+              className="flex items-center cursor-pointer">
+              <User className="mr-2 h-4 w-4" />
+              <span>{t("profile")}</span>
+            </Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem asChild>
           <Link
-            href={`/professionals/${profile.id}`}
-            className="flex items-center cursor-pointer">
-            <User className="mr-2 h-4 w-4" />
-            <span>{t("profile")}</span>
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link
-            href="/expert-dashboard"
+            href={
+              user.user_type === "expert"
+                ? "/expert-dashboard"
+                : "/client-dashboard"
+            }
             className="flex items-center cursor-pointer">
             <LayoutDashboard className="mr-2 h-4 w-4" />
             <span>{t("dashboard")}</span>

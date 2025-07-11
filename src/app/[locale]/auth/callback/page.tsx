@@ -6,6 +6,7 @@ import { useAuth } from "@/store/useAuthStore";
 import { supabaseClient } from "@/lib/supabase/supabaseClient";
 import Spinner from "@/components/Spinner";
 import { useTranslations } from "next-intl";
+import { setToken } from "@/services/client/login";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
@@ -51,10 +52,7 @@ export default function AuthCallbackPage() {
           token: session.access_token,
         });
 
-        await fetch("/api/set-token", {
-          method: "POST",
-          body: JSON.stringify({ token: session.access_token }),
-        });
+        await setToken(session.access_token);
         return router.replace("/");
       }
     };

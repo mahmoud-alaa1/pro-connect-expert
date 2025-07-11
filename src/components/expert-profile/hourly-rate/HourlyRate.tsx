@@ -32,7 +32,7 @@ export default function HourlyRate({
           <span className="text-lg font-medium text-gray-600">
             {t("per_hour")}
           </span>
-          <div className="ml-auto flex items-center gap-1 text-green-600">
+          <div className="ms-auto flex items-center gap-1 text-green-600">
             <TrendingUp className="w-4 h-4" />
             <span className="text-sm font-medium">{t("competitive")}</span>
           </div>

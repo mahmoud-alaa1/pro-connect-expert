@@ -1,3 +1,5 @@
+"use client";
+
 import useGetProfessionals from "@/hooks/professionals/useGetProfessionals";
 import { useTranslations } from "next-intl";
 

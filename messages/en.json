@@ -411,7 +411,8 @@
       "sessions": "sessions"
     },
     "actions": {
-      "send_message": "Send Message"
+      "send_message": "Send Message",
+      "edit_profile": "Edit Profile"
     },
     "hourly_rate": {
       "title": "Hourly Rate",

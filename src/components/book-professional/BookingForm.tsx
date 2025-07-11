@@ -4,65 +4,65 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import FormDatePicker from "../form-fields/FormDatePicker";
 import { bookingSchema } from "@/schemas/bookingSchema";
 import FormTextArea from "../form-fields/FormTextArea";
-import {
-  calculateDuration,
-  cn,
-  enable2Weeks,
-  groupAvailability,
-} from "@/lib/utils";
+import { calculateDuration, enable2Weeks } from "@/lib/utils";
 import { WEEKDAYS } from "@/lib/constants";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { CheckCircle, Clock, DollarSign } from "lucide-react";
+import { CheckCircle, DollarSign } from "lucide-react";
 import { useBookSession } from "@/hooks/sessions/useBookSession";
 import { useAuth } from "@/store/useAuthStore";
 import Spinner from "../Spinner";
 import { TProfessional } from "@/types/tableTypes";
 import { useTranslations } from "next-intl";
+import { useExpertAvailability } from "@/hooks/useExpertAvailability";
+import TimeSlots from "./TimeSlots";
 
 export default function BookingForm({
   professional,
 }: {
   professional: TProfessional;
 }) {
+  const { data, isPending: isGettingAvailability } = useExpertAvailability();
+
   const t = useTranslations("booking.form");
-  const availableTimes = groupAvailability(professional.expert_availability);
 
   const form = useForm<bookingSchema>({
     resolver: zodResolver(bookingSchema),
   });
   const id = useAuth((state) => state.user?.id);
   const { mutate, isPending } = useBookSession();
+
+  if (isGettingAvailability || !data) {
+    return (
+      <div className="h-40 bg-gradient-to-b from-gray-50 to-white-100 flex items-center justify-center rounded-lg shadow-sm">
+        <Spinner size={80} />
+      </div>
+    );
+  }
+
   const selectedDate = form.watch("date");
   const weekday = selectedDate ? WEEKDAYS[selectedDate.getUTCDay()] : undefined;
-  const timesForDay =
-    availableTimes?.find((t) => t.day === weekday)?.times ?? [];
+  const timesForDay = data?.find((t) => t.day === weekday)?.times ?? [];
 
-  const duration = form.watch("time")
-    ? calculateDuration(form.watch("time"))
+  const selectedTimeId = form.watch("time");
+
+  const selectedSlot = timesForDay.find((slot) => slot.id === selectedTimeId);
+
+  const duration = selectedSlot
+    ? calculateDuration(selectedSlot.from, selectedSlot.to)
     : 0;
   const totalAmount = (duration * (professional?.hourly_rate ?? 0)) / 60;
 
   function onSubmit(values: bookingSchema) {
     console.log(values);
 
-    console.log(new Date(values.date).toISOString());
-
     mutate({
       expert_id: professional.id,
       client_id: id!,
-      date: values.date.toISOString(),
-      time: values.time,
+      date: values.date.toISOString().split("T")[0],
+      time_id: values.time,
       notes: values.notes,
     });
   }
@@ -78,63 +78,13 @@ export default function BookingForm({
             placeholder={t("date_placeholder")}
             disabledFn={(date) => {
               const dayName = WEEKDAYS[date.getUTCDay()];
-              const availableDays = availableTimes?.map((t) => t.day);
+              const availableDays = data?.map((t) => t.day);
 
               return enable2Weeks(date) || !availableDays?.includes(dayName);
             }}
             className="w-full mb-0"
           />
-          {selectedDate && (
-            <FormField
-              control={form.control}
-              name="time"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    <Clock className="size-4" />
-                    <span>{t("time_label", { weekday: weekday || "" })}</span>
-                  </FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="grid grid-cols-2 md:grid-cols-3  gap-4">
-                      {timesForDay.length > 0 ? (
-                        timesForDay.map((slot, idx) => {
-                          const value = `${slot.from}-${slot.to}`;
-                          return (
-                            <FormItem key={idx}>
-                              <FormControl>
-                                <RadioGroupItem
-                                  value={value}
-                                  id={`slot-${idx}`}
-                                  className="hidden"
-                                />
-                              </FormControl>
-                              <FormLabel
-                                className={cn(
-                                  "cursor-pointer border p-4 flex justify-center rounded-lg hover:bg-blue-50 hover:border-blue-500 transition",
-                                  field.value === value &&
-                                    "bg-blue-100 border-blue-600 text-blue-700"
-                                )}
-                                htmlFor={`slot-${idx}`}>
-                                {slot.from} - {slot.to}
-                              </FormLabel>
-                            </FormItem>
-                          );
-                        })
-                      ) : (
-                        <p className="text-muted-foreground">
-                          {t("no_times_available")}
-                        </p>
-                      )}
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
+          <TimeSlots />
           <FormTextArea<bookingSchema>
             control={form.control}
             name="notes"

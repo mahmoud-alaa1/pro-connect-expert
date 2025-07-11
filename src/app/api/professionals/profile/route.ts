@@ -4,6 +4,7 @@ import { verifySession } from "@/lib/auth/verifySession";
 import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
 import { expertProfileSchema } from "@/schemas/profileSchema";
 import { getExpertById } from "@/services/server/expertsServices";
+import { calculateDuration } from "@/lib/utils";
 
 export async function PUT(req: NextRequest) {
   const user = await verifySession();
@@ -48,7 +49,7 @@ export async function PUT(req: NextRequest) {
       hourly_rate,
       currency,
     })
-    .eq("user_id", user.id);
+    .eq("user_id", user.user?.id);
 
   if (updateError) {
     return NextResponse.json({ error: updateError.message }, { status: 500 });
@@ -58,7 +59,7 @@ export async function PUT(req: NextRequest) {
   const { data: existingSlots, error: fetchError } = await supabaseAdmin
     .from("expert_availability")
     .select("id,day,from_time,to_time")
-    .eq("expert_id", user.id);
+    .eq("expert_id", user.user?.id);
 
   if (fetchError) {
     return NextResponse.json({ error: fetchError.message }, { status: 500 });
@@ -80,10 +81,11 @@ export async function PUT(req: NextRequest) {
         (slot) => !existingSet.has(`${entry.day}-${slot.from}-${slot.to}`)
       )
       .map((slot) => ({
-        expert_id: user.id,
+        expert_id: user.user?.id,
         day: entry.day,
         from_time: slot.from,
         to_time: slot.to,
+        duration: calculateDuration(slot.from, slot.to),
       }))
   );
 
@@ -116,7 +118,7 @@ export async function PUT(req: NextRequest) {
   const { data, error } = await supabaseAdmin
     .from("professionals")
     .select("*, expert_availability(*)")
-    .eq("id", user.id)
+    .eq("id", user.user?.id)
     .single();
 
   if (error) {
@@ -135,7 +137,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { data, error } = await getExpertById(user.id);
+  const { data, error } = await getExpertById(user.user?.id);
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });

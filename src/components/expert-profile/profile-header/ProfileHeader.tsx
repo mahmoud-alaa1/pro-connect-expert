@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
 
 import ActionButtons from "./ActionButtons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Captions,
   CheckCircle,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { TProfessional } from "@/types/tableTypes";
+import Image from "next/image";
 
 export function ProfileHeader({
   professional,
@@ -27,16 +27,15 @@ export function ProfileHeader({
       <CardContent className="relative p-8 lg:p-12">
         <div className="flex flex-col items-center lg:flex-row gap-8">
           <div className="relative">
-            <Avatar className="size-32 lg:size-40 ring-4 ring-white shadow-2xl shadow-blue-500/20">
-              <AvatarImage
+            <div className="relative size-32 lg:size-40   shadow-2xl shadow-blue-500/20 rounded-full ">
+              <Image
                 src={professional?.avatar || "/default-user.png"}
                 alt={professional?.name || "Professional"}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-full ring-white ring-4"
               />
-              <AvatarFallback className="bg-gradient-to-br flex items-center justify-center from-blue-500 to-indigo-600 text-white text-2xl  font-bold">
-                {professional?.name || "Professional"}
-              </AvatarFallback>
-            </Avatar>
-
+            </div>
             {/* Status indicator */}
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
               <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
