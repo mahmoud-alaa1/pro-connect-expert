@@ -37,20 +37,20 @@ export default function NotFound() {
             }`}>
             <Link
               href="/"
-              className={`inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ${
+              className={`inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl gap-2 ${
                 isRtl ? "flex-row-reverse" : ""
               }`}>
-              <Home className={`w-5 h-5 ${isRtl ? "ml-2" : "mr-2"}`} />
               {t("buttons.go_home")}
+              <Home className={`w-5 h-5 ${isRtl ? "ml-2" : "mr-2"}`} />
             </Link>
 
             <Link
-              href="/experts"
-              className={`inline-flex items-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ${
+              href="/professionals"
+              className={`inline-flex items-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl gap-2 ${
                 isRtl ? "flex-row-reverse" : ""
               }`}>
-              <Search className={`w-5 h-5 ${isRtl ? "ml-2" : "mr-2"}`} />
               {t("buttons.browse_experts")}
+              <Search className={`w-5 h-5 ${isRtl ? "ml-2" : "mr-2"}`} />
             </Link>
           </div>
 

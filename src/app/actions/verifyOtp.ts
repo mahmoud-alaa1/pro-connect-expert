@@ -2,23 +2,19 @@
 
 import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
 
-export async function verifyOtpAction({
-  email,
-  otp,
-}: {
-  email: string;
-  otp: string;
-}) {
+export async function verifyOtpAction({ otp }: { otp: string }) {
   const supabase = await createSupabaseServer();
   const { data: user } = await supabase
     .from("pending_users")
     .select("*")
-    .eq("email", email)
     .eq("otp", otp)
     .gt("expires_at", new Date().toISOString())
     .single();
 
-  if (!user) throw new Error("OTP غير صحيح أو منتهي");
+  if (!user) {
+
+    throw new Error("OTP غير صحيح أو منتهي");
+  }
 
   // 1. Create user in auth
   const { data: authData, error: authError } =
@@ -34,12 +30,11 @@ export async function verifyOtpAction({
 
   const newUserId = authData.user.id;
 
-  // 2. Add to profiles
   const { error: profileError } = await supabase.from("profiles").insert({
     id: newUserId,
+    user_type: user.user_type!,
+    full_name: user.full_name as string,
     email: user.email,
-    full_name: user.full_name,
-    user_type: user.user_type,
   });
 
   if (profileError) throw new Error("فشل في إنشاء الملف الشخصي");
@@ -54,7 +49,7 @@ export async function verifyOtpAction({
   }
 
   // 4. احذف من pending_users
-  supabase.from("pending_users").delete().eq("email", email);
+  supabase.from("pending_users").delete().eq("otp", otp);
 
   return {
     id: user.id,

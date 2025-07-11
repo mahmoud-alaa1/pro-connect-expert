@@ -19,8 +19,8 @@ export async function signupAction(data: z.infer<typeof signupSchema>) {
 
   //  2. Send OTP via email
   const { error: emailError } = await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: "test@resend.dev",
+    from: "support@proconnectexpert.com",
+    to: data.email,
     subject: "تأكيد بريدك الإلكتروني",
     html: `
     <div dir="rtl" style="background: #f4f6fb; min-height: 100vh; padding: 32px 0; font-family: Tahoma, Arial, sans-serif;">
@@ -31,7 +31,7 @@ export async function signupAction(data: z.infer<typeof signupSchema>) {
        
             <p style="margin: 0 0 8px 0; color: #444; font-size: 1rem;">أو يمكنك إدخال رمز التحقق التالي:</p>
             <div style="display: inline-block; background: #f0f4fa; color: #2b6cb0; font-size: 2rem; font-weight: bold; letter-spacing: 8px; padding: 12px 32px; border-radius: 8px; margin-bottom: 16px;">${otp}</div>
-            <p style="margin: 16px 0 0 0; color: #888; font-size: 0.95rem;">  الكود ينتهي خلال 30 دقيقة.</p>
+            <p style="margin: 16px 0 0 0; color: #888; font-size: 0.95rem;">  الكود ينتهي خلال 60 دقيقة.</p>
           </td>
         </tr>
       </table>
@@ -50,7 +50,7 @@ export async function signupAction(data: z.infer<typeof signupSchema>) {
     ...data,
     otp,
     token,
-    expires_at,
+    expires_at: expires_at.toISOString(),
   });
 
   if (error) {

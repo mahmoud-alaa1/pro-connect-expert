@@ -1,5 +1,4 @@
 import ExpertDashboardHeader from "./components/ExpertDashboardHeader";
-import ExpertStats from "./components/ExpertStats";
 import QuickActions from "./components/QuickActions";
 import EarningsSummary from "./components/EarningsSummary";
 import ExpertSessionsTabs from "./components/ExpertSessionsTabs";

@@ -13,6 +13,12 @@ export async function loginService(data: {
       body: JSON.stringify(data),
     });
 
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.log(errorData);
+      throw new Error(errorData.message);
+    }
+
     const responseData = await res.json();
     return responseData;
   } catch (error: unknown) {

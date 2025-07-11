@@ -13,7 +13,7 @@ export default function ClientDashboard() {
         <ClientHeaderDashboard />
         <div className="grid lg:grid-cols-12 gap-6 mt-8">
           {/* Stats */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 bg-white p-4 rounded-lg shadow-xl animate-slide-up border">
             <ClientStats />
           </div>
           <div className="lg:col-span-8 space-y-6 bg-white p-4 rounded-lg shadow-xl animate-slide-up">

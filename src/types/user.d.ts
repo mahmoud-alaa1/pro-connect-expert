@@ -40,8 +40,9 @@ interface IAvailability {
     | "Sunday";
   expert_id: string;
   from_time: string;
-  id: number;
+  id: string;
   to_time: string;
+  duration: number;
 }
 
 interface IProfessional {
@@ -86,4 +87,3 @@ interface ITransaction {
   status: "completed" | "pending" | "failed";
   professional_name: string;
 }
-

@@ -2,7 +2,7 @@
 
 import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
 
-export async function createUserAction(user_type: string) {
+export async function createUserAction(user_type: "client" | "expert") {
   const supabase = await createSupabaseServer();
 
   // 1. جلب بيانات المستخدم من Supabase Auth
@@ -15,10 +15,10 @@ export async function createUserAction(user_type: string) {
     throw new Error("فشل في استرجاع بيانات المستخدم");
   }
 
-  const full_name =
+  const full_name: string =
     user.user_metadata.full_name || user.user_metadata.name || "";
   const email = user.email!;
-  const avatar_url = user.user_metadata.avatar_url || null;
+  const avatar_url: string | null = user.user_metadata.avatar_url || null;
   const id = user.id;
 
   // 2. إدراج المستخدم في جدول profiles
@@ -27,7 +27,7 @@ export async function createUserAction(user_type: string) {
     full_name,
     email,
     avatar_url,
-    user_type,
+    user_type: user_type,
   });
 
   if (insertProfileError) {

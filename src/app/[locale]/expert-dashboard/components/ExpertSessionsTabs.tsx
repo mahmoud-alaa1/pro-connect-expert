@@ -17,7 +17,7 @@ export default function ExpertSessionsTabs() {
   const t = useTranslations("ExpertDashboard.sessions.tabs");
 
   return (
-    <Tabs defaultValue="upcoming" >
+    <Tabs defaultValue="upcoming">
       <TabsList className="bg-white/70 backdrop-blur-sm border border-blue-100 shadow-lg ">
         <TabsTrigger
           value="upcoming"
@@ -37,7 +37,7 @@ export default function ExpertSessionsTabs() {
         </TabsTrigger>
       </TabsList>
       {isLoadingPast || isLoadingUpcoming ? (
-        <div className="space-y-4">
+        <div className="space-y-4 bg-white/70  border border-blue-100 shadow-lg p-4 rounded-lg">
           {Array.from({ length: 2 }).map((_, i) => (
             <Skeleton key={i} className="h-48 animate-fade-in rounded-lg" />
           ))}

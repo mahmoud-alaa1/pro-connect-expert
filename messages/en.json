@@ -1,4 +1,8 @@
 {
+  "VerifyOTP" :{
+    "heading":"Enter your OTP",
+    "code_label": "Verification Code"
+  },
   "Home": {
     "welcome": "Welcome to Pro Connect",
     "description": "Your platform for connecting with professionals",

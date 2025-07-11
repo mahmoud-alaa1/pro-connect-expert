@@ -11,7 +11,7 @@ interface IProfessionalPreview {
   hourly_rate: number;
   languages: string[];
   currency: string;
-  avatar: string | null;
+  avatar_url: string | null;
   verified: boolean;
   rating: number;
   created_at: string;

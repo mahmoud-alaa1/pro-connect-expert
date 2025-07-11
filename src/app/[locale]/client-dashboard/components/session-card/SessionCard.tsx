@@ -54,11 +54,15 @@ export default function SessionCard({
                     {session.professional.title}
                   </h4>
                 )}
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex flex-col gap-2 mt-1">
                   <span className="text-sm font-medium text-blue-600">
                     {format(session.date, "dd MMMM yyyy", {
                       locale: locale === "ar" ? ar : undefined,
                     })}
+                  </span>
+                  <span className="text-sm font-medium text-blue-600">
+                    {session.expert_availability.to_time} -
+                    {session.expert_availability.from_time}
                   </span>
                 </div>
               </div>

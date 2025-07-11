@@ -12,8 +12,8 @@ export function useSignup() {
     onSuccess: (data) => {
       console.log("Signup successful:", data);
 
-      toast.success("تم إنشاء الحساب بنجاح، برجاء تأكيد بريدك الإلكتروني");
-      router.push("/verify-otp?email=" + data.email);
+      toast.success("برجاء تأكيد بريدك الإلكتروني");
+      router.push("/verify-otp");
     },
     onError: (error) => {
       console.error("Signup failed:", error);

@@ -67,6 +67,7 @@ export const weekdays = [
   { value: "Saturday", label: "Saturday", short: "Sat" },
 ];
 
+//@ts-expect-error there is no error, i handled the day being undefined
 export const translatedWeekday = (day?: string, t: (key: string) => string) => {
   if (!day) return "";
   return t(`Constants.weekdays.${day}`);

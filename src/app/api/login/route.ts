@@ -2,6 +2,7 @@ import { createSupabaseServer } from "@/lib/supabase/supabaseServer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  
   const { email, password } = await req.json();
 
   const supabase = await createSupabaseServer();
@@ -13,7 +14,7 @@ export async function POST(req: NextRequest) {
 
   if (error || !data.session || !data.user) {
     return NextResponse.json(
-      { error: error?.message || "معلومات خاطئة" },
+      { message: "كلمة المرور أو البريد الإلكتروني غير صحيح" },
       { status: 401 }
     );
   }
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
   }
 
   if (profileError) {
-    return NextResponse.json({ error: profileError.message }, { status });
+    return NextResponse.json({ error: profileError }, { status });
   }
 
   const res = NextResponse.json({
