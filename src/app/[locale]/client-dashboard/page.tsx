@@ -16,7 +16,7 @@ export default function ClientDashboard() {
           <div className="lg:col-span-4">
             <ClientStats />
           </div>
-          <div className="lg:col-span-8 space-y-6 bg-white p-4 rounded-lg shadow-xl">
+          <div className="lg:col-span-8 space-y-6 bg-white p-4 rounded-lg shadow-xl animate-slide-up">
             {/* Sessions Tabs */}
             <ClientSessionTabs />
           </div>

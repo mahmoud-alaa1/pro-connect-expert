@@ -207,6 +207,7 @@
     },
     "video": {
       "title": "ProConnect Intro Video",
+      "play": "Play",
       "overlay": {
         "title": "Discover How ProConnect Works",
         "description": "Watch this quick video to explore how our platform connects professionals and clients seamlessly.",

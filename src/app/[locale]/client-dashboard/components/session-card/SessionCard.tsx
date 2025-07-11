@@ -6,6 +6,9 @@ import SessionDetails from "./SessionDetails";
 import Image from "next/image";
 import { useIsRtl } from "@/lib/utils";
 import SessionStatus from "../session-status/SessionStatus";
+import { useLocale } from "next-intl";
+import { format } from "date-fns";
+import { ar } from "date-fns/locale";
 
 export default function SessionCard({
   session,
@@ -14,6 +17,7 @@ export default function SessionCard({
 }) {
   const isRtl = useIsRtl();
   console.log("here", isRtl);
+  const locale = useLocale();
   return (
     <div dir={isRtl ? "rtl" : "ltr"} className="animate-slide-up">
       <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-blue-500">
@@ -41,7 +45,9 @@ export default function SessionCard({
                 </p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-sm font-medium text-blue-600">
-                    {new Date(session.date).toDateString()}
+                    {format(session.date, "dd MMMM yyyy", {
+                      locale: locale === "ar" ? ar : undefined,
+                    })}
                   </span>
                 </div>
               </div>
