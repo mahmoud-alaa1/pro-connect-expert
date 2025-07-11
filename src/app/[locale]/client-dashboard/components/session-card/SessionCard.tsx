@@ -42,7 +42,7 @@ export default function SessionCard({
                 <Image
                   src={avatar || "default-user.png"}
                   alt={"User Name"}
-                  layout="fill"
+                  fill
                   className="rounded-full"
                 />
               </div>

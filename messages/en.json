@@ -609,5 +609,37 @@
         "description": "Your upcoming sessions will appear here"
       }
     }
+  },
+  
+  "validation": {
+    "auth": {
+      "email_required": "Email is required",
+      "email_empty": "Email cannot be empty",
+      "email_invalid": "Invalid email address",
+      "password_required": "Password is required",
+      "password_min_length": "Password must be at least 6 characters long",
+      "full_name_required": "Full name is required",
+      "full_name_empty": "Full name cannot be empty",
+      "user_type_required": "Account type must be selected",
+      "otp_required": "OTP is required",
+      "otp_length": "OTP must be exactly 6 digits"
+    },
+    "profile": {
+      "title_required": "Title is required",
+      "specialty_required": "Specialty is required",
+      "bio_required": "Bio is required",
+      "bio_max_length": "Bio must be at most 500 characters",
+      "bio_min_length": "Bio must be at least 10 characters",
+      "languages_required": "At least one language is required",
+      "hourly_rate_required": "Hourly rate is required",
+      "hourly_rate_positive": "Hourly rate must be positive",
+      "currency_required": "Currency is required",
+      "day_required": "Day is required",
+      "time_slots_required": "At least one time slot is required"
+    },
+    "booking": {
+      "date_future": "Date must be in the future",
+      "time_required": "Time is required"
+    }
   }
 }

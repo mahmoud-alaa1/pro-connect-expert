@@ -611,6 +611,38 @@
         "description": "ستظهر جلساتك القادمة هنا"
       }
     }
+  },
+  
+  "validation": {
+    "auth": {
+      "email_required": "البريد الإلكتروني مطلوب",
+      "email_empty": "البريد الإلكتروني لا يمكن أن يكون فارغاً",
+      "email_invalid": "البريد الإلكتروني غير صالح",
+      "password_required": "كلمة المرور مطلوبة",
+      "password_min_length": "كلمة المرور يجب أن تكون على الأقل 6 أحرف",
+      "full_name_required": "الاسم الكامل مطلوب",
+      "full_name_empty": "الاسم الكامل لا يمكن أن يكون فارغاً",
+      "user_type_required": "يجب اختيار نوع الحساب",
+      "otp_required": "رمز التحقق مطلوب",
+      "otp_length": "رمز التحقق يجب أن يكون 6 أرقام بالضبط"
+    },
+    "profile": {
+      "title_required": "المسمى الوظيفي مطلوب",
+      "specialty_required": "التخصص مطلوب",
+      "bio_required": "النبذة التعريفية مطلوبة",
+      "bio_max_length": "النبذة التعريفية يجب أن تكون على الأكثر 500 حرف",
+      "bio_min_length": "النبذة التعريفية يجب أن تكون على الأقل 10 أحرف",
+      "languages_required": "مطلوب لغة واحدة على الأقل",
+      "hourly_rate_required": "السعر بالساعة مطلوب",
+      "hourly_rate_positive": "السعر بالساعة يجب أن يكون موجباً",
+      "currency_required": "العملة مطلوبة",
+      "day_required": "اليوم مطلوب",
+      "time_slots_required": "مطلوب فترة زمنية واحدة على الأقل"
+    },
+    "booking": {
+      "date_future": "التاريخ يجب أن يكون في المستقبل",
+      "time_required": "الوقت مطلوب"
+    }
   }
 
 
