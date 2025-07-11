@@ -15,7 +15,6 @@ export async function loginService(data: {
 
     if (!res.ok) {
       const errorData = await res.json();
-      console.log(errorData);
       throw new Error(errorData.message);
     }
 
@@ -33,13 +32,9 @@ export async function loginService(data: {
 
 export const googleAuth = async () => {
   try {
-    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+    const { error } = await supabaseClient.auth.signInWithOAuth({
       provider: "google",
-      options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
-      },
     });
-    console.log(data);
     if (error) console.error("Login error:", error);
   } catch (err) {
     console.error("Unexpected error during Google Auth:", err);

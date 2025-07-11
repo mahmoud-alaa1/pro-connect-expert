@@ -4,7 +4,6 @@ import SessionCard from "@/app/[locale]/client-dashboard/components/session-card
 
 export default function ExpertPastList() {
   const { data: pastSessions } = useGetSession("past");
-  console.log("Past Sessions:", pastSessions);
 
   if (pastSessions && pastSessions.length === 0) {
     return <NoPastSessions />;

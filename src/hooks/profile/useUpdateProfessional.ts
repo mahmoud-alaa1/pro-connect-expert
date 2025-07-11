@@ -7,7 +7,6 @@ export function useUpdateProfessional() {
   return useMutation({
     mutationFn: updateProfessionalProfile,
     onSuccess: (data) => {
-      console.log(data);
       queryClient.invalidateQueries({
         queryKey: ["professional-profile"],
       });

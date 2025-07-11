@@ -10,7 +10,6 @@ export function useSignup() {
   return useMutation({
     mutationFn: signupAction,
     onSuccess: (data) => {
-      console.log("Signup successful:", data);
 
       toast.success("برجاء تأكيد بريدك الإلكتروني");
       router.push("/verify-otp");

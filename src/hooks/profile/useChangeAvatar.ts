@@ -17,7 +17,6 @@ export function useChangeAvatar() {
     onSuccess: (data) => {
       updateUser({ ...user, avatar_url: data.avatar_url });
       toast.success("Avatar changed successfully!");
-      console.log("Avatar URL:", data.avatar_url);
     },
   });
 }

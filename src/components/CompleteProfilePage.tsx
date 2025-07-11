@@ -28,7 +28,6 @@ export default function CompleteProfilePage() {
   const {  isPending, mutate } = useCompleteProfile();
 
   const onSubmit = (values: FormValues) => {
-    console.log(values);
     mutate(values.user_type);
   };
 

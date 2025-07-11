@@ -54,7 +54,6 @@ export async function GET(
     day: day,
     times,
   }));
-  console.log(result, "availability result");
 
   return NextResponse.json(result);
 }

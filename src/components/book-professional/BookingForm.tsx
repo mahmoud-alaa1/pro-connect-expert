@@ -56,7 +56,6 @@ export default function BookingForm({
   const totalAmount = (duration * (professional?.hourly_rate ?? 0)) / 60;
 
   function onSubmit(values: bookingSchema) {
-    console.log(values);
 
     mutate({
       expert_id: professional.id,

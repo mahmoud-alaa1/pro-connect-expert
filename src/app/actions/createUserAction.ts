@@ -49,7 +49,6 @@ export async function createUserAction(user_type: "client" | "expert") {
       availability_status: true,
     });
 
-    console.log("expertError", expertError);
 
     if (expertError) {
       throw new Error("فشل في إضافة بيانات الخبير");

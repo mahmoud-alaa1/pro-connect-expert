@@ -10,7 +10,6 @@ export function useLogin() {
   return useMutation({
     mutationFn: loginService,
     onSuccess: (data) => {
-      console.log(data);
       login(data);
       toast.success("تم تسجيل الدخول بنجاح!");
       router.push("/");

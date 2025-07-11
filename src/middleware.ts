@@ -15,7 +15,6 @@ export async function middleware(request: NextRequest) {
     protectedAuthRoutes.includes(segment)
   );
 
-  console.log( accessingAuthPage,request.url);
 
   if (token && accessingAuthPage) {
     const loginUrl = new URL("/", request.url);

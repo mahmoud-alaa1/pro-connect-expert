@@ -8,7 +8,6 @@ export function useVerifyOTP() {
   return useMutation({
     mutationFn: verifyOtpAction,
     onSuccess: (data) => {
-      console.log(data);
       toast.success("تم التحقق من الكود بنجاح");
       router.push("/login");
     },

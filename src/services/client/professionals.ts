@@ -16,10 +16,6 @@ export async function fetchPaginatedProfessionals(
   if (filters.specialty) params.append("specialty", filters.specialty);
   if (filters.title) params.append("title", filters.title);
 
-  console.log(
-    `/api/professionals?${params.toString()}`,
-    "Fetching professionals with filters"
-  );
   const res = await fetch(`/api/professionals?${params.toString()}`);
   if (!res.ok) {
     throw new Error("Failed to fetch professionals");

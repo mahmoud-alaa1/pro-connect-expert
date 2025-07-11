@@ -6,7 +6,6 @@ import { profileBasicInfoSchema } from "@/components/forms/profile/name/ProfileB
 
 export function useUpdateProfile() {
   const user = useAuth();
-  console.log(user.user?.id, "user id in useUpdateProfile");
   return useMutation({
     mutationFn: (data: profileBasicInfoSchema) =>
       updateProfile({
@@ -14,7 +13,6 @@ export function useUpdateProfile() {
         id: user.user?.id || "",
       }),
     onSuccess: (data) => {
-      console.log("Profile updated successfully:", data);
       user.updateUser({
         ...user.user,
         ...data,

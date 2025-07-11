@@ -27,7 +27,6 @@ export default function TimeSlots() {
   const timesForDay =
     availabilityData?.find((t) => t.day === weekday)?.times ?? [];
 
-  console.log(availabilityData);
 
   if (isFetching) {
     return (

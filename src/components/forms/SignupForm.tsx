@@ -32,7 +32,6 @@ export default function SignupForm() {
     },
   });
   function onSubmit(values: signupSchema) {
-    console.log(values);
     mutate(values);
   }
 

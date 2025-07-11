@@ -58,7 +58,6 @@ export default function ExpertBasicProfileForm() {
     if (!data) {
       return;
     }
-    console.log(data);
 
     const availability = groupAvailability(data.expert_availability || []);
 
@@ -93,7 +92,6 @@ export default function ExpertBasicProfileForm() {
     );
   }
 
-  console.log(form.watch());
 
   return (
     <Form {...form}>
