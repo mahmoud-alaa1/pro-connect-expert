@@ -3,9 +3,12 @@ import { updateProfile } from "@/services/client/profile";
 import { toast } from "sonner";
 import { useAuth } from "@/store/useAuthStore";
 import { profileBasicInfoSchema } from "@/components/forms/profile/name/ProfileBasicInfoForm";
+import { useHookTranslations } from "../useHookTranslations";
 
 export function useUpdateProfile() {
   const user = useAuth();
+  const t = useHookTranslations();
+
   return useMutation({
     mutationFn: (data: profileBasicInfoSchema) =>
       updateProfile({
@@ -17,7 +20,7 @@ export function useUpdateProfile() {
         ...user.user,
         ...data,
       });
-      toast.success("تم تحديث البيانات بنجاح");
+      toast.success(t.profile.update_success);
     },
     onError: (error) => {
       console.error("Error updating profile:", error);

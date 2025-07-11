@@ -1,4 +1,38 @@
 {
+  "hooks": {
+    "optimistic": {
+      "update_success": "تم التحديث بنجاح",
+      "update_error": "حدث خطأ في التحديث", 
+      "delete_success": "تم الحذف بنجاح",
+      "delete_error": "حدث خطأ في الحذف",
+      "create_success": "تمت العملية بنجاح",
+      "create_error": "حدث خطأ ما في العملية"
+    },
+    "auth": {
+      "login_success": "تم تسجيل الدخول بنجاح!",
+      "login_error": "فشل تسجيل الدخول",
+      "signup_success": "برجاء تأكيد بريدك الإلكتروني",
+      "signup_error": "فشل إنشاء الحساب",
+      "verify_otp_success": "تم التحقق من الكود بنجاح",
+      "verify_otp_error": "فشل في التحقق من الكود",
+      "complete_profile_success": "تم إكمال الملف الشخصي بنجاح!",
+      "complete_profile_error": "فشل إكمال الملف الشخصي"
+    },
+    "profile": {
+      "update_success": "تم تحديث البيانات بنجاح",
+      "update_error": "فشل تحديث الملف الشخصي",
+      "avatar_change_success": "تم تغيير الصورة الشخصية بنجاح!",
+      "avatar_change_error": "فشل في تغيير الصورة الشخصية"
+    },
+    "sessions": {
+      "book_success": "تم حجز الجلسة بنجاح!",
+      "book_error": "فشل الحجز",
+      "fetch_error": "فشل في جلب الجلسات"
+    },
+    "availability": {
+      "fetch_error": "فشل في جلب المواعيد المتاحة"
+    }
+  },
   "VerifyOTP" :{
     "heading":"أدخل رمز التحقق الخاص بك",
     "code_label": "رمز التحقق"
@@ -612,7 +646,7 @@
       }
     }
   },
-  
+
   "validation": {
     "auth": {
       "email_required": "البريد الإلكتروني مطلوب",

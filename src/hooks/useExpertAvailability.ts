@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import { useHookTranslations } from "./useHookTranslations";
 
 export interface AvailabilitySlot {
   id: string;
@@ -15,15 +16,14 @@ export interface DayAvailability {
 
 export function useExpertAvailability(expertIdPassed?: string) {
   const { id } = useParams();
-
   const expertId = expertIdPassed || (id as string);
-
+  const t = useHookTranslations();
 
   return useQuery<DayAvailability[]>({
     queryKey: ["availability", expertId],
     queryFn: async () => {
       const res = await fetch(`/api/professionals/${expertId}/availability`);
-      if (!res.ok) throw new Error("Failed to fetch availability");
+      if (!res.ok) throw new Error(t.availability.fetch_error);
       return res.json();
     },
   });

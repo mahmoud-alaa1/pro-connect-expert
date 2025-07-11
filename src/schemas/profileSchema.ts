@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { currencyLiterals } from "@/types/tableTypes";
-import { getStaticValidationMessages } from "@/lib/validationMessages";
+import { getStaticValidationMessages } from "@/lib/utils";
 
 export function createExpertProfileSchema(locale: string = 'en') {
   const messages = getStaticValidationMessages(locale);

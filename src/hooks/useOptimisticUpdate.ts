@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useHookTranslations } from "./useHookTranslations";
 
 interface OptimisticUpdateConfig<TData, TInput> {
   updateFn: (data: TInput) => Promise<TData>;
@@ -14,18 +15,21 @@ interface OptimisticUpdateConfig<TData, TInput> {
 
 export default function useOptimisticUpdate<
   TData extends Record<string, unknown>,
-  TInput,
+  TInput
 >({
   updateFn,
   queryKey,
   matcher,
   updater,
-  messages = {
-    success: "تم التحديث بنجاح",
-    error: "حدث خطأ في التحديث",
-  },
+  messages,
 }: OptimisticUpdateConfig<TData, TInput>) {
   const queryClient = useQueryClient();
+  const t = useHookTranslations();
+
+  const defaultMessages = {
+    success: messages?.success || t.optimistic.update_success,
+    error: messages?.error || t.optimistic.update_error,
+  };
 
   return useMutation({
     mutationFn: updateFn,
@@ -48,7 +52,7 @@ export default function useOptimisticUpdate<
             pages: oldData.pages.map((page: { data: TData[] }) => ({
               ...page,
               data: page.data.map((item: TData) =>
-                matcher(item, input) ? updater(item, input) : item,
+                matcher(item, input) ? updater(item, input) : item
               ),
             })),
           };
@@ -67,11 +71,13 @@ export default function useOptimisticUpdate<
       if (context?.previousData) {
         queryClient.setQueryData(queryKey, context.previousData);
       }
-      toast.error(error instanceof Error ? error.message : messages.error);
+      toast.error(
+        error instanceof Error ? error.message : defaultMessages.error
+      );
     },
 
     onSuccess: () => {
-      toast.success(messages.success);
+      toast.success(defaultMessages.success);
     },
   });
 }

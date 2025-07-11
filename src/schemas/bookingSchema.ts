@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getStaticValidationMessages } from "@/lib/validationMessages";
+import { getStaticValidationMessages } from "@/lib/utils";
 
 export function createBookingSchema(locale: string = 'en') {
   const messages = getStaticValidationMessages(locale);

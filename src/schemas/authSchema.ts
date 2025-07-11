@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getStaticValidationMessages } from "@/lib/validationMessages";
+import { getStaticValidationMessages } from "@/lib/utils";
 
 // Function to create schemas with locale-specific messages
 export function createAuthSchemas(locale: string = 'en') {

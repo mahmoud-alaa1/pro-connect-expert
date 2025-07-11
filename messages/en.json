@@ -1,4 +1,38 @@
 {
+  "hooks": {
+    "optimistic": {
+      "update_success": "Updated successfully",
+      "update_error": "Error occurred during update",
+      "delete_success": "Deleted successfully", 
+      "delete_error": "Error occurred during deletion",
+      "create_success": "Operation completed successfully",
+      "create_error": "An error occurred during the operation"
+    },
+    "auth": {
+      "login_success": "Login successful!",
+      "login_error": "Login failed",
+      "signup_success": "Please verify your email",
+      "signup_error": "Account creation failed",
+      "verify_otp_success": "Code verified successfully",
+      "verify_otp_error": "Code verification failed",
+      "complete_profile_success": "Profile completed successfully!",
+      "complete_profile_error": "Profile completion failed"
+    },
+    "profile": {
+      "update_success": "Profile updated successfully",
+      "update_error": "Profile update failed",
+      "avatar_change_success": "Avatar changed successfully!",
+      "avatar_change_error": "Failed to change avatar"
+    },
+    "sessions": {
+      "book_success": "Session booked successfully!",
+      "book_error": "Booking failed",
+      "fetch_error": "Failed to fetch sessions"
+    },
+    "availability": {
+      "fetch_error": "Failed to fetch availability"
+    }
+  },
   "VerifyOTP" :{
     "heading":"Enter your OTP",
     "code_label": "Verification Code"
@@ -610,7 +644,7 @@
       }
     }
   },
-  
+
   "validation": {
     "auth": {
       "email_required": "Email is required",

@@ -1,6 +1,7 @@
 // hooks/useBookSession.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useHookTranslations } from "../useHookTranslations";
 
 interface BookSessionPayload {
   expert_id: string;
@@ -12,6 +13,7 @@ interface BookSessionPayload {
 
 export function useBookSession() {
   const queryclient = useQueryClient();
+  const t = useHookTranslations();
 
   return useMutation({
     mutationFn: async (payload: BookSessionPayload) => {
@@ -25,17 +27,17 @@ export function useBookSession() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || "Failed to book session");
+        throw new Error(data.error || t.sessions.book_error);
       }
 
       return data.data;
     },
     onError: (error: Error) => {
-      toast.error(`Booking failed: ${error.message}`);
+      toast.error(`${t.sessions.book_error}: ${error.message}`);
       console.error("Booking error:", error);
     },
     onSuccess: (data, variables) => {
-      toast.success("Session booked successfully!");
+      toast.success(t.sessions.book_success);
 
       queryclient.setQueryData<
         {
