@@ -186,10 +186,10 @@ export function Footer() {
 
             <div className="space-y-2">
               <Link
-                href={`mailto:support@proconnect.com`}
+                href={`mailto:support@proconnectexpert.com`}
                 className="flex items-center text-gray-300 text-sm">
                 <Mail className="h-4 w-4 me-2" />
-                support@proconnect.com
+                support@proconnectexpert.com
               </Link>
             </div>
           </div>
