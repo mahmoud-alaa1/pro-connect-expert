@@ -29,11 +29,11 @@ export function ProfileHeader({
           <div className="relative">
             <div className="relative size-32 lg:size-40   shadow-2xl shadow-blue-500/20 rounded-full ">
               <Image
-                src={professional?.avatar || "/default-user.png"}
+                src={professional?.avatar_url || "/default-user.png"}
                 alt={professional?.name || "Professional"}
-                layout="fill"
-                objectFit="cover"
+                fill
                 className="rounded-full ring-white ring-4"
+                
               />
             </div>
             {/* Status indicator */}

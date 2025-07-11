@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
       rating,
       total_reviews,
       availability_status,
-      avatar,
+      avatar_url,
       verified,
       rating,
       name                

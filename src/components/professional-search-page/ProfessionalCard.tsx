@@ -18,7 +18,7 @@ export default function ProfessionalCard({
         <div className="hover:scale-105 transition-transform duration-300">
           <div className="relative">
             <Avatar className="size-20">
-              <AvatarImage src={professional.avatar || "/default-avatar.png"} />
+              <AvatarImage src={professional.avatar_url || "/default-avatar.png"} />
 
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>

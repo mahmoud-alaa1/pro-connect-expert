@@ -2,13 +2,13 @@ import { supabaseAdmin } from "@/lib/supabase/supabaseServer";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 
-import { ProfileHeader } from "../../../../components/expert-profile/profile-header/ProfileHeader";
-import HourlyRate from "../../../../components/expert-profile/hourly-rate/HourlyRate";
-import LanguageCard from "../../../../components/expert-profile/language-card/LanguageCard";
-import AvailabilityCard from "../../../../components/expert-profile/availability-card/AvailabilityCard";
-import { ProfileBio } from "../../../../components/expert-profile/profile-bio/ProfileBio";
-import ProfileExperience from "../../../../components/expert-profile/profile-experience/ProfileExperience";
-import ProfileEducation from "../../../../components/expert-profile/profile-education/ProfileEducation";
+import { ProfileHeader } from "@/components/expert-profile/profile-header/ProfileHeader";
+import HourlyRate from "@/components/expert-profile/hourly-rate/HourlyRate";
+import LanguageCard from "@/components/expert-profile/language-card/LanguageCard";
+import AvailabilityCard from "@/components/expert-profile/availability-card/AvailabilityCard";
+import { ProfileBio } from "@/components/expert-profile/profile-bio/ProfileBio";
+import ProfileExperience from "@/components/expert-profile/profile-experience/ProfileExperience";
+import ProfileEducation from "@/components/expert-profile/profile-education/ProfileEducation";
 import CertificationsCard from "@/components/expert-profile/cerifications-card/CertificationsCard";
 import { getExpertById } from "@/services/server/expertsServices";
 export async function generateMetadata({
