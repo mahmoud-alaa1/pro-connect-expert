@@ -521,7 +521,7 @@ export type Database = {
       professionals: {
         Row: {
           availability_status: boolean | null
-          avatar: string | null
+          avatar_url: string | null
           bio: string | null
           certificates_urls: string[] | null
           certifications: string[] | null
@@ -546,7 +546,7 @@ export type Database = {
         }
         Insert: {
           availability_status?: boolean | null
-          avatar?: string | null
+          avatar_url?: string | null
           bio?: string | null
           certificates_urls?: string[] | null
           certifications?: string[] | null
@@ -571,7 +571,7 @@ export type Database = {
         }
         Update: {
           availability_status?: boolean | null
-          avatar?: string | null
+          avatar_url?: string | null
           bio?: string | null
           certificates_urls?: string[] | null
           certifications?: string[] | null

@@ -33,7 +33,7 @@ export function ProfileHeader({
                 alt={professional?.name || "Professional"}
                 fill
                 className="rounded-full ring-white ring-4"
-                
+                  
               />
             </div>
             {/* Status indicator */}
