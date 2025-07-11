@@ -117,6 +117,13 @@
     "or_continue_with": "أو تابع مع"
   },
   "Common": {
+     "pending": "قيد الانتظار",
+    "confirmed": "مؤكد",
+    "cancelled": "ملغى",
+    "completed": "مكتمل",
+    "unpaid": "غير مدفوع",
+    "paid": "مدفوع",
+
     "go_back": "العودة للخلف",
     "sign_with_google": "تابع مع جوجل",
     "search_professionals": "البحث عن محترفين",
@@ -547,7 +554,10 @@
       "notes": "ملاحظات",
       "no_notes": "لا توجد ملاحظات متاحة",
       "feedback": "التقييم",
-      "no_feedback": "لا يوجد تقييم متاح"
+      "no_feedback": "لا يوجد تقييم متاح",
+      "min": "دقيقة",
+      "hr": "ساعة"
+
     },
     "empty_states": {
       "no_upcoming": {

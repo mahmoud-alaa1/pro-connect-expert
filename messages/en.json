@@ -117,6 +117,14 @@
     "or_continue_with": "Or continue with"
   },
   "Common": {
+
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "completed": "Completed",
+    "unpaid": "Unpaid",
+    "paid": "Paid",
+
     "go_back": "Go Back",
     "sign_with_google": "Continue with Google",
     "search_professionals": "Search Professionals",
@@ -547,7 +555,8 @@
       "notes": "Notes",
       "no_notes": "No notes available",
       "feedback": "Feedback",
-      "no_feedback": "No feedback available"
+      "no_feedback": "No feedback available",
+      "min": "min"
     },
     "empty_states": {
       "no_upcoming": {

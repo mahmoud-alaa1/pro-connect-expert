@@ -11,7 +11,7 @@ export default function SessionNotes({
   return (
     <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
       <p className="text-sm text-start text-blue-800">
-        <MessageSquare className="w-4 h-4 inline mr-2" />
+        <MessageSquare className="w-4 h-4 inline mr-2" />&nbsp;
         {session.notes || t("no_notes")}
       </p>
     </div>

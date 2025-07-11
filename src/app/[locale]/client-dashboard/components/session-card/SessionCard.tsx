@@ -1,21 +1,21 @@
 import { Card, CardContent } from "@/components/ui/card";
 import UpcomingSessionsActions from "./UpcomingSessionsActions";
-import { CircleDollarSign } from "lucide-react";
 import SessionNotes from "./SessionNotes";
 import SessionFeedback from "./SessionFeedback";
-import { Badge } from "@/components/ui/badge";
 import SessionDetails from "./SessionDetails";
 import Image from "next/image";
-import { getPaymentStatusColor, getStatusColor } from "@/lib/utils";
-import { getStatusIcon } from "@/lib/constants";
+import { useIsRtl } from "@/lib/utils";
+import SessionStatus from "../session-status/SessionStatus";
 
 export default function SessionCard({
   session,
 }: {
   session: ISessionResponse;
 }) {
+  const isRtl = useIsRtl();
+  console.log("here", isRtl);
   return (
-    <div className="animate-slide-up">
+    <div dir={isRtl ? "rtl" : "ltr"} className="animate-slide-up">
       <Card className="group hover:shadow-lg transition-all duration-300 border-l-4 border-l-blue-500">
         <CardContent className="p-6 bg-gradient-to-br ">
           <div className="flex items-start flex-wrap gap-3 justify-between mb-4">
@@ -46,20 +46,7 @@ export default function SessionCard({
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col items-end gap-2">
-              <Badge className={getStatusColor(session.status)}>
-                {getStatusIcon(session.status)}
-                &nbsp;
-                {session.status}
-              </Badge>
-
-              <Badge className={getPaymentStatusColor(session.payment_status)}>
-                <CircleDollarSign className="size-4" />
-                &nbsp;
-                {session.payment_status}
-              </Badge>
-            </div>
+            <SessionStatus session={session} />
           </div>
 
           {/* Session Details */}
