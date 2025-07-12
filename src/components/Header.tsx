@@ -2,7 +2,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import SideNav from "./SideNav";
 import HeaderActions from "./HeaderActions";
-import Image from "next/image";
+import Logo from "./Logo";
 
 export default function Header() {
   const t = useTranslations("Logo");
@@ -11,12 +11,7 @@ export default function Header() {
       <nav className="p-3   border-b-2  shadow-md bg-[#fdfdfd] flex items-center justify-between">
         <div className="font-bold">
           <Link className="flex  items-center gap-2" href="/">
-            <Image
-              src={"/Logo.webp"}
-              alt="platform logo"
-              width={40}
-              height={40}
-            />
+            <Logo />
             <div className="text-lg">
               <span className="text-blue-700">{t("pro")}</span>
               <span>{t("connect")}</span>

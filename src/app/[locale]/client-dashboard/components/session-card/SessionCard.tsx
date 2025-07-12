@@ -43,7 +43,7 @@ export default function SessionCard({
                   src={avatar || "default-user.webp"}
                   alt={"User Name"}
                   fill
-                  className="rounded-full"
+                  className="rounded-full object-cover object-center"
                 />
               </div>
 

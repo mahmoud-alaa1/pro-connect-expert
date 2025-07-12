@@ -5,6 +5,7 @@ import { PlayCircle, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import videoPlaceholder from "../../../public/video-placeholder.webp";
 
 export default function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -43,10 +44,11 @@ export default function VideoPlayer() {
                 {/* Placeholder Image */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/video-placeholder.webp"
+                    src={videoPlaceholder}
                     alt="Video Placeholder"
                     className="rounded-3xl"
                     fill
+                    loading="lazy"
                   />
                 </div>
 

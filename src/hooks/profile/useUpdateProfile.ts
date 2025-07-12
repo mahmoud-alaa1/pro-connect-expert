@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/services/client/profile";
 import { toast } from "sonner";
 import { useAuth } from "@/store/useAuthStore";
-import { profileBasicInfoSchema } from "@/components/forms/profile/name/ProfileBasicInfoForm";
 import { useHookTranslations } from "../useHookTranslations";
+import { profileBasicInfoSchema } from "@/schemas/profileSchema";
 
 export function useUpdateProfile() {
   const user = useAuth();

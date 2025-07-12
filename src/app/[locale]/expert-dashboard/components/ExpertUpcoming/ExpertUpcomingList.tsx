@@ -10,7 +10,7 @@ export default function ExpertUpcomingList() {
   }
 
   return (
-    <div>
+    <div className="space-y-4">
       {upcomingSessions?.map((session) => (
         <SessionCard
           userType="client"

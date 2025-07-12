@@ -19,7 +19,7 @@ export function ProfileImageUploader({ imageUrl, onChangeClick }: Props) {
         <div className="relative">
           <div className="relative w-20 h-20">
             <Image
-              src={imageUrl || "/default-avatar.png"}
+              src={imageUrl || "/default-avatar.web"}
               alt="Profile"
               className="w-20 h-20 rounded-full object-cover"
               fill

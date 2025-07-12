@@ -1,17 +1,15 @@
 "use client";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import FormInput from "@/components/form-fields/FormInput";
 import { useTranslations } from "next-intl";
-
-
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { useUpdateProfile } from "@/hooks/profile/useUpdateProfile";
 import { useAuth } from "@/store/useAuthStore";
 import { useEffect } from "react";
+import { profileBasicInfoSchema } from "@/schemas/profileSchema";
 
 export default function ProfileBasicInfoForm() {
   const t = useTranslations("Settings.basic_form");

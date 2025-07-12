@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Provider from "@/providers/Provider";
 import { Toaster } from "sonner";
 import Footer from "@/components/Footer";
+import { routing } from "@/i18n/routing";
 
 const alexandria = Alexandria({
   variable: "--font-alexandria",
@@ -32,6 +33,10 @@ export async function generateMetadata(props: {
       icon: "/favicon.ico",
     },
   };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({

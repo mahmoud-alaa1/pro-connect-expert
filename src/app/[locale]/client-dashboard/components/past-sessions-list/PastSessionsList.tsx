@@ -10,7 +10,7 @@ export default function PastSessionsList() {
   }
 
   return (
-    <div>
+    <div className="space-y-4">
       {pastSessions?.map((session) => (
         <SessionCard
           type="past"

@@ -3,21 +3,21 @@ import { z } from "zod";
 export const loginSchema = z.object({
   email: z
     .string({
-      required_error: "Email is required",
+      required_error: "البريد الإلكتروني مطلوب",
     })
     .min(1, {
-      message: "Email cannot be empty",
+      message: "البريد الإلكتروني لا يمكن أن يكون فارغاً",
     })
     .email({
-      message: "Invalid email address",
+      message: "البريد الإلكتروني غير صالح",
     }),
 
   password: z
     .string({
-      required_error: "Password is required",
+      required_error: "كلمة المرور مطلوبة",
     })
     .min(6, {
-      message: "Password must be at least 6 characters long",
+      message: "كلمة المرور يجب أن تكون على الأقل 6 أحرف",
     }),
   rememberMe: z.boolean().optional(),
 });
@@ -37,10 +37,10 @@ export const signupSchema = z.object({
 export const verifyOTPSchema = z.object({
   otp: z
     .string({
-      required_error: "OTP is required",
+      required_error: "رمز التحقق مطلوب",
     })
     .length(6, {
-      message: "OTP must be exactly 6 digits",
+      message: "رمز التحقق يجب أن يكون 6 أرقام",
     }),
 });
 
