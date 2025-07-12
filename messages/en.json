@@ -659,6 +659,8 @@
       "otp_length": "OTP must be exactly 6 digits"
     },
     "profile": {
+      "full_name_min_length": "Full name must be at least 2 characters long",
+      "full_name_max_length": "Full name must be at most 50 characters long",
       "title_required": "Title is required",
       "specialty_required": "Specialty is required",
       "bio_required": "Bio is required",

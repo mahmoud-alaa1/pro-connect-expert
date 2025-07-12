@@ -5,11 +5,7 @@ import { useForm } from "react-hook-form";
 import FormInput from "@/components/form-fields/FormInput";
 import { useTranslations } from "next-intl";
 
-const profileBasicInfoSchema = z.object({
-  full_name: z.string().min(2).max(50),
-});
 
-export type profileBasicInfoSchema = z.infer<typeof profileBasicInfoSchema>;
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";

@@ -27,7 +27,7 @@ export default function ExpertDashboardHeader() {
           </Badge>
           <div className="relative size-25">
             <Image
-              src={user?.avatar_url || "/default-user.png"}
+              src={user?.avatar_url || "/default-user.webp"}
               alt="Profile"
               className="rounded-full border-4 border-white shadow-sm"
               fill

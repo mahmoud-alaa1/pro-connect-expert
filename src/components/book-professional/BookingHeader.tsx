@@ -15,7 +15,7 @@ export default function BookingHeader({
       <div className="flex  flex-col sm:items-center sm:flex-row gap-6 animate-fade-in">
         <div className="relative size-30 mx-auto">
           <Image
-            src={professional.avatar_url || "/default-user.png"}
+            src={professional.avatar_url || "/default-user.webp"}
             alt={professional.name || "Professional"}
             className="h-20 w-20 ring-4 ring-white shadow-lg rounded-full "
             fill

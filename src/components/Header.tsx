@@ -12,7 +12,7 @@ export default function Header() {
         <div className="font-bold">
           <Link className="flex  items-center gap-2" href="/">
             <Image
-              src={"/Logo.png"}
+              src={"/Logo.webp"}
               alt="platform logo"
               width={40}
               height={40}

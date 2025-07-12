@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 export function ProfileImageForm() {
   const user = useAuth((s) => s.user!);
 
-  const avatarUrl = user?.avatar_url || "/default-user.png";
+  const avatarUrl = user?.avatar_url || "/default-user.webp";
 
   const inputRef = useRef<HTMLInputElement>(null);
   const changeAvatar = useChangeAvatar();

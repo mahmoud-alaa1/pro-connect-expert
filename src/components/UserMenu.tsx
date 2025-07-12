@@ -29,7 +29,7 @@ export default function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger className="rounded-full">
         <Avatar>
-          <AvatarImage src={user.avatar_url || "/default-user.png"} />
+          <AvatarImage src={user.avatar_url || "/default-user.webp"} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

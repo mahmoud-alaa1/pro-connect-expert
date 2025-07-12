@@ -40,7 +40,7 @@ export default function SessionCard({
             <div className="flex items-center gap-4">
               <div className="relative size-14 sm:size-20">
                 <Image
-                  src={avatar || "default-user.png"}
+                  src={avatar || "default-user.webp"}
                   alt={"User Name"}
                   fill
                   className="rounded-full"

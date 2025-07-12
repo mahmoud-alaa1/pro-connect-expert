@@ -21,19 +21,20 @@ export async function generateMetadata({
 
   const { data: professional } = await supabaseAdmin
     .from("professionals")
-    .select("title, specialty")
+    .select("title, specialty, name")
     .eq("id", id)
     .single();
 
   if (!professional) return {};
 
   return {
-    title: t("page.meta_title", {
-      title: professional.title || "Professional",
-      specialty: professional.specialty || "Expert",
-    }),
+    title:
+      t("page.meta_title", {
+        title: professional.title || "Professional",
+        specialty: professional.specialty || "Expert",
+      }) + professional.name,
     description: t("page.meta_description", {
-      title: professional.title || "Professional",
+      title: professional.name || "Professional",
       specialty: professional.specialty || "Expert",
     }),
   };

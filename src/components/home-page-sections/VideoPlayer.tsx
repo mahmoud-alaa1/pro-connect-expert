@@ -43,7 +43,7 @@ export default function VideoPlayer() {
                 {/* Placeholder Image */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/video-placeholder.jpg"
+                    src="/video-placeholder.webp"
                     alt="Video Placeholder"
                     className="rounded-3xl"
                     fill
